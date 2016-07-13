@@ -1,3 +1,6 @@
+# Angular-es
+Traducción oficial del website de Angular.io a Español
+
 # Angular.io
 [![Build Status][travis-badge]][travis-badge-url]
 
