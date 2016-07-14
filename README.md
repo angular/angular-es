@@ -4,7 +4,7 @@ Traducción oficial del website de Angular.io a Español
 # Angular.io
 [![Build Status][travis-badge]][travis-badge-url]
 
-Angular.es es el sitio para la **documentación** de Angular 2. 
+Angular.io es el sitio para la **documentación** de Angular 2. 
 
 Este sitio además incluye enlaces a otros recursos útiles incluyendo
 Angular 2, Angular 1, Angular Material y AngularFire.
@@ -14,7 +14,7 @@ Angular 2, Angular 1, Angular Material y AngularFire.
 Porfavor presente **solo problemas en la Guia del Desarrollador, Cookbook y ejemplos de código** en este 
 [Angular.es](https://github.com/angular/angular-es/issues) repositorio de github.
 
-**Problemas en el API de Angular, correciones del documento, pedidos de carácteristicas, reportes de defectos y preguntas técnicas** sobre Angular en si
+**Problemas en el API de Angular, correciones del documento, pedidos de carácteristicas, reportes de defectos y preguntas técnicas** sobre Angular 
 pertenecen al repositorio de github del [**código fuente de angular**](https://github.com/angular/angular/issues).
 No podemos manejar esos temas aquí y le pediremos que vuelva a publicarlos en el repositorio de angular.
 
@@ -42,17 +42,17 @@ Los 2 directorios de repositorios clonados deben ser hermanos.
 
 1. Ve [abajo](#code-sample-development) para la preparación del desarrollo de códigos ejemplo.
 
-## Content Development
-All documentation content is written in Jade which has [its own syntax](http://jade-lang.com/reference/).
-Be aware of the strict demands imposed by this significant-whitespace language.
-We strongly recommend running one of the gulp `serve-and-sync` commands [described below](#serve-and-sync)
-while editing content so you can see the effect of your changes *as you type*.
+## Desarrollo del contenido
+Toda la documentación del contenido es escrito en Jade el cual contiene [su propio sintaxis](http://jade-lang.com/reference/).
+Este atento con las demandas impuestos por este lenguaje de espacio significativo.
+Es muy recomendable ejecutar uno de los comandos de gulp `serve-and-sync` [descritos abajo](#serve-and-sync)
+mientras edita el contenido de forma que pueda ver el efecto de sus cambios *mientras escribe*.
 
-The documentation relies on specific styles and mixins. 
-Learn about those in the [documentation styleguide](https://angular.io/docs/ts/latest/styleguide.html).
+La documentación se basa en estilos específicos y mixins. 
+Aprende de ellos en [la guía de estilo de la documentación](https://angular.es/docs/ts/latest/styleguide.html).
 
-The jade documentation files are language-specific directories under either `public/docs/`.
-For example, all of the TypeScript docs are in `public/docs/ts/latest`, e.g.
+Los archivos de documentación de jade son directorios específicos según el lenguaje bajo `public/docs/`.
+Por ejemplo, todos los documentos de TypeScript estan en  `public/docs/ts/latest`, e.g.
 - `public/docs/ts/latest/quickstart.jade`
 - `public/docs/ts/latest/guide/architecture.jade`
 - `public/docs/ts/latest/cookbook/component-communication.jade`
