@@ -4,55 +4,55 @@ Traducción oficial del website de Angular.io a Español
 # Angular.io
 [![Build Status][travis-badge]][travis-badge-url]
 
-Angular.io is site for Angular 2 **documentation** . 
+Angular.io es el sitio para la **documentación** de Angular 2. 
 
-This site also includes links to other helpful angular resources including 
-Angular 2, Angular 1, Angular Material, and AngularFire.
+Este sitio además incluye enlaces a otros recursos útiles incluyendo
+Angular 2, Angular 1, Angular Material y AngularFire.
 
-## Issues
+## Problemas
 
-Please file **Developer Guide, Cookbook, and code sample issues _only_** in this 
-[Angular.io](https://github.com/angular/angular.io/issues) github repo.
+Porfavor presente **solo problemas en la Guia del Desarrollador, Cookbook y ejemplos de código** en este 
+[Angular.es](https://github.com/angular/angular-es/issues) repositorio de github.
 
-**Angular API issues, cheatsheet corrections, feature requests, defect reports, and technical questions** concerning Angular itself
-belong in the [**angular source code**](https://github.com/angular/angular/issues) github repo.
-We can't handle those topics here and will ask you to re-post them on the angular repo.
+**Problemas en el API de Angular, correciones del documento, pedidos de carácteristicas, reportes de defectos y preguntas técnicas** sobre Angular 
+pertenecen al repositorio de github del [**código fuente de angular**](https://github.com/angular/angular/issues).
+No podemos manejar esos temas aquí y le pediremos que vuelva a publicarlos en el repositorio de angular.
 
-## How you can help
+## Como puedes ayudar?
 
-Filing issues is helpful but **pull requests** that improve the docs are even better!
+Presentar problemas es útil pero hacer **pull requests** que mejoren los documentos es mejor!
 
-Learn how to [contribute to Angular.io](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md).
+Aprende como [contribuir a Angular-es](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md).
 
-## Development Setup
-This site relies heavily on node and npm.
+## Configuración de desarrollo
+Este sitio se basa en gran medida de node y npm.
 
-1. Make sure you are using the latest node and npm; 
-if not install [nvm](https://github.com/creationix/nvm) to get node going on your machine.
+1. Asegurate que estes usando el último node y npm; 
+si no instala [nvm](https://github.com/creationix/nvm) para que consigas node en tu máquina.
 
-1. install these npm packages *globally*: `npm install -g harp gulp`
+1. Instala estos paquetes de npm *globalmente*: `npm install -g harp gulp`
 
-1. clone this repo and the [angular source code repo](https://github.com/angular/angular) to the same parent directory.
-The two cloned repo directories must be sibling.
+1. Clona este repositorio y el [repositorio del código fuente de angular](https://github.com/angular/angular) en el mismo directorio padre.
+Los 2 directorios de repositorios clonados deben ser hermanos.
 
-1. cd into root directory `angular.io/`
+1. cd dentro del directorio raiz `angular-es/`
 
-1. install the *all-docs* local packages by running `npm install`
-> If running node v.5+, you probably must rebuild `node-sass` in a separate step: `npm rebuild node-sass`
+1. Instala los paquetes locales de *all-docs* por ejecutar `npm install`
+> Si esta ejecutandose una v.5+ de node, probablemente debas reconstruir  `node-sass` en un paso separado: `npm rebuild node-sass`
 
-1. See [below](#code-sample-development) for code sample development preparation.
+1. Ve [abajo](#code-sample-development) para la preparación del desarrollo de códigos ejemplo.
 
-## Content Development
-All documentation content is written in Jade which has [its own syntax](http://jade-lang.com/reference/).
-Be aware of the strict demands imposed by this significant-whitespace language.
-We strongly recommend running one of the gulp `serve-and-sync` commands [described below](#serve-and-sync)
-while editing content so you can see the effect of your changes *as you type*.
+## Desarrollo del contenido
+Toda la documentación del contenido es escrito en Jade el cual contiene [su propio sintaxis](http://jade-lang.com/reference/).
+Este atento con las demandas impuestos por este lenguaje de espacio significativo.
+Es muy recomendable ejecutar uno de los comandos de gulp `serve-and-sync` [descritos abajo](#serve-and-sync)
+mientras edita el contenido de forma que pueda ver el efecto de sus cambios *mientras escribe*.
 
-The documentation relies on specific styles and mixins. 
-Learn about those in the [documentation styleguide](https://angular.io/docs/ts/latest/styleguide.html).
+La documentación se basa en estilos específicos y mixins. 
+Aprende de ellos en [la guía de estilo de la documentación](https://angular.es/docs/ts/latest/styleguide.html).
 
-The jade documentation files are language-specific directories under either `public/docs/`.
-For example, all of the TypeScript docs are in `public/docs/ts/latest`, e.g.
+Los archivos de documentación de jade son directorios específicos según el lenguaje bajo `public/docs/`.
+Por ejemplo, todos los documentos de TypeScript estan en  `public/docs/ts/latest`, e.g.
 - `public/docs/ts/latest/quickstart.jade`
 - `public/docs/ts/latest/guide/architecture.jade`
 - `public/docs/ts/latest/cookbook/component-communication.jade`
@@ -140,20 +140,20 @@ gulp install-example-angular
 >_Solution_: unlock the hold on the package(s). In VS Code, re-load the window (`cmd-P` then enter `>relow`).
 
 
-## Technology Used
-- Angular 1.x: The production ready version of Angular
-- Angular Material: An implementation of Material Design in Angular.js
-- Gulp: node-based tooling
-- Harp: The static web server with built-in preprocessing.
-- Sass: A professional grade CSS extension language
-- Normalize: A modern, HTML5-ready alternative to CSS resets
-- Grids: A highly customizable CSS Grid Framework built with Sass
-- Prettify: A JS module and CSS for syntax highlighting of source code snippets.
-- Icomoon: Custom built icon fonts
+## Tecnología usada
+- Angular 1.x: La versión de producción lista de Angular
+- Angular Material: Una implementación de Material Design en Angular.js
+- Gulp: herramienta basada en node
+- Harp: El servidor web estático con preprocesamiento incorporado.
+- Sass: Un lenguaje de extensión de grado profesional de CSS
+- Normalize: Una alternativa moderna y preparada para HTML5 para reestablecer CSS
+- Grids: Un framework de cuadrículas (grid) de CSS altamente personalizable hecho con Sass
+- Prettify: Un módulo de JS y CSS para el apoyo de sintaxis de porciones de código fuennte.
+- Icomoon: Fuentes de icono personalizados incorporados
 
 
-## License
-Powered by Google ©2010-2016. Code licensed under an [MIT-style License](https://github.com/angular.io/blob/master/LICENSE). Documentation licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
+## Licencia
+Impulsado por Google ©2010-2016. Código bajo licencia de [MIT-style License](https://github.com/angular.io/blob/master/LICENSE). Documentación licenciada bajo [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
 
 [travis-badge]: https://travis-ci.org/angular/angular.io.svg?branch=master
 [travis-badge-url]: https://travis-ci.org/angular/angular.io
