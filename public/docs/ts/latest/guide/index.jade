@@ -9,18 +9,30 @@ figure
   This is a practical guide to Angular for experienced programmers who
   are building client applications in HTML and #{langName}.
 
+  Esta es una guía práctica de Angular para programadores experimentados que
+  están construyendo aplicaciones cliente en HTML y #{langName}.
+
   We are on a journey together to understand how Angular works and, more importantly,
   how to make it work for us.  This overview begins the journey.
+
+  Estamos juntos en un viaje para entender cómo funciona Angular y, más
+  importante como hacer que trabaje para nuestro beneficio. El viaje comienza aquí.
+
   <br clear="all">
 // #enddocregion intro
-
 // #docregion how-to-read-1
 <a id="learning-path"></a>
 :marked
   # Organization
 
+  # Organización
+
   The documentation is divided into major thematic sections, each
   a collection of chapters devoted to that theme.
+
+  La documentación se divide en grandes secciones temáticas, con una
+  colección de capítulos dedicados a cada tema.
+
 // #enddocregion how-to-read-1
 // #docregion how-to-read-2
 - var top="vertical-align:top"
@@ -28,81 +40,160 @@ table(width="100%")
   col(width="15%")
   col
   tr(style=top)
-    td <b>QuickStart</b>
+    td
+      p <b>QuickStart</b>
+
+      p <b>Inicio rápido</b>
+
     td
       :marked
         The foundation for every chapter and sample in this documentation.
+
+        La base para cada capítulo y ejemplo en esta documentación.
+
   tr(style=top)
-    td <b>Tutorial</b>
+    td
+      p <b>Tutorial</b>
+
     td
       :marked
         A step-by-step, immersive approach to learning Angular that
         introduces the major features of Angular in an application context.
+
+        Un enfoque paso a paso e inmersivo para aprender Angular, el cual introduce
+        las características principales de Angular en el contexto de una aplicación.
+
   tr(style=top)
-    td <b>Basics</b>
+    td
+      p <b>Basics</b>
+
+      p <b>Aspectos básicos</b>
     td
       :marked
         The essential ingredients of Angular development.
+
+        Los ingredientes esenciales del desarrollo en Angular.
+
   tr(style=top)
-    td <b>Developer Guide</b>
+    td
+      p <b>Developer Guide</b>
+
+      p <b>Guía del desarrollador</b>
     td
       :marked
         In-depth analysis of Angular features and development practices.
+
+        Análisis a fondo de las características y prácticas del desarrollo en Angular.
   tr(style=top)
-    td <b>Cookbook</b>
+    td
+      p <b>Cookbook</b>
+
+      p <b>Recetas</b>
+
     td
       :marked
         Recipes for specific application challenges, mostly code snippets with a minimum of exposition.
+
+        Recetas para desafíos específicos de una aplicación, en su mayoría fragmentos de código con una mínima exposición.
   tr(style=top)
-    td <b>API Reference</b>
+    td
+      p <b>API Reference</b>
+
+      p <b>Referencia de la API</b>
     td
       :marked
         Authoritative details about each member of the Angular libraries.
+
+        Detalles fidedignos de cada parte de las librerías de Angular.
 :marked
   # Learning path
+
+  # Ruta de aprendizaje
+
   We don't have to read the guide straight through.  Most chapters stand on their own.
+
+  No es necesario leer la guía en el orden que aparece. La mayoría de los capítulos son independientes.
 
   We recommend a learning path for those new to Angular.
   Most of that path runs through the *Basics* section:
 
+  Nosotros recomendamos una ruta de aprendizaje para aquellos nuevos con Angular.
+  La mayor parte de esa ruta, se da en la sección *Aspectos básicos*:
+
   1. Read the [Architecture](architecture.html) overview to get the big picture.
+
+  1. Lea la [Arquitectura](architecture.html) para que tenga una visión general.
 
   1. Try the [QuickStart](../quickstart.html). The QuickStart is the "Hello, World" of Angular 2.
   It shows us how to set up the libraries and tools we'll need to write *any* Angular app.
+
+  1. Pruebe el [Inicio rápido](../quickstart.html). El inicio rápido es el "Hola, mundo" de Angular 2.
+  Nos muestra cómo configurar las librerías y herramientas que necesitaremos para escribir *cualquier* aplicación en Angular.
 
   1. Take the *Tour of Heroes* [Tutorial](../tutorial), which picks up from where the QuickStart leaves off
   and builds a simple data-driven app.
   Simple, yes, but with the essential characteristics we'd expect of a professional application:
   a sensible project structure, data binding, master/detail, services, dependency injection, navigation, and remote data access.
 
-    Return to the *Basics* section and continue in the suggested order:
+  1. Tome el [Tutorial](../tutorial) *Tour de Héroes*, el cual toma como base el Inicio Rápido
+  y construye una simple aplicación dirigida por datos.
+  Simple, si, pero con las características esenciales que esperamos de una aplicación profesional:
+  una estructura de proyecto razonable, data binding, maestro/detalle, servicios, inyección de dependencias, navegación, y acceso de datos remotos.
+
+  Return to the *Basics* section and continue in the suggested order:
+
+  Regrese a la sección *Aspectos básicos* y continúe en el orden sugerido:
 
   1. [Displaying Data](displaying-data.html) explains how to get information on to the screen.
 
+  1. [Presentación de datos](displaying-data.html) explica cómo obtener información en la pantalla.
+
   1. [User Input](user-input.html) covers the basics of responding to user behavior.
 
+  1. [Entrada de usuario](user-input.html) cubre los conceptos básicos de responder al comportamiento del usuario.
+
   1. [Forms](forms.html) handle user data entry and validation within the UI.
+
+  1. [Formularios](forms.html) manejan la entrada y validación de datos de los usuarios dentro de la interfaz.
 
   1. [Dependency Injection](dependency-injection.html) is the way we build large, maintainable applications
   from small, single-purpose parts.
 
+  1. [Inyección de dependencias](dependency-injection.html) es la manera de construir aplicaciones grandes y fáciles de mantener
+  a partir de piezas pequeñas y de propósito único.
+
   1. [Template Syntax](template-syntax.html) is a comprehensive study of Angular template HTML.
 
+  1. La [Sintaxis de plantilla](template-syntax.html) es un estudio exhaustivo de la plantilla HTML con la que Angular trabaja.
+
   With this foundation, we can read and understand any chapter in the guide.
+
+  Con esta base, podremos leer y entender cualquier capítulo en la guía.
+
 // #enddocregion how-to-read-2
 // #docregion the-rest
 :marked
   # Code samples
 
+  # Códigos de ejemplo
+
   Every chapter includes code snippets that we can reuse in our own applications.
   These snippets are excerpts from a sample application that accompanies the chapter.
+
+  Cada capítulo incluye algunos fragmentos de código que podemos reutilizar en nuestras aplicaciones.
+  Estos fragmentos son extractos de la aplicación de ejemplo que acompaña el capítulo .
 
 block example-links
   :marked
     Look for a link to a running version of that sample near the top of each page,
     such as this [live example](/resources/live-examples/architecture/ts/plnkr.html) from the [Architecture](architecture.html) chapter.
 
+    Busca el enlace de la versión ejecutable de ese ejemplo cerca de la parte superior de cada página,
+    como este [ejemplo ejecutable](/resources/live-examples/architecture/ts/plnkr.html) del capítulo [Arquitectura](architecture.html).
+
     The link launches a browser-based code editor where we can inspect, modify, save, and download the code.
+
+    El enlace inicia un editor de código en el navegador en el que podemos inspeccionar, modificar, guardar, y descargar el código.
 
 :marked
   A few early chapters are written as tutorials and are clearly marked as such.
@@ -110,20 +201,43 @@ block example-links
   They highlight key points in code rather than explain each step necessary to build the sample.
   We can always get the full source by way of the #{_liveLink}.
 
+  Algunos de los primeros capítulos han sido escritos como tutoriales y son marcados claramente como tales.
+  La mayoría de los capítulos *no* son tutoriales.
+  Ellos destacan los puntos clave del código en vez de explicar cada paso necesario para construir el ejemplo.
+  Siempre podemos obtener el código fuente completo a través del #{_liveLink}.
+
   # Reference pages
+
+  # Páginas de referencia
 
   The [Cheat Sheet](cheatsheet.html) lists Angular syntax for common scenarios.
 
+  El [Cheat Sheet](cheatsheet.html) muestra la sintaxis de Angular para escenarios comunes.
+
   The [Glossary](glossary.html) defines terms that Angular developers should know.
+
+  El [Glosario](glossary.html) define los términos que los desarrolladores de Angular deben conocer.
 
   The [API Reference](../api/) is the authority on every public-facing member of the Angular libraries.
 
+  La [Referencia de la API](../api/) es la documentación oficial de cada librería de Angular pública.
+
   # Feedback
 
+  # Comentarios
+
   We welcome feedback! Leave a comment by clicking the icon in upper right corner of the banner.
+
+  ¡Aceptamos comentarios! Deja un comentario haciendo clic en el icono en la esquina superior derecha del banner.
 
   Post *documentation* issues and pull requests on the
   [angular.io](https://github.com/angular/angular.io) github repository.
 
+  Puede publicar problemas y pull requests relacionados con la *documentación* en el repositorio
+  de github de [angular-es](https://github.com/angular/angular-es).
+
   Post issues with *Angular 2 itself* to the [angular](https://github.com/angular/angular) github repository.
+
+  Puede publicar problemas relacionados con *Angular 2* en el repositorio de gihub de [angular](https://github.com/angular/angular).
+
 // #enddocregion the-rest
