@@ -11,15 +11,27 @@ block includes
   establish a development environment for the remaining documentation samples
   that also can be the foundation for real world applications.
 
+  El objetivo de esta guía de inicio rápido es crear y ejecutar una aplicación
+  de Angular 2 muy simple en #{_Lang}, y configurar el ambiente de desarrollo
+  necesario para los demás ejemplos en la documentación que también sirven
+  como fundación para aplicaciones en la vida real.
+
 .callout.is-helpful
   header Don't want #{_Lang}?
+  header No quieres usar #{_Lang}?
   p.
     Although we're getting started in #{_Lang}, you can also write Angular 2 apps
     in #{_docsFor == 'ts' ? 'Dart' : 'TypeScript'} and JavaScript.
     Just select either of those languages from the combo-box in the banner.
+  p.
+    Aunque estamos comenzando con #{_Lang}, también es posible escribir aplicaciones
+    de Angular 2 en  #{_docsFor == 'ts' ? 'Dart' : 'TypeScript'} y JavaScript.
+    Solo selecciona otra opción en la lista desplegable en el banner.
 
 :marked
   # Try it!
+
+  # Pruebalo!
 
   Try the <live-example></live-example> which loads the sample app
   <span if-docs="ts">
@@ -27,75 +39,127 @@ block includes
   </span>
   and displays the simple message:
 
+  Prueba el <live-example></live-example> que carga la aplicación de ejemplo
+  <span if-docs="ts">
+    en <a href="http://plnkr.co/" title="Plunker" target="_blank">plunker</a>
+  </span>
+  y muestra el siguiente mensaje:
+
 figure.image-display
   img(src='/resources/images/devguide/quickstart/my-first-app.png' alt="Output of QuickStart app")
 
 :marked
   # Build this app!
+  # Construye esta aplicación!
 
   - [Prerequisite](#prereq): Install #{_prereq}
+  - [Pré-requisitos](#prereq): Instalar #{_prereq}
   - [Step 1](#create-and-configure): Create the app’s project folder and
     define package dependencies and special project setup
+  - [Paso 1](#create-and-configure): Crea un folder para la aplicación y
+    define las dependencias y la configuración especial del proyecto
   - [Step 2](#root-component): Create the app’s Angular root component
+  - [Paso 2](#root-component): Crea el componente raíz de Angular para la aplicación
   - [Step 3](#main): Add <span ngio-ex>main.ts</span>, identifying the root component to Angular
+  - [Paso 3](#main): Añade <span ngio-ex>main.ts</span>, para identificar el componente raíz
+    con Angular
   - [Step 4](#index): Add `index.html`, the web page that hosts the application
+  - [Paso 4](#index): Añade `index.html`, la página web que contiene la aplicación
   - [Step 5](#build-and-run): Build and run the app
+  - [Paso 5](#build-and-run): Construye y corre la aplicación
   - [Make some changes to the app](#make-some-changes)
+  - [Has unos cambios a la aplicación](#make-some-changes)
   - [Wrap up](#wrap-up)
+  - [Finalizar](#wrap-up)
 
 .l-main-section
 h2#prereq Prerequisite: #{_prereq}
+h2#prereq Pré-requisitos: #{_prereq}
 
 block setup-tooling
   :marked
     Install **[Node.js® and npm](https://nodejs.org/en/download/)**
     if they are not already on your machine.
+
+    Instala **[Node.js® y npm](https://nodejs.org/en/download/)**
+    si aún no se encuentran en tu maquina.
   .l-sub-section
     :marked
       **Verify that you are running at least node `v4.x.x` and npm `3.x.x`**
       by running `node -v` and `npm -v` in a terminal/console window.
       Older versions produce errors.
 
+      **Verifica que tengas la versión de node sea al menos `v.4.x.x`,
+      y npm `3.x.x.x`** con el comando `node -v` y `npm -v` en la terminal.
+      Las versiones anteriores producen errores.
+
 block download-source
   .l-main-section
   .callout.is-helpful
     header Download the source
+    header Descarga el código fuente
     :marked
       Instead of following each step of these instructions, we can
       [download the QuickStart source](https://github.com/angular/quickstart/blob/master/README.md)
       from github and follow its brief instructions.
 
+      En lugar de seguir cada uno de estos pasos, podemos
+      [descargar el código fuente](https://github.com/angular/quickstart/blob/master/README.md)
+      de github y seguir las cortas instrucciones.
+
 .l-main-section
 button(class="verbose off md-primary md-button md-ink-ripple", type="button", onclick="verbose(false)").
   Hide explanations
+button(class="verbose off md-primary md-button md-ink-ripple", type="button", onclick="verbose(false)").
+  Ocultar explicaciones
 button(class="verbose on md-primary md-button md-ink-ripple", type="button", onclick="verbose(true)").
   View explanations
+button(class="verbose on md-primary md-button md-ink-ripple", type="button", onclick="verbose(true)").
+  Ver explicaciones
 .l-verbose-section
   :marked
     *Explanations* describe the concepts and reasons behind the instructions.
     Explanations have a thin border on the left like *this* block of text.
 
+    *Las explicaciones* describen los conceptos y el porque de las instrucciones.
+    Las explicaciones tienen un borde delgado a la izquierda, como este bloque de texto.
+
     Click *Hide Explanations* to show only the instructions.
     Click *View Explanations* to see everything again.
+
+    Haz click en *Ocultar explicaciones* para mostrar unicamente las instrucciones.
+    Haz click en *Ver explicaciones* para ver todo de nuevo.
 
 .l-sub-section
   :marked
     We'll see many code blocks as we build the QuickStart app. They're all easy to copy and paste:
+
+    Habrán muchos bloques de código mientras construimos la aplicación de ejemplo.
+    Todos son fáciles de copiar y pegar:
+
   code-example(format="nocode").
-    Click the glyph on the right to copy code snippets to the clipboard  ==>
+    Haz click en el ícono a la derecha para copiar el ejemplo de código en el portapapeles ==>
 
 .l-main-section
 h2#create-and-configure Step 1: Create and configure the project
+h2#create-and-configure Paso 1: Crear y configurar el proyecto
 
 - var _package_and_config_files = _docsFor == 'dart' ? 'pubspec.yaml' : 'package definition and configuration files'
+- var _package_and_config_files = _docsFor == 'dart' ? 'pubspec.yaml' : 'definición de paquetes y archivos de configuración'
 
 :marked
   In this step we:
+
+  En este paso:
   * [(a) Create the project folder](#create-the-project-folder)
+  * [(a) Crear un folder para el proyecto](#create-the-project-folder)
   * [(b) Add #{_package_and_config_files}](#add-config-files)
+  * [(b) Añadir #{_package_and_config_files}](#add-config-files)
   * [(c) #{_Install} packages](#install-packages)
+  * [(c) Instalar paquetes](#install-packages)
 
 h3 (a) Create the project folder
+h3 (a) Crear un folder para el proyecto
 
 - var _ = _docsFor == 'dart' ? '_' : '-';
 code-example(language="sh").
@@ -103,25 +167,40 @@ code-example(language="sh").
   cd    angular2!{_}quickstart
 
 h3#add-config-files (b) Add #{_package_and_config_files}
+h3#add-config-files (b) Añadir #{_package_and_config_files}
 block package-and-config-files
   - var _tsconfigUri = 'guide/typescript-configuration.html#tsconfig'
   - var _typingsUri = 'guide/typescript-configuration.html#!#typings'
 
   p Add the following package definition and configuration files to the project folder:
+  p Añade la siguiente definición de paquetes y configuración al folder del proyecto:
   ul
     li.
       #[b package.json] lists packages the QuickStart app depends on and
       defines some useful scripts.
       See #[a(href="guide/npm-packages.html") Npm Package Configuration] for details.
     li.
+      #[b package.json] tiene la lista de paquetes que la aplicación de ejemplo necesita y
+      define algunos scripts útiles.
+      Consulta la #[a(href="guide/npm-packages.html") configuración de paquetes de Npm] para más detalles.
+    li.
       #[b tsconfig.json] is the TypeScript compiler configuration file.
       See #[a(href="#{_tsconfigUri}") TypeScript Configuration] for details.
+    li.
+      #[b tsconfig.json] es el archivo de configuración para el compilador te TypeScript.
+      Consulta la #[a(href="#{_tsconfigUri}") configuración de TypeScript] para más detalles.
     li.
       #[b typings.json] identifies TypeScript definition files.
       See #[a(href="#{_typingsUri}") TypeScript Configuration] for details.
     li.
+      #[b typings.json] identifica los archivos de definición de TypeScript definition.
+      Consulta la #[a(href="#{_typingsUri}") configuración de TypeScript] para más detalles.
+    li.
       #[b systemjs.config.js], the SystemJS configuration file.
       See discussion #[a(href="#systemjs") below].
+    li.
+      #[b systemjs.config.js], el archivo de configuración de SystemJS.
+      Mira la discución #[a(href="#systemjs") más abajo].
 
   a#config-files
   +makeTabs(`
@@ -136,11 +215,15 @@ block package-and-config-files
       systemjs.config.js
     `)
 
-h3#install-packages (c) #{_Install} packages
+h3#install-packages (c) #{_Install} packets
+h3#install-packages (c) Instalar paquetes
 block install-packages
   :marked
     We install the packages listed in `package.json` using `npm`. Enter the
     following command in a terminal window (command window in Windows):
+
+    Instalamos los paquetes incluidos en `package.json` usando `npm`.
+    Entra el siguiente comando en una ventana del terminal:
 
   code-example(language="sh").
     npm install
@@ -149,6 +232,9 @@ block install-packages
     :marked
       The `typings` folder could not show up after `npm install`. If so, please install them manually.
 
+      El folder `typings` puede no aparecer después de ejecutar `npm install`. De ser así,
+      hay que instalarlos manualmente.
+
     code-example(language="sh").
       npm run typings install
 
@@ -156,63 +242,114 @@ block install-packages
     :marked
       Scary <span style="color:red; font-weight: bold">error messages in red</span> may appear **during** install.
       The install typically recovers from these errors and finishes successfully.
+
+      <span style="color:red; font-weight: bold">Mensajes de error</span> espantosos pueden aparecer **durante**
+      la instalación. La instalación usualmente se recupera automaticamente y se completa exitosamente.
+
     .l-verbose-section(class="l-verbose-inherit")
       :marked
         #### npm errors and warnings
 
+        #### errores y advertencias de npm
+
         All is well if there are no console messages starting with `npm ERR!` *at the end* of **npm install**.
         There might be a few `npm WARN` messages along the way &mdash; and that is perfectly fine.
+
+        Todo está bien si no hay mensajes en la consola que digan `npm ERR!` *al final* de **npm install**.
+        Puede que haya algunos mensajes `npm WARN` durante la instalación &mdash; y eso es perfectamente normal.
 
         We often see an `npm WARN` message after a series of `gyp ERR!` messages.
         Ignore them. A package may try to recompile itself using `node-gyp`.
         If the recompile fails, the package recovers (typically with a pre-built version)
         and everything works.
 
+        Usualmente un mensaje `npm WARN` aparece tras una serie de mensajes `gyp ERR!`. Ignoralos.
+        Un paquete puede tratar de recompilarse usando `node-gyp`. Si la recompilación falla, el paquete
+        se recupera (usualmente con una versión precompilada) y todo funciona.
+
         Just make sure there are no `npm ERR!` messages at the end of `npm install`.
+
+        Solo asegurate que no hayan mensajes `npm ERR!` al final de `npm install`.
 
   .l-verbose-section
     :marked
       #### Adding the libraries and packages we need with *npm*
+      #### Añadiendo las librerias y paquetes que necesitamos con *npm*
+
       Angular application developers rely on the _[npm](https://docs.npmjs.com)_
       package manager to install the libraries and packages their apps require.
       The Angular team recommends the starter-set of packages specified in the
       `dependencies` and `devDependencies` sections.
       See the [npm packages](guide/npm-packages.html) chapter for details.
 
+      Los desarrolladores de aplicaciones de Angular usan el administrador de paquetes,
+      _[npm](https://docs.npmjs.com)_, para administrar e instalar las librerías y paquetes que sus
+      aplicaciones necesitan. El equipo de Angular recomienda el kit de inicio, de paquetes especificados
+      en las secciones de `dependencies` y `devDependencies`.
+      Mira el capítulo  [paquetes de npm](guide/npm-packages.html) para más detalles.
+
       #### Helpful scripts
+      #### Scripts útiles
       We've included a number of npm scripts in our suggested `package.json` to handle common development tasks:
+    +makeJson('quickstart/ts/package.1.json',{ paths: 'scripts'}, 'package.json (scripts)')(format=".")
+
+      Hemos incluido varios scripts de npm en nuestro `package.json` recomendado para manejar operaciones
+      comunes durante el desarrollo:
     +makeJson('quickstart/ts/package.1.json',{ paths: 'scripts'}, 'package.json (scripts)')(format=".")
 
     :marked
       We execute most npm scripts in the following way: `npm run` followed by a *script-name*.
       Some commands (such as `start`) don't require the `run` keyword.
 
+      La mayoría de los scripts de npm se ejecutan asi: `npm run` seguido por el *script-name*.
+      Algunos comandos (como `start`) no requieren la palabra `run`.
+
       Here's what these scripts do:
 
+      Esto es lo que hacen los scripts:
+
       * `npm start` - runs the compiler and a server  at the same time, both in "watch mode"
+      * `npm-start` - ejecuta el compilador y el servidor al mismo tiempo, ambos en "modo supervisión"
 
       * `npm run tsc` - runs the TypeScript compiler once
+      * `npm run tsc` - ejecuta el compilador te TypeScript una vez
 
       * `npm run tsc:w` - runs the TypeScript compiler in watch mode;
       the process keeps running, awaiting changes to TypeScript files and recompiling when it sees them
+      * `npm run tsc:w` - ejecuta el compilador de TypeScript en modo supervisión;
+      el proceso continua ejecutandose, esperando cambios en los archivos TypeScript y recompilando
+      cuando sucedan.
 
       * `npm run lite` - runs the <a href="https://www.npmjs.com/package/lite-server" target="_blank">lite-server</a>,
       a light-weight, static file server with excellent support for Angular apps that use routing
+      * `npm run lite` - ejecuta el  <a href="https://www.npmjs.com/package/lite-server" target="_blank">lite-server</a>,
+      un servidor de archivos estaticos, liviano, con excelente soporte para aplicaciones de Angular que usen el enrutador
 
       * `npm run typings` - runs the [*typings* tool](#{_typingsUri}) separately
+      * `npm run typings` - ejecuta la herramienta [*typings*](#{_typingsUri}) de forma independiente
 
       * `npm run postinstall` - called by *npm* automatically *after* it successfully completes package installation.
       This script installs the [TypeScript definition files](#{_typingsUri}) defined in `typings.json`
+      * `npm run postinstall` - llamada por *npm* automaticamente *tras* completar la instalación de los paquetes.
+      Este script instala [los archivos de definición de TypeScript](#{_typingsUri}) definidos en `typings.json`
 
 :marked
   **We're all set.** Let's write some code.
 
+  **Estamos listos.** Escribamos algo de código.
+
 .l-main-section
 h2#root-component Step 2: Our first Angular component
+h2#root-component Paso 2: Crea el componente raíz de Angular para la aplicación
 :marked
   Let's create a folder to hold our application and add a super-simple Angular component.
 
+  Vamos a crear un directorio donde contener nuestra aplicación y añadir un componente super
+  simple de Angular
+
   **Create #{_an} #{_appDir} subfolder** off the project root directory:
+
+  **Crea un directorio** dentro del directorio principal de proyecto:
 
 code-example.
   mkdir #{_appDir}
@@ -221,95 +358,171 @@ a#app-component
 p.
   #[b Create the component file]
   #[code #[+adjExPath('app/app.component.ts')]] (in this newly created directory) with the following content:
+p.
+  #[b Crea un archivo para el componente]
+  #[code #[+adjExPath('app/app.component.ts')]] (en el nuevo directorio) con el siguiente código:
 
 +makeExample('app/app.component.ts')
 
 .l-verbose-section
   :marked
     ### AppComponent is the root of the application
+    ### AppComponent es la raíz de la aplicación
 
     Every Angular app has at least one **root component**, conventionally named `AppComponent`,
     that hosts the client user experience.
     Components are the basic building blocks of Angular applications.
     A component controls a portion of the screen &mdash; a *view* &mdash; through its associated template.
 
+    Cada aplicación de Angular tiene al menos un **componente raíz**, convencionalmente llamado `AppComponent`,
+    que contiene la experiencia de usuario para el cliente.
+    Los components son los bloques basicos de construcción para las aplicaciones de Angular.
+    Un componente controla una porción de la pantalla &mdash; una *vista* &mdash; a través del template asociado.
+
     This QuickStart has only one, extremely simple component.
     But it has the essential structure of every component we'll ever write:
 
+    Esta guía tiene solo un componente, que es muy simple.
+    Pero tiene la estructura esencial de cada componente que siempre necesitaras:
+
     * One or more [import](#component-import)
     statements to reference the things we need.
+    * Una o más declaraciones [import](#component-import)
+    para referenciar las cosas que necesitamos.
+
+
     * A [@Component #{_decorator}](#component-decorator)
     that tells Angular what template to use and how to create the component.
+    * Un [decorador @Component](#component-decorator)
+    que le dicen a Angular que template usar y como crear el componente.
+
     * A [component class](#component-class)
     that controls the appearance and behavior of a view through its template.
+    * Una class [component](#component-class)
+    que controla la apariencia y el comportamiento de la vista en su template.
 
   a#component-import
   :marked
+    ### Import
     ### Import
 
     Angular apps are modular. They consist of many files each dedicated to a purpose.
     Angular itself is modular. It is a collection of library modules
     each made up of several, related features that we'll use to build our application.
 
+    Las aplicaciones de Angular son modulares. Consisten de muchos archivos dedicados a
+    un proposito. Angular mismo es modular. Es una coleccion de módulos de librerias,
+    cada una compuesta de muchas caracteristicas relacionadas que usaremos para construir
+    nuestra aplicación.
+
     When we need something from a module or library, we import it.
     Here we import the Angular 2 core so that our component code can have access to
     the `@Component` #{_decorator}.
 
+    Cuando necesitamos un módulo o librería, lo importamos.
+    Aquí importamos el core de Angular 2 para que nuestros componentes puedan tener
+    acceso al decorador `@Componente`.
+
   +makeExcerpt('app/app.component.ts', 'import')
 
   h3#component-decorator @Component #{_decorator}
+  h3#component-decorator decorador @Component
   +ifDocsFor('ts')
     :marked
       `Component` is a *decorator function* that takes a *metadata object* as argument.
       We apply this function to the component class by prefixing the function with the
       **@** symbol and invoking it with a metadata object, just above the class.
+
+      `Component` es una *función decorador* que toma un *objeto de metadata* como argumento.
+      Aplicamos esta función a la clase componente añadiendo el prefijo **@** e invocandola
+      con un objeto de metadata, justo encima de la clase.
+
   :marked
     `@Component` is #{_a} *#{_decorator}* that allows us to associate *metadata* with the
     component class.
+
+    `@Component` es un decorador que nos permite asociar *metadata* con la clase
+    del componente.
+
     The metadata tells Angular how to create and use this component.
+
+    La metadata le dice a Angular como crear y usar este componente.
 
   +makeExcerpt('app/app.component.ts', 'metadata')
 
   block annotation-fields
     :marked
       This particular metadata object has two fields, a `selector` and a `template`.
+
+      Esta metadata en particular tiene dos campos, un `selector` y una `template`.
+
   :marked
     The **selector** specifies a simple CSS selector for an HTML element that represents the component.
+
+    El **selector** especifica un selector CSS para un elemento HTMl que representa el componente.
 
     >The element for this component is named `my-app`.
     Angular creates and displays an instance of our `AppComponent`
     wherever it encounters a `my-app` element in the host HTML.
 
+    >El elemento de este componente se llama `my-app`.
+    Angular crea y muestra una instancia de nuestro `AppComponent`
+    en cualquier lugar que encuentre un elemento `my-app` en el documento HTML.
+
     The **template** specifies the component's companion template,
     written in an enhanced form of HTML that tells Angular how to render this component's view.
 
+    La propiedad **template** especifica el la plantilla del componente,
+    escrita en una versión mejorada de HTML que le indica a Angular como mostrar la vista del componente.
+
     >Our template is a single line of HTML announcing "*My First Angular 2 App*".
+
+    >Nuestro template es una sola linea de HTML anunciando "*My First Angular 2 App*".
 
     >A more advanced template could contain data bindings to component properties
     and might identify other application components which have their own templates.
     These templates might identify yet other components.
     In this way an Angular application becomes a tree of components.
 
+    > Una plantilla más avanzada podria contener data bindings a propiedades del componente
+    y podría identificar otros componentes de la aplicación con sus propias plantillas.
+    Estas plantillas pueden también identificar otros componentes.
+    De esa manera una aplicación de Angular se convierte en un árbol de componentes.
+
   :marked
     ### Component class
+    ### Clase Componente
     At the bottom of the file is an empty, do-nothing class named `AppComponent`.
+
+    Al final del archivo, hay una clase vacía, que no hace nada, llamada `AppComponent`.
   +makeExcerpt('app/app.component.ts', 'class')
   :marked
     When we're ready to build a substantive application,
     we can expand this class with properties and application logic.
     Our `AppComponent` class is empty because we don't need it to do anything in this QuickStart.
+
+    Cuando estemos listos para construir una aplicación sustantiva,
+    podemos expandir esta clase con propiedades y lógica de aplicación.
+    Nuestra clase `AppComponent` está vacía porque no necesitamos que haga nada por ahora.
   +ifDocsFor('ts')
     :marked
       We **export** `AppComponent` so that we can **import** it elsewhere in our application,
       as we'll see when we create `main.ts`.
 
+      Vamos a **export** `AppComponent` para que podamos **import** en otros lugares de la aplicación,
+      como veremos en `main.ts`.
+
 .l-main-section
 h2#main Step 3: Add #[code #[+adjExPath('main.ts')]]
+h2#main Paso 3: Añade código a #[code #[+adjExPath('main.ts')]]
 
 block create-main
   p.
     Now we need something to tell Angular to load the root component.
     Create the file #[code #[+adjExPath('app/main.ts')]] with the following content:
+  p.
+    Ahora crearemos algo para decirle a Angular que cargue el componente raíz.
+    Crea un archivo #[code #[+adjExPath('app/main.ts')]] con el siguiente contenido.
 
 +makeExample('app/main.ts')
 
@@ -317,17 +530,31 @@ block create-main
   :marked
     We import the two things we need to launch the application:
 
+    Importamos las dos cosas que necesitamos para lanzar la aplicación:
+
     1. Angular's browser `bootstrap` function
+    1. La función `bootstrap` para el navegador de Angular
+
     1. The application root component, `AppComponent`.
+    1. El component raíz de la aplicación, `AppComponent`.
 
     Then we call `bootstrap` with `AppComponent`.
 
+    Entonces llamamos `bootstrap` con `AppComponent`.
+
     ### Bootstrapping is platform-specific
+    ### El proceso de bootstrapping es especifíco a cada plataforma
     Notice that we import the `bootstrap` function from `#{_angular_browser_uri}`,
     not `#{_angular_core_uri}`.
     Bootstrapping isn't core because there isn't a single way to bootstrap the app.
     True, most applications that run in a browser call the bootstrap function from
     this library.
+
+    Notese que importamos la función `bootstrap` desde `#{_angular_browser_uri}`,
+    no desde `#{_angular_core_uri}`.
+    Bootstrapping no es parte del núcleo de Angular porque no hay una única forma de hacerlo.
+    Aunque es cierto que la mayoria de las aplicaciones que se ejecutan en un navegador llamarán a la
+    función de esta librería.
 
     But it is possible to load a component in a different environment.
     We might load it on a mobile device with [Apache Cordova](https://cordova.apache.org/) or [NativeScript](https://www.nativescript.org/).
@@ -336,12 +563,24 @@ block create-main
     [SEO](http://www.google.com/webmasters/docs/search-engine-optimization-starter-guide.pdf).
     These targets require a different kind of bootstrap function that we'd import from a different library.
 
+    Es posible cargar un componente en un ambiente diferente.
+    Podemos cargarla en un dispositivo móvil con [Apache Cordova](https://cordova.apache.org/) o [NativeScript](https://www.nativescript.org/).
+    Podriamos hacer render de la primera página en el servidor
+    para mejorar el rendimiento de la aplicación o facilitar
+    [SEO](http://www.google.com/webmasters/docs/search-engine-optimization-starter-guide.pdf).
+    Estos ambientes requieren una función de bootstrap diferente que importaremos de una librería diferente.
+
     ### Why create separate *<span ngio-ex>main.ts</span>* and app component files?
+    ### Para qué crear archivos *<span ngio-ex>main.ts</span>* y app component separados?
 
     Both <span ngio-ex>main.ts</span> and the app component files are tiny.
     This is just a QuickStart.
     We could have merged these two files into one
     and spared ourselves some complexity.
+
+    Los archivos <span ngio-ex>main.ts</span> y el app component son muy pequeños.
+    Esto es simplemente una guía de inicio.
+    Podríamos haber unidos los dos archivos en uno y salvarnos de algo de complejidad.
 
     We'd rather demonstrate the proper way to structure an Angular application.
     App bootstrapping is a separate concern from presenting a view.
@@ -350,11 +589,21 @@ block create-main
     Testing the component is much easier if it doesn't also try to run the entire application.
     Let's make the small extra effort to do it *the right way*.
 
+    Pero preferimos demostrar la manera adecuada de estructurar una aplicación de Angular.
+    El proceso de bootstrapping de un app es diferente a presentar una vista.
+    Mezclar las responsabilidades puede crear dificultades en el camino.
+    Podríamos lanzar el `AppComponent` en diferentes ambientes con diferentes bootstrappers.
+    Hacer pruebas a los componentes es mucho más facil si para probarla no hay que lanzar toda la aplicación.
+    Hagamos un pequeño esfuerzo para hacer todo de la *forma correcta*.
+
 .l-main-section
 h2#index Step 4: Add #[code index.html]
 :marked
   In the *#{_indexHtmlDir}* folder
   create an `index.html` file and paste the following lines into it:
+
+  En la carpeta *#{_indexHtmlDir}*
+  crea un archivo `index.html` y pega el siguiente código en el:
 
 +makeExample('index.html')
 
@@ -362,27 +611,49 @@ h2#index Step 4: Add #[code index.html]
   :marked
     The `index.html` file defines the web page that hosts the application.
 
+    El `index.html` define la página web que contiene a la aplicación.
+
   block index-html-commentary-for-ts
     :marked
       The noteworthy sections of HTML are:
 
+      Las secciones importantes del HTML son:
+
       1. The JavaScript [libraries](#libraries)
+      1. Las [librerías](#libraries) de Javascript.
+
       2. Configuration file for [SystemJS](#systemjs), and a script
          where we import and run the `app` module which refers to the `main` file that we just wrote.
+      2. Archivos de configuración para [SystemJS](#systemjs), y un script
+         donde importamos y corremos el modulo `app` que se refiere al archivo `main`  que acabamos de escribir.
+
       3. The [`<my-app>`](#my-app) tag in the `<body>` which is *where our app lives!*
+      3. La etiqueta [`<my-app>`](#my-app) en el `<body>` es donde nuestra aplicación reside!.
 
     :marked
       ### Libraries
+      ### Librerías
       We loaded the following scripts
+
+      Cargamos los siguientes scripts
+
     +makeExcerpt('index.html', 'libraries')
     :marked
       We begin with `core-js`'s ES2015/ES6 shim which monkey patches the global context (window) with essential features of ES2015 (ES6).
       Next are the polyfills for Angular2, `zone.js` and `reflect-metadata`.
       Then the [SystemJS](#systemjs) library for module loading.
 
+      Empezamos con ES2015/ES6 de `core-js`, un shim que modifica al contexto global (window) con caracteristicas esenciales de ES2015 (ES6).
+      Seguido de eso estan los polyfills para Angular2, `zone.js` y `reflect-metadata`.
+      Finalmente la Librería [SystemJS](#systemjs) para cargar los módulos.
+
       We'll make different choices as we gain experience and
       become more concerned about production qualities such as
       load times and memory footprint.
+
+      Con más tiempo y experiencía tomaremos diferentes decisiones
+      y nos preocuparemos más por cualidades de producción como
+      el rendimiento y el impacto en la memoria.
 
     h3#systemjs SystemJS
     :marked
@@ -394,13 +665,29 @@ h2#index Step 4: Add #[code index.html]
       SystemJS happens to be a good choice.
       But we want to be clear that it was a *choice* and not a *preference*.
 
+      La guía de inicio rápido utiliza <a href="https://github.com/systemjs/systemjs" target="_blank">SystemJS</a>
+      para cargar la aplicación y los módulos de la librería. [En un paso anterior](#add-config-files)
+      añadimos al archivo `system.config.js` a la raíz del proyecto.
+      Hay alternativas que funcionan muy bien, incluyendo el apreciado
+      [webpack](guide/webpack.html).
+      SystemJS simplemente es una buena opción.
+      Pero queremos aclarar que es una *decisión* y no una *preferencía*.
+
       All module loaders require configuration and all loader configuration
       becomes complicated rather quickly as soon as the file structure diversifies and
       we start thinking about building for production and performance.
 
+      Todos los cargadores de módulos requieren configuración, y todas las configuraciones
+      se ponen complicadas bastante rápido, tan pronto como la estructura de archivos se diversifica y
+      empezamos a pensar en aplicaciones listas para producción y rendimiento.
+
       We suggest becoming well-versed in the loader of your choice.
       Learn more about SystemJS configuration
       <a href="https://github.com/systemjs/systemjs/blob/master/docs/config-api.md" target="_blank">here</a>.
+
+      Sugerimos entender bien cualquier cargador de módulos que escogas.
+      Aprende más sobre SystemJS
+      <a href="https://github.com/systemjs/systemjs/blob/master/docs/config-api.md" target="_blank">aquí</a>.
 
       With those cautions in mind, what are we doing in the
       QuickStart [`systemjs.config.js` configuration file we added earlier](#config-files)?
@@ -408,49 +695,91 @@ h2#index Step 4: Add #[code index.html]
       Then, we register all our packages to SystemJS:
       all the project dependencies and our application package, `app`.
 
+      Teniendo eso en mente, ¿qué hacemos en la guía de inicio rápido, en el archivo
+      [`systemjs.config.js`](#config-files) que añadimos antes?
+      Primero, creamos un mapa para decirle a SystemJS donde buscar para importar los módulos.
+      Luego, registramos todos nuestros paquetes con SystemJS:
+      todas las dependencias de proyectos y el paquete de nuestra aplicación, `app`.
+
     .l-sub-section
       :marked
         Our QuickStart doesn't use all of the listed packages
         but any substantial application will want many of them
         and all of the listed packages are required by at least one of the documentation samples.
 
+        Nuestra guía de inicio rápido no necesita todos los paquetes en la lista
+        pero cualquier aplicación substancial querrá muchos de ellos
+        y todos los paquetes son requeridos por al menos uno de los ejemplos en la documentación.
+
         There is no runtime harm in listing packages that we don't need as they will only be loaded when requested.
+
+        No hay ningúna desventaja en listar paquetes que no usemos, puesto que no se cargan hasta ser necesitados.
+
     :marked
       The `app` package tells SystemJS what to do when it sees a request for a
       module from the `app/` folder.
 
+      El paquete `app` le dice a SystemJS que hacer cuando vea una petición por el
+      módulo en el directorio `app/`.
+
       Our QuickStart makes such requests when one of its
       application TypeScript files has an import statement like this:
+
+      Nuestra guía de inicio rápido hace esas peticiones cuando uno de los archivos
+      de TypeScript tiene una declaracíon como esta:
+
     +makeExcerpt('app/main.ts', 'import')
     :marked
       Notice that the module name (after `from`) does not mention a filename extension.
       In the configuration we tell SystemJS to default the extension to `js`, a JavaScript file.
 
+      Notese que el nombre del modulo (despues de `from`) no menciona una extensión de archivo.
+      En la configuración le hemos dicho a SystemJS que la extensión por defecto es `js`, un archivo de JavaScript.
+
       That makes sense because we transpile TypeScript to JavaScript
       *before* running the application.
+
+      Esto tiene sentido porque transpilamos TypeScript a JavaScript
+      *antes* de ejecutar la aplicación.
 
     .l-sub-section
       :marked
         #### Transpiling in the browser
+        #### Transpilando en el navegador
         In the live example on plunker we transpile (AKA compile) to JavaScript in the browser
         on the fly. _That's fine for a demo_.
 
+        En el ejemplo en plunker transpilamos (compilamos) a JavaScript en el navegador
+        en vivo. _Eso esta bien para un demo_.
+
         **Do not transpile in the browser during development or for production**.
+
+        **No transpiles en el navegador durante el desarrollo de una aplicación o en producción**.
 
         We strongly recommend transpiling (AKA compiling) to JavaScript during a build phase
         before running the application for several reasons including:
 
+        Recomendamos transpilar (compilar) a JavaScript durante una fase de construcción
+        antes de ejecutar la aplicación por varias razones, incluyendo:
+
         * We see compiler warnings and errors that are hidden from us in the browser.
+        * Vemos advertencias y errores del compilador que estarían escondidos en el navegador.
 
         * Precompilation simplifies the module loading process and
         it's much easier to diagnose problems when this is a separate, external step.
+        * La pre-compilación simplifica el proceso de cargar los módulos
+        y es más fácil diagnosticar problemas cuando el proceso es externo y aislado.
 
         * Precompilation means a faster user experience because the browser doesn't waste time compiling.
+        * La pre-compilación significa una experiencia de usuario mejor, porque el navegador no desperdicia tiempo compilando.
 
         * We iterate development faster because we only recompile changed files.
         We notice the difference as soon as the app grows beyond a handful of files.
+        * Podemos iterar más rapidamente porque solo compila los archivos que cambiaron.
+        Notamos las diferencias tan pronto la aplicación se vuelve mucho más grande.
 
         * Precompilation fits into a continuous integration process of build, test, deploy.
+        * La pre-compilación cabe bien en un proceso de integración continuada, para construir, probar y desplegar.
 
     :marked
       The `System.import` call tells SystemJS to import the `main` file
@@ -458,9 +787,18 @@ h2#index Step 4: Add #[code index.html]
       `main` is where we tell Angular to launch the application.
       We also catch and log launch errors to the console.
 
+      La llamada `System.import` le dice a SystemJS que importe el archivo `main`
+      (`main.js` ... después que haya sido transpilado desde `main.ts`, ¿recuerdas?);
+      `main` es donde le decimos a Angular que arranque la aplicación.
+      Además capturamos y mostramos los errores en la consola.
+
       All other modules are loaded upon request
       either by an import statement or by Angular itself.
 
+      Todos los demás módulos son cargados cuando sean solicitados
+      ya sea por una declaración de import o por Angular.
+
+      ### *&lt;my-app&gt;*
       ### *&lt;my-app&gt;*
 
   a(id="my-app")
@@ -469,30 +807,51 @@ h2#index Step 4: Add #[code index.html]
     metadata, finds the `my-app` selector, locates an element tag named `my-app`,
     and renders our application's view between those tags.
 
+    Cuando Angular llama a la función `bootstrap` en <span ngio-ex>main.ts</span>, lee el `AppComponent`
+    y muestra la aplicación entre esas etiquetas.
+
 :marked
   ### Add some style
+  ### Añade estilos
   Styles aren't essential but they're nice, and `index.html` assumes we have
   a stylesheet called `styles.css`.
+
+  Los estilos no son esenciales pero pueden ser una buena adición, y `index.html` asume que
+  tenemos una hoja de estilo llamada `styles.css`.
 
   Create a `styles.css` file in the *#{_indexHtmlDir}* folder and start styling, perhaps with the minimal
   styles shown below. For the full set of master styles used by the documentation samples,
   see [styles.css](https://github.com/angular/angular.io/blob/master/public/docs/_examples/styles.css).
+
+  Crea un archivo `styles.css` en el directorio *#{_indexHtmlDir}*  y comienza a añadir estilos, quizá con
 +makeExcerpt('styles.1.css')
 
 .l-main-section
 h2#build-and-run Step 5: Build and run the app!
+h2#build-and-run Paso 5: Construir y correr la aplicación!
 block run-app
   :marked
     Open a terminal window and enter this command:
+
+    Abre una ventana de la terminal e ingresa este comando:
   code-example.
     npm start
   :marked
     That command runs two parallel node processes
+
+    Ese comando arranca dos procesos de node en paralelo.
+
     1. The TypeScript compiler in watch mode
+    1. El compilador de TypeScript en modo supervisión
+
     1. A static server called **lite-server** that loads `index.html` in a browser
     and refreshes the browser when application files change
+    1. Un servidor estatico llamado **lite-server** que carga `index.html` en el navegador
+    y refresca la ventana cuando algún archivo de la aplicación cambia
 
     In a few moments, a browser tab should open and display
+
+    En un momento, una ventana del navegador se abrirá y mostrará la aplicación
 
 figure.image-display
   img(src='/resources/images/devguide/quickstart/my-first-app.png' alt="Output of QuickStart app")
@@ -500,13 +859,19 @@ figure.image-display
 :marked
   **Great job!**
 
+  **Buen trabajo!**
+
 block build-app
   //- Nothing for ts.
 
 :marked
   ## Make some changes
+  ## Haz algunos cambios
 
   Try changing the message to "My SECOND Angular 2 app".
+
+  Intenta cambiar el mensaje a "Mi segunda aplicacion de Angular".
+
 block server-watching
   :marked
     The TypeScript compiler and `lite-server` are watching.
@@ -514,13 +879,24 @@ block server-watching
     refresh the browser, and display the revised message.
     It's a nifty way to develop an application!
 
+    El compilador de TypeScript y `lite-server` están supervisando.
+    Deben detectar el cambio, recompilar los archivos en JavaScript,
+    refrescar el navegador, y mostrar el nuevo mensaje.
+    Es una manera ingeniosa de desarrollar una aplicación!
+
     We close the terminal window when we're done to terminate both the compiler and the server.
+
+    Cerramos la terminal cuando estemos listos para terminar ambos procesos.
 
 .l-main-section
 :marked
   # Wrap up
+  # Conclusiones
 
   Our final project folder structure looks like this:
+
+  La estructura de nuestro proyecto final luce así:
+
 block project-file-structure
   .filetree
     .file angular2-quickstart
@@ -539,6 +915,8 @@ block project-file-structure
       .file typings.json
 :marked
   Here are the file contents:
+
+  Este es el contenido de los archivos:
 
 block project-files
   +makeTabs(`
@@ -563,13 +941,22 @@ block project-files
 .l-main-section
 :marked
   ## What next?
+  ## ¿Qué sigue?
   Our first application doesn't do much. It's basically "Hello, World" for Angular 2.
+
+  Nuestra primera aplicación no hace mucho. Es básicamente "Hello, World" para Angular 2.
 
   We kept it simple in our first pass: we wrote a little Angular component,
   created a simple `index.html`, and launched with a
   static file server. That's about all we'd expect to do for a "Hello, World" app.
 
+  Lo mantenemos simple en nuestro primer intento: escribimos un pequeño componente de Angular,
+  creamos un simple `index.html`, y lanzamos con un servidor de archivos estatico.
+  Eso es todo lo que esperamos de una aplicación "Hello, World".
+
   **We have greater ambitions!**
+  **Tenemos mayores ambiciones!**
+
 block what-next-ts-overhead
   :marked
     The good news is that the overhead of setup is (mostly) behind us.
@@ -580,3 +967,25 @@ block what-next-ts-overhead
   demonstrates the great things we can build with Angular 2.
 
   Join us on the [Tour of Heroes Tutorial](./tutorial)!
+
+
+  :marked
+    The good news is that the overhead of setup is (mostly) behind us.
+    We'll probably only touch the `package.json` to update libraries.
+    We'll likely open `index.html` only if we need to add a library or some css stylesheets.
+
+    Las buenas noticias es que todo el trabajo de configuración esta (casí) completo.
+    En el futuro posiblemente solo tengamos que alterar el `package.json` para actualizar los
+    paquetes. Quizá modifiquemos `index.html` para añadir otras librerías o hojas de estilo.
+
+:marked
+  We're about to take the next step and build a small application that
+  demonstrates the great things we can build with Angular 2.
+
+  Estamos a punto de tomar el siguiente paso y construir una pequeña aplicación que
+  demuestre las grandes cosas que podemos construir con Angular 2.
+
+  Join us on the [Tour of Heroes Tutorial](./tutorial)!
+
+  Continua en el tutorial [Tour de los Heroes](./tutorial)!
+
