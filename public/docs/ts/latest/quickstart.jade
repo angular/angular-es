@@ -12,13 +12,13 @@ block includes
   that also can be the foundation for real world applications.
 
   El objetivo de esta guía de inicio rápido es crear y ejecutar una aplicación
-  de Angular 2 muy simple en #{_Lang}, y configurar el ambiente de desarrollo
+  de Angular 2 muy simple en #{_Lang}, y configurar el entorno de desarrollo
   necesario para los demás ejemplos en la documentación que también sirven
-  como fundación para aplicaciones en la vida real.
+  como base para aplicaciones en la vida real.
 
 .callout.is-helpful
   header Don't want #{_Lang}?
-  header No quieres usar #{_Lang}?
+  header ¿No quieres usar #{_Lang}?
   p.
     Although we're getting started in #{_Lang}, you can also write Angular 2 apps
     in #{_docsFor == 'ts' ? 'Dart' : 'TypeScript'} and JavaScript.
@@ -26,12 +26,12 @@ block includes
   p.
     Aunque estamos comenzando con #{_Lang}, también es posible escribir aplicaciones
     de Angular 2 en  #{_docsFor == 'ts' ? 'Dart' : 'TypeScript'} y JavaScript.
-    Solo selecciona otra opción en la lista desplegable en el banner.
+    Simplemente selecciona uno de esos (dos) lenguajes en la lista desplegable del banner.
 
 :marked
   # Try it!
 
-  # Pruebalo!
+  # ¡Pruebalo!
 
   Try the <live-example></live-example> which loads the sample app
   <span if-docs="ts">
@@ -50,13 +50,13 @@ figure.image-display
 
 :marked
   # Build this app!
-  # Construye esta aplicación!
+  # ¡Construye esta aplicación!
 
   - [Prerequisite](#prereq): Install #{_prereq}
-  - [Pré-requisitos](#prereq): Instalar #{_prereq}
+  - [Prerrequisitos](#prereq): Instalar #{_prereq}
   - [Step 1](#create-and-configure): Create the app’s project folder and
     define package dependencies and special project setup
-  - [Paso 1](#create-and-configure): Crea un folder para la aplicación y
+  - [Paso 1](#create-and-configure): Crea un directorio para la aplicación y
     define las dependencias y la configuración especial del proyecto
   - [Step 2](#root-component): Create the app’s Angular root component
   - [Paso 2](#root-component): Crea el componente raíz de Angular para la aplicación
@@ -66,15 +66,15 @@ figure.image-display
   - [Step 4](#index): Add `index.html`, the web page that hosts the application
   - [Paso 4](#index): Añade `index.html`, la página web que contiene la aplicación
   - [Step 5](#build-and-run): Build and run the app
-  - [Paso 5](#build-and-run): Construye y corre la aplicación
+  - [Paso 5](#build-and-run): Construye y ejecuta la aplicación
   - [Make some changes to the app](#make-some-changes)
-  - [Has unos cambios a la aplicación](#make-some-changes)
+  - [Haz unos cambios a la aplicación](#make-some-changes)
   - [Wrap up](#wrap-up)
   - [Finalizar](#wrap-up)
 
 .l-main-section
 h2#prereq Prerequisite: #{_prereq}
-h2#prereq Pré-requisitos: #{_prereq}
+h2#prereq Prerrequisitos: #{_prereq}
 
 block setup-tooling
   :marked
@@ -89,8 +89,8 @@ block setup-tooling
       by running `node -v` and `npm -v` in a terminal/console window.
       Older versions produce errors.
 
-      **Verifica que tengas la versión de node sea al menos `v.4.x.x`,
-      y npm `3.x.x.x`** con el comando `node -v` y `npm -v` en la terminal.
+      **Verifica que la version de node sea al menos `v.4.x.x`,
+      y `3.x.x` en el caso de npm** con el comando `node -v` y `npm -v` en la terminal.
       Las versiones anteriores producen errores.
 
 block download-source
@@ -152,14 +152,14 @@ h2#create-and-configure Paso 1: Crear y configurar el proyecto
 
   En este paso:
   * [(a) Create the project folder](#create-the-project-folder)
-  * [(a) Crear un folder para el proyecto](#create-the-project-folder)
+  * [(a) Crear un directorio para el proyecto](#create-the-project-folder)
   * [(b) Add #{_package_and_config_files}](#add-config-files)
   * [(b) Añadir #{_package_and_config_files}](#add-config-files)
   * [(c) #{_Install} packages](#install-packages)
   * [(c) Instalar paquetes](#install-packages)
 
 h3 (a) Create the project folder
-h3 (a) Crear un folder para el proyecto
+h3 (a) Crear un directorio para el proyecto
 
 - var _ = _docsFor == 'dart' ? '_' : '-';
 code-example(language="sh").
@@ -223,7 +223,7 @@ block install-packages
     following command in a terminal window (command window in Windows):
 
     Instalamos los paquetes incluidos en `package.json` usando `npm`.
-    Entra el siguiente comando en una ventana del terminal:
+    Introduce el siguiente comando en una ventana del terminal:
 
   code-example(language="sh").
     npm install
@@ -398,7 +398,7 @@ p.
 
     * A [component class](#component-class)
     that controls the appearance and behavior of a view through its template.
-    * Una class [component](#component-class)
+    * Una clase [component](#component-class)
     que controla la apariencia y el comportamiento de la vista en su template.
 
   a#component-import
