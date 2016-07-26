@@ -11,29 +11,28 @@ Angular 2, Angular 1, Angular Material y AngularFire.
 
 ## Problemas
 
-Por favor archiva **_sólo_ problemas de Guía del Desarrollador, Libro de Cocina y de ejemplo de código** al
-repositorio [Angular.io](https://github.com/angular/angular.io/issues) de github.
+Por favor crea **issues de Guithub _sólo_ referentes a la Guía del Desarrollador, a las Recetas y/o de ejemplos de código** al
+repositorio [Angular.io](https://github.com/angular/angular.io/issues) de github. Este repositorio es para los errores generales de la doc.
 
-**Problemas de la API de Angular, correcciones de la cheatsheet, peticiones de funcionalidad, informes de defectos, y preguntas técnicas** referentes a Angular mismo,
+**Problemas con la API de Angular, correcciones del cheatsheet, peticiones de funcionalidad, informes de defectos, y preguntas técnicas** referentes a Angular en si,
 pertenecen al repositorio de [**código fuente de angular**](https://github.com/angular/angular/issues) de github.
-No podemos manejar esos tipos de temas aquí y te pedimos volver a publicarlos en el repositorio de angular.
+No podemos manejar esos tipos de temas aquí y le pedimos que vuelva a publicarlos en el repositorio de angular.
 
 ## Cómo puedes ayudar
 
-Archivando problemas es útil pero ¡**pull requests** que mejoren los documentos son aun mejores!
+Crear issues de Github acerca de problemas es útil pero **pull requests** que mejoren la documentación son aun mejores!
 
 Aprende como [contribuir a Angular.io](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md).
 
-## Configuración de desarrollo
+## Configuración para desarrollo
 Este sitio depende en gran medida de node y npm.
 
-1. Asegúrse de estar usando node y npm más recientes;
+1. Asegúrese de estar usando la versión más reciente de node y npm;
 si no, instala [nvm](https://github.com/creationix/nvm) para conseguir node en tu máquina.
 
-2. Instalar *globalmente* este paquete npm: `npm install -g harp gulp`
+2. Instalar *globalmente* estos paquetes npm: `npm install -g harp gulp`
 
-3. Clonar este repositorio y el [repositorio de código fuente de angular](https://github.com/angular/angular) al mismo directorio padre.
-Los dos repositorios clonados deben ser hermanos.
+3. Clone este repositorio y el [repositorio de código fuente de angular](https://github.com/angular/angular) en el mismo directorio.
 
 4. cd dentro del directorio raiz `angular.io/`
 
@@ -45,7 +44,7 @@ Los dos repositorios clonados deben ser hermanos.
 ## Desarrollo de Contenido
 Toda el contenido de documentación está escrito en Jade, el cual tiene [su propia sintaxis](http://jade-lang.com/reference/).
 Hay que estar al tanto de las estrictas exigencias impuestas por este lenguaje de espacio en blanco significativo.
-Recomendamos fuertemente ejecutar uno de los comandos `sirve y sincroniza` de gulp [descritos abajo](#serve-and-sync),
+Recomendamos fuertemente ejecutar uno de los comandos `serve-and-sync` de gulp [descritos abajo](#serve-and-sync),
 mientras se edita contenido para poder ver el efecto de los cambios *mientras se teclea*. 
 
 La documentación se basa en estilos y mixins específicos.
@@ -106,7 +105,7 @@ También, se puede abrir cualquier `plunkr.no-link.html` para ver la ejecución 
 Se debe verificar que los ejemplos estén libres de errores lint.
 - `gulp lint`
 
-### Pruebas de end-to-end de los ejemplos
+### Ejemplos de pruebas end-to-end
 
 Todos los ejemplos deben de ser cubiertos hasta cierto grado por pruebas de end-to-end:
 - `gulp run-e2e-tests` para ejecutar toodas las pruebas de TypeScript y JavaScript
@@ -137,25 +136,25 @@ gulp install-example-angular
 ```
 >Estos comandos fallaran si algo está bloqueando algunos de los paquetes ... como IDE lo hace a menudo.
 >
->El síntoma es típicamente un error al `rm -rf node_modules/@angular`.
+>El síntoma es típicamente un error al tratar de `rm -rf node_modules/@angular`.
 >
->_Solución_: desbloquear el o los quete(s). En el código VS, recargar la ventana (`cmd-P` luego ingresar `>relow`).
+>_Solución_: Para desbloquear un quete. En VS Code, recargar la ventana (`cmd-P` luego ingresar `>relow`).
 
 
 ## Technología Usada
 - Angular 1.x: La versión lista para producción de Angular
 - Angular Material: Una implementación del Diseño Material en Angular.js
-- Gulp: node-based erramienta
-- Harp: El servidor web estático con preprocesamiento incorporado.
+- Gulp: node-based Automatizar tareas comunes de desarrollo
+- Harp: El servidor web estático con preprocesamiento incorporado
 - Sass: Un lenguaje de extensión CSS de grado profesional
 - Normalize: Una alternativa moderna lista para HTML5 para restablecer CSS
 - Grids: Una sistema de cuadrícula de CSS altamente personalizable construido con Sass
-- Prettify: Un módulo de JS y CSS para resaltar sintaxis de fragmentos de código fuente.
+- Prettify: Un módulo de JS y CSS para resaltar sintaxis de fragmentos de código fuente
 - Icomoon: Fuentes de iconos personalizado incorporado
 
 
 ## Licencia
-Desarrollado por Google ©2010-2016. Código licenciado bajo una [Licenscia MIT-style](https://github.com/angular.io/blob/master/LICENSE). Documentation licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
+Desarrollado por Google ©2010-2016. Código autorizado bajo una [Licencia MIT-style](https://github.com/angular.io/blob/master/LICENSE). Documentation licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
 
 [travis-badge]: https://travis-ci.org/angular/angular.io.svg?branch=master
 [travis-badge-url]: https://travis-ci.org/angular/angular.io
