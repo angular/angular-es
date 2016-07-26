@@ -30,28 +30,27 @@ Este sitio depende en gran medida de node y npm.
 1. Asegúrese de estar usando la versión más reciente de node y npm;
 si no, instala [nvm](https://github.com/creationix/nvm) para conseguir node en tu máquina.
 
-2. Instalar *globalmente* estos paquetes npm: `npm install -g harp gulp`
+2. Instale *globalmente* estos paquetes npm: `npm install -g harp gulp`
 
 3. Clone este repositorio y el [repositorio de código fuente de angular](https://github.com/angular/angular) en el mismo directorio.
 
 4. cd dentro del directorio raiz `angular.io/`
 
-5. Instalar los paquetes locales de *all-docs* ejecutando el comando `npm install`
-> Si se ejecuta node v.5+, probablemente se debe reconstruir `node-sass` en un paso a parte: `npm rebuild node-sass`
+5. Instale los paquetes locales del sitio ejecutando el comando `npm install`
+> Si está ejecutando node v.5+, probablemente deba reconstruir `node-sass` en un paso a parte: `npm rebuild node-sass`
 
-6. Ver [abajo](#desarrollo-de-código-muestra) para la preparación del desarrollo de código de muestra.
+6. Vea [abajo](#desarrollo-de-código-muestra) para la preparación del desarrollo de código de muestra.
 
 ## Desarrollo de Contenido
-Toda el contenido de documentación está escrito en Jade, el cual tiene [su propia sintaxis](http://jade-lang.com/reference/).
-Hay que estar al tanto de las estrictas exigencias impuestas por este lenguaje de espacio en blanco significativo.
-Recomendamos fuertemente ejecutar uno de los comandos `serve-and-sync` de gulp [descritos abajo](#serve-and-sync),
+Todo el contenido de documentación está escrito en Jade, el cual tiene [su propia sintaxis](http://jade-lang.com/reference/).
+Hay que tener en cuenta las estrictas exigencias de formato de texto impuestas por Jade.
+Recomendamos encarecidamente ejecutar uno de los comandos `serve-and-sync` de gulp [descritos debajo](#serve-and-sync),
 mientras se edita contenido para poder ver el efecto de los cambios *mientras se teclea*. 
 
 La documentación se basa en estilos y mixins específicos.
-Aprender acerca de ellos en la [guía de estilo de documentación](https://angular.io/docs/ts/latest/styleguide.html).
+Aprenda acerca de ellos en la [guía de estilo de documentación](https://angular.io/docs/ts/latest/styleguide.html).
 
-Los archivos jade de documentación están en directorios específicos por lenguaje
-The jade documentation files are language-specific directories bajo la ruta `public/docs/`.
+Los archivos jade de documentación están en directorios específicos por lenguaje en la ruta `public/docs/`.
 Por ejemplo, todos los documentos de TypeScript están en `public/docs/ts/latest`, ej.
 - `public/docs/ts/latest/quickstart.jade`
 - `public/docs/ts/latest/guide/architecture.jade`
@@ -60,101 +59,101 @@ Por ejemplo, todos los documentos de TypeScript están en `public/docs/ts/latest
 
 ### Servidor local con observadores y recarga de navegador
 1. cd dentro del directorio raiz `angular.io/`
-1. ejecutar `gulp serve-and-sync`
-1. el navegador se lanzará en localhost:3000 y se mantendrá refrescado automáticamente.
+1. ejecute `gulp serve-and-sync`
+1. el navegador se lanzará en localhost:3000 y se mantendrá actualizado automáticamente.
 
 <a id="serve-and-sync"></a>
-Si se trabajará en una parte especifica de los documentos, tal como la guía de desarrollo, se puede utilizar una de las tareas más especificas de gulp para ver solo esas partes de los archivos del sistema:
+Si va a trabajar en una parte especifica de los documentos, tal como la guía de desarrollo, se puede utilizar una de las tareas más especificas de gulp para ver solo esas partes de los archivos del sistema:
 
 * `gulp serve-and-sync` : ver todos los archivos Jade/Sass locales, los ejempos y recursos de la API y los archivos de la guía de desarrollo
 * `gulp serve-and-sync-api` : ver solo los archivos de ejemplo y de código fuente de la API
 * `gulp serve-and-sync-devguide` : ver solo los archivos de la guía de desarrollo
 * `gulp build-and-serve` : ver solo los archivos Jade/Sass locales
 
-## Desarrollo De Código Muestra
+## Desarrollo Del Código De Ejemplo
 
-Toda la documentación está soportada por código de ejemplo y plunkers.
-Dicho código reside en el directorio `public/docs/_examples`, bajo los directorios de capítulo específico, aún más divididos por lenguaje.
+Toda la documentación está apoyada por código de ejemplo y plunkers.
+Dicho código reside en el directorio `public/docs/_examples`, bajo los directorios del capítulo especifico y luego divididos por lenguaje.
 
-Por ejemplo, los ejemplos de muestra del Inicio Rápido de TypeScript están en `public/docs/_examples/quickstart/ts`.
+Los ejemplos del Inicio Rápido en Typescript están en `public/docs/_examples/quickstart/ts`.
 
-Todos los ejemplos de muestra están en una estructura consistente de directorios usando los mismos estilos y los mismos paquetes npm, incluyendo la última liberación de Angular 2.
-Esta consistencia es posible en parte, gracias a las erramientas impulsadas por gulp.
+Todos los ejemplos están en una estructura consistente de directorios usando los mismos estilos y los mismos paquetes npm, incluyendo la última versión de Angular 2.
+Esta consistencia es posible en parte, gracias a las herramientas impulsadas por gulp.
 Para correr los ejemplos localmente y confirmar que trabajan apropiadamente,
-tmar los siguientes pasos extra para preparar el ambiente:
+tomar los siguientes pasos extra para preparar el ambiente:
 
 1. cd a `public/docs/_examples`
 
-1. instalar los paquetes canónicos para todos los ejemplos ejecutando `npm install`
+1. instale los paquetes canónicos para todos los ejemplos ejecutando `npm install`
 
 1. cd de regreso a la raiz `angular.io`: `cd ../../..`
 
-1. ejecutar `gulp add-example-boilerplate` (elevar a administrador en Windows)
-para copiar archivos canónicos a los directorios de ejemplos y crear symlinks ahí para node_modules y typings.
+1. ejecute `gulp add-example-boilerplate` (elevar a administrador en Windows)
+para copiar los archivos en los directorios de los ejemplos y crear symlinks ahí para node_modules y typings.
 
 
-Ahora cd en cualquier directorio de ejemplos particular a un languaje (ej., `public/docs/_examples/quickstart/ts`) y probar:
+Ahora entra en cualquier ejemplo particular a un languaje (ej., `public/docs/_examples/quickstart/ts`) y probar:
 - `npm start`  para compilar-observar y servir-y-observar en el navegador simultaneamente
 - `npm run tsc` para solo compilar
 - `npm run lite` para servir-y-observar en el navegador
 
-Mirar los scripts en `package.json` para otras opciones.
+Mire los scripts en `package.json` para otras opciones.
 También, se puede abrir cualquier `plunkr.no-link.html` para ver la ejecución de código en plunker
-(tal vez se debe ejecutar `gulp build-plunkers` primerro para crear/actualizar).
+(tal vez se debe ejecutar `gulp build-plunkers` primero para crear/actualizar).
 
-Se debe verificar que los ejemplos estén libres de errores lint.
+Se debe verificar que los ejemplos estén libres de errores de estilo.
 - `gulp lint`
 
 ### Ejemplos de pruebas end-to-end
 
 Todos los ejemplos deben de ser cubiertos hasta cierto grado por pruebas de end-to-end:
-- `gulp run-e2e-tests` para ejecutar toodas las pruebas de TypeScript y JavaScript
+- `gulp run-e2e-tests` para ejecutar todas las pruebas de TypeScript y JavaScript
 - `gulp run-e2e-tests --lang=dart` para ejecutar todas las pruebas de Dart
-- `gulp run-e2e-tests --lang=all` para ejecutar las pruebas deTypeScript, JavaScript y Dart
+- `gulp run-e2e-tests --lang=all` para ejecutar las pruebas de TypeScript, JavaScript y Dart
 - `gulp run-e2e-tests --filter=quickstart` para filtrar la ejecucion de ejemplos por nombre
 - `gulp run-e2e-tests --fast` para ignorar npm install, actualizacion de webdriver y la copia del boilerplate
 
 Cualquier combinación de opciones es posible.
 
 ### Reinicio del proyecto
-Este proyecto genera muchos archivos sin seguimiento, si deseas reiniciarlo a un estado mínimo, puedes ejecutar:
+Este proyecto genera muchos archivos, si deseas reiniciarlo a su estado original, puedes ejecutar:
 
 - `git clean -xdf`
 
-También, hay un script disponible para los usuarios del Gitbash de Linux, OSX y Windows que configurará el proyecto usando los pasos mostrados en esta sección:
+También, hay un script disponible para los usuarios de Linux, OSX Windows Gitbash que configurará el proyecto usando los pasos mostrados en esta sección:
 
 - `./scripts/install.sh`
 
-### Ejecutar con el build actual en lugar de los paquetes de la liberación
-Se pueden campbiarl los paquetes de `@angular` en `~/public/docs/_examples/node_modules` por los paquetes del build con
+### Trabajar con el build actual en lugar de los paquetes de la versión actual
+Se pueden cambiar los paquetes de `@angular` en `~/public/docs/_examples/node_modules` por los paquetes del build con
 ```
 gulp install-example-angular --build
 ```
-Restaurar a los paquetes de la LIBERACIÓN con
+Restaurar a los paquetes de la VERSIÓN ACTUAL con
 ```
 gulp install-example-angular
 ```
->Estos comandos fallaran si algo está bloqueando algunos de los paquetes ... como IDE lo hace a menudo.
+>Estos comandos fallaran si algo está bloqueando algunos de los paquetes ... como algún IDE hace a menudo.
 >
 >El síntoma es típicamente un error al tratar de `rm -rf node_modules/@angular`.
 >
->_Solución_: Para desbloquear un quete. En VS Code, recargar la ventana (`cmd-P` luego ingresar `>relow`).
+>_Solución_: Para desbloquear un paquete. En VS Code, recargar la ventana (`cmd-P` luego ingresar `>relow`).
 
 
 ## Technología Usada
 - Angular 1.x: La versión lista para producción de Angular
-- Angular Material: Una implementación del Diseño Material en Angular.js
-- Gulp: node-based Automatizar tareas comunes de desarrollo
+- Angular Material: Una implementación del Material Design en Angular.js
+- Gulp: Librería basada en node que sirve para automatizar tareas comunes de desarrollo
 - Harp: El servidor web estático con preprocesamiento incorporado
-- Sass: Un lenguaje de extensión CSS de grado profesional
-- Normalize: Una alternativa moderna lista para HTML5 para restablecer CSS
+- Sass: Una extensión de CSS.
+- Normalize: Una alternativa moderna lista para HTML5 para reducir CSS
 - Grids: Una sistema de cuadrícula de CSS altamente personalizable construido con Sass
 - Prettify: Un módulo de JS y CSS para resaltar sintaxis de fragmentos de código fuente
-- Icomoon: Fuentes de iconos personalizado incorporado
+- Icomoon: Fuentes de iconos personalizados
 
 
 ## Licencia
-Desarrollado por Google ©2010-2016. Código autorizado bajo una [Licencia MIT-style](https://github.com/angular.io/blob/master/LICENSE). Documentation licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
+Desarrollado por Google ©2010-2016. Código autorizado bajo una [Licencia MIT-style](https://github.com/angular.io/blob/master/LICENSE). Documentación licenciada bajo [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
 
 [travis-badge]: https://travis-ci.org/angular/angular.io.svg?branch=master
 [travis-badge-url]: https://travis-ci.org/angular/angular.io
