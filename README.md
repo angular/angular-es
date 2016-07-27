@@ -4,156 +4,157 @@ Traducción oficial del website de Angular.io a Español
 # Angular.io
 [![Build Status][travis-badge]][travis-badge-url]
 
-Angular.io is site for Angular 2 **documentation** . 
+Angular.io es el sitio para la **documentación** de Angular 2.
 
-This site also includes links to other helpful angular resources including 
-Angular 2, Angular 1, Angular Material, and AngularFire.
+Este sitio incluye también enlaces a otros recursos útiles de angular incluyendo
+Angular 2, Angular 1, Angular Material y AngularFire.
 
-## Issues
+## Problemas
 
-Please file **Developer Guide, Cookbook, and code sample issues _only_** in this 
-[Angular.io](https://github.com/angular/angular.io/issues) github repo.
+Por favor crea **issues en Guithub _sólo_ referentes a la Guía del Desarrollador, a las Recetas y/o de ejemplos de código** al
+repositorio [Angular.io](https://github.com/angular/angular.io/issues) de github. Este repositorio es para los errores generales de la doc.
 
-**Angular API issues, cheatsheet corrections, feature requests, defect reports, and technical questions** concerning Angular itself
-belong in the [**angular source code**](https://github.com/angular/angular/issues) github repo.
-We can't handle those topics here and will ask you to re-post them on the angular repo.
+**Problemas con la API de Angular, correcciones del cheatsheet, peticiones de funcionalidad, informes de defectos, y preguntas técnicas** referentes a Angular en si,
+pertenecen al repositorio de [**código fuente de angular**](https://github.com/angular/angular/issues) de github.
+No podemos manejar esos tipos de temas aquí y le pedimos que vuelva a publicarlos en el repositorio de angular.
 
-## How you can help
+## Cómo puedes ayudar
 
-Filing issues is helpful but **pull requests** that improve the docs are even better!
+Crear issues de Github acerca de problemas es útil pero **pull requests** que mejoren la documentación son aun mejores!
 
-Learn how to [contribute to Angular.io](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md).
+Aprende como [contribuir a Angular.io](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md).
 
-## Development Setup
-This site relies heavily on node and npm.
+## Configuración para desarrollo
+Este sitio depende en gran medida de node y npm.
 
-1. Make sure you are using the latest node and npm; 
-if not install [nvm](https://github.com/creationix/nvm) to get node going on your machine.
+1. Asegúrese de estar usando la versión más reciente de node y npm;
+si no, instala [nvm](https://github.com/creationix/nvm) para conseguir node en tu máquina.
 
-1. install these npm packages *globally*: `npm install -g harp gulp`
+2. Instale *globalmente* estos paquetes npm: `npm install -g harp gulp`
 
-1. clone this repo and the [angular source code repo](https://github.com/angular/angular) to the same parent directory.
-The two cloned repo directories must be sibling.
+3. Clone este repositorio y el [repositorio de código fuente de angular](https://github.com/angular/angular) en el mismo directorio.
 
-1. cd into root directory `angular.io/`
+4. cd dentro del directorio raiz `angular.io/`
 
-1. install the *all-docs* local packages by running `npm install`
-> If running node v.5+, you probably must rebuild `node-sass` in a separate step: `npm rebuild node-sass`
+5. Instale los paquetes locales del sitio ejecutando el comando `npm install`
+> Si está ejecutando node v.5+, probablemente deba reconstruir `node-sass` en un paso a parte: `npm rebuild node-sass`
 
-1. See [below](#code-sample-development) for code sample development preparation.
+6. Vea [abajo](#desarrollo-de-código-muestra) para la preparación del desarrollo de código de muestra.
 
-## Content Development
-All documentation content is written in Jade which has [its own syntax](http://jade-lang.com/reference/).
-Be aware of the strict demands imposed by this significant-whitespace language.
-We strongly recommend running one of the gulp `serve-and-sync` commands [described below](#serve-and-sync)
-while editing content so you can see the effect of your changes *as you type*.
+## Desarrollo de Contenido
+Todo el contenido de documentación está escrito en Jade, el cual tiene [su propia sintaxis](http://jade-lang.com/reference/).
+Hay que tener en cuenta las estrictas exigencias de formato de texto impuestas por Jade.
+Recomendamos encarecidamente ejecutar uno de los comandos `serve-and-sync` de gulp [descritos debajo](#serve-and-sync),
+mientras se edita contenido para poder ver el efecto de los cambios *mientras se teclea*. 
 
-The documentation relies on specific styles and mixins. 
-Learn about those in the [documentation styleguide](https://angular.io/docs/ts/latest/styleguide.html).
+La documentación se basa en estilos y mixins específicos.
+Aprenda acerca de ellos en la [guía de estilo de documentación](https://angular.io/docs/ts/latest/styleguide.html).
 
-The jade documentation files are language-specific directories under either `public/docs/`.
-For example, all of the TypeScript docs are in `public/docs/ts/latest`, e.g.
+Los archivos jade de documentación están en directorios específicos por lenguaje en la ruta `public/docs/`.
+Por ejemplo, todos los documentos de TypeScript están en `public/docs/ts/latest`, ej.
 - `public/docs/ts/latest/quickstart.jade`
 - `public/docs/ts/latest/guide/architecture.jade`
 - `public/docs/ts/latest/cookbook/component-communication.jade`
 - `public/docs/ts/latest/tutorial/toh-pt5.jade`
 
-### Local server with watches and browser reload
- 1. cd into root directory `angular.io/`
- 1. run `gulp serve-and-sync`
- 1. browser will launch on localhost:3000 and stay refreshed automatically.
+### Servidor local con observadores y recarga de navegador
+1. cd dentro del directorio raiz `angular.io/`
+1. ejecute `gulp serve-and-sync`
+1. el navegador se lanzará en localhost:3000 y se mantendrá actualizado automáticamente.
 
 <a id="serve-and-sync"></a>
-If you are only going to work on a specific part of the docs, such as the dev guide, then you can use one of the more specific gulp tasks to only watch those parts of the file system:
+Si va a trabajar en una parte especifica de los documentos, tal como la guía de desarrollo, se puede utilizar una de las tareas más especificas de gulp para ver solo esas partes de los archivos del sistema:
 
-* `gulp serve-and-sync` : watch all the local Jade/Sass files, the API source and examples, and the dev guide files
-* `gulp serve-and-sync-api` : watch only the API source and example files
-* `gulp serve-and-sync-devguide` : watch only the dev guide files
-* `gulp build-and-serve` : watch only the local Jade/Sass files
+* `gulp serve-and-sync` : ver todos los archivos Jade/Sass locales, los ejempos y recursos de la API y los archivos de la guía de desarrollo
+* `gulp serve-and-sync-api` : ver solo los archivos de ejemplo y de código fuente de la API
+* `gulp serve-and-sync-devguide` : ver solo los archivos de la guía de desarrollo
+* `gulp build-and-serve` : ver solo los archivos Jade/Sass locales
 
-## Code Sample Development
+## Desarrollo Del Código De Ejemplo
 
-All documentation is supported by sample code and plunkers. 
-Such code resides in the `public/docs/_examples` directory, under chapter-specific directories, further divided by language track.
+Toda la documentación está apoyada por código de ejemplo y plunkers.
+Dicho código reside en el directorio `public/docs/_examples`, bajo los directorios del capítulo especifico y luego divididos por lenguaje.
 
-For example, the TypeScript QuickStart sample is in `public/docs/_examples/quickstart/ts`.
+Los ejemplos del Inicio Rápido en Typescript están en `public/docs/_examples/quickstart/ts`.
 
-All samples are in a consistent directory structure using the same styles and the same npm packages, including the latest release of Angular 2.
-This consistency is possible in part thanks to gulp-driven tooling. 
-To run the samples locally and confirm that they work properly, 
-take the following extra steps to prepare the environment:
+Todos los ejemplos están en una estructura consistente de directorios usando los mismos estilos y los mismos paquetes npm, incluyendo la última versión de Angular 2.
+Esta consistencia es posible en parte, gracias a las herramientas impulsadas por gulp.
+Para correr los ejemplos localmente y confirmar que trabajan apropiadamente,
+tomar los siguientes pasos extra para preparar el ambiente:
 
-1. cd to `public/docs/_examples`
+1. cd a `public/docs/_examples`
 
-1. install the canonical node packages for all samples by running `npm install`
+1. instale los paquetes canónicos para todos los ejemplos ejecutando `npm install`
 
-1. cd back up to `angular.io` root: `cd ../../..`
+1. cd de regreso a la raiz `angular.io`: `cd ../../..`
 
-1. run `gulp add-example-boilerplate` (elevate to admin on Windows) 
-to copy canonical files to the sample directories and create symlinks there for node_modules and typings. 
+1. ejecute `gulp add-example-boilerplate` (elevar a administrador en Windows)
+para copiar los archivos en los directorios de los ejemplos y crear symlinks ahí para node_modules y typings.
 
-Now cd into any particular sample's language directory (e.g., `public/docs/_examples/quickstart/ts`) and try:
-- `npm start`  to simultaneously compile-with-watch and serve-in-browser-with-watch
-- `npm run tsc` to compile only
-- `npm run lite` to serve-and-watch in browser
 
-Look at the scripts in `package.json` for other options.
-Also, open any `plunkr.no-link.html` to see the code execute in plunker
-(you may have to run `gulp build-plunkers` first to create/update).
+Ahora entra en cualquier ejemplo particular a un languaje (ej., `public/docs/_examples/quickstart/ts`) y probar:
+- `npm start`  para compilar-observar y servir-y-observar en el navegador simultaneamente
+- `npm run tsc` para solo compilar
+- `npm run lite` para servir-y-observar en el navegador
 
-You must check that your example is free of lint errors.
+Mire los scripts en `package.json` para otras opciones.
+También, se puede abrir cualquier `plunkr.no-link.html` para ver la ejecución de código en plunker
+(tal vez se debe ejecutar `gulp build-plunkers` primero para crear/actualizar).
+
+Se debe verificar que los ejemplos estén libres de errores de estilo.
 - `gulp lint`
 
-### Sample end-to-end tests
+### Ejemplos de pruebas end-to-end
 
-All samples should be covered to some degree by end-to-end tests:
-- `gulp run-e2e-tests` to run all TypeScript and JavaScript tests
-- `gulp run-e2e-tests --lang=dart` to run all Dart tests
-- `gulp run-e2e-tests --lang=all` to run TypeScript, JavaScript, and Dart tests
-- `gulp run-e2e-tests --filter=quickstart` to filter the examples to run, by name
-- `gulp run-e2e-tests --fast` to ignore npm install, webdriver update and boilerplate copy
+Todos los ejemplos deben de ser cubiertos hasta cierto grado por pruebas de end-to-end:
+- `gulp run-e2e-tests` para ejecutar todas las pruebas de TypeScript y JavaScript
+- `gulp run-e2e-tests --lang=dart` para ejecutar todas las pruebas de Dart
+- `gulp run-e2e-tests --lang=all` para ejecutar las pruebas de TypeScript, JavaScript y Dart
+- `gulp run-e2e-tests --filter=quickstart` para filtrar la ejecucion de ejemplos por nombre
+- `gulp run-e2e-tests --fast` para ignorar npm install, actualizacion de webdriver y la copia del boilerplate
 
-Any combination of options is possible.
+Cualquier combinación de opciones es posible.
 
-### Resetting the project
-This project generates a lot of untracked files, if you wish to reset it to a mint state, you can run:
+### Reinicio del proyecto
+Este proyecto genera muchos archivos, si deseas reiniciarlo a su estado original, puedes ejecutar:
 
 - `git clean -xdf`
 
-Also, there is a script available for Linux, OSX and Windows Gitbash users that will setup the project using the steps shown in this section:
+También, hay un script disponible para los usuarios de Linux, OSX Windows Gitbash que configurará el proyecto usando los pasos mostrados en esta sección:
 
 - `./scripts/install.sh`
 
-### Run with current build instead of release packages
-Can switch the `@angular` packages in `~/public/docs/_examples/node_modules` to the current build packages with
+### Trabajar con el build actual en lugar de los paquetes de la versión actual
+Se pueden cambiar los paquetes de `@angular` en `~/public/docs/_examples/node_modules` por los paquetes del build con
 ```
 gulp install-example-angular --build
 ```
-Restore to RELEASE packages with
+Restaurar a los paquetes de la VERSIÓN ACTUAL con
 ```
 gulp install-example-angular
 ```
->These commands will fail if something is locking any of the packages ... as an IDE often does.
+>Estos comandos fallarán si algo está bloqueando algunos de los paquetes ... como algún IDE hace a menudo.
 >
->The symptom typically is an error trying to `rm -rf node_modules/@angular`.
+>El síntoma es típicamente un error al tratar de `rm -rf node_modules/@angular`.
 >
->_Solution_: unlock the hold on the package(s). In VS Code, re-load the window (`cmd-P` then enter `>relow`).
+>_Solución_: Para desbloquear un paquete. En VS Code, recargar la ventana (`cmd-P` luego ingresar `>relow`).
 
 
-## Technology Used
-- Angular 1.x: The production ready version of Angular
-- Angular Material: An implementation of Material Design in Angular.js
-- Gulp: node-based tooling
-- Harp: The static web server with built-in preprocessing.
-- Sass: A professional grade CSS extension language
-- Normalize: A modern, HTML5-ready alternative to CSS resets
-- Grids: A highly customizable CSS Grid Framework built with Sass
-- Prettify: A JS module and CSS for syntax highlighting of source code snippets.
-- Icomoon: Custom built icon fonts
+## Technología Usada
+- Angular 1.x: La versión lista para producción de Angular
+- Angular Material: Una implementación del Material Design en Angular.js
+- Gulp: Librería basada en node que sirve para automatizar tareas comunes de desarrollo
+- Harp: El servidor web estático con preprocesamiento incorporado
+- Sass: Una extensión de CSS.
+- Normalize: Una alternativa moderna lista para HTML5 y normalizar el CSS
+- Grids: Una sistema de cuadrícula de CSS altamente personalizable construido con Sass
+- Prettify: Un módulo de JS y CSS para resaltar sintaxis de fragmentos de código fuente
+- Icomoon: Fuentes de iconos personalizados
 
 
-## License
-Powered by Google ©2010-2016. Code licensed under an [MIT-style License](https://github.com/angular.io/blob/master/LICENSE). Documentation licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
+## Licencia
+Desarrollado por Google ©2010-2016. Código autorizado bajo una [Licencia MIT-style](https://github.com/angular.io/blob/master/LICENSE). Documentación licenciada bajo [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
 
 [travis-badge]: https://travis-ci.org/angular/angular.io.svg?branch=master
 [travis-badge-url]: https://travis-ci.org/angular/angular.io
+
