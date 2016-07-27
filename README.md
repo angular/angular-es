@@ -1,7 +1,8 @@
-# Angular.io
+# Angular.io y Angular-es
 [![Build Status][travis-badge]][travis-badge-url]
 
 Angular.io es el sitio para la **documentación** de Angular 2.
+Angular-es es la traducción oficial de Angular.io
 
 Este sitio incluye también enlaces a otros recursos útiles de angular incluyendo
 Angular 2, Angular 1, Angular Material y AngularFire.
