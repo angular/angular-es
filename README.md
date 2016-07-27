@@ -11,16 +11,18 @@ Angular 2, Angular 1, Angular Material y AngularFire.
 
 ## Problemas
 
-Por favor crea **issues en Guithub _sólo_ referentes a la Guía del Desarrollador, a las Recetas y/o de ejemplos de código** al
-repositorio [Angular.io](https://github.com/angular/angular.io/issues) de github. Este repositorio es para los errores generales de la doc.
+Por favor crea **issues en Guithub _sólo_ referentes a la Guía del Desarrollador, a las Recetas y/o de ejemplos de código** en el
+repositorio [Angular.io](https://github.com/angular/angular.io/issues) de github.
 
 **Problemas con la API de Angular, correcciones del cheatsheet, peticiones de funcionalidad, informes de defectos, y preguntas técnicas** referentes a Angular en si,
 pertenecen al repositorio de [**código fuente de angular**](https://github.com/angular/angular/issues) de github.
 No podemos manejar esos tipos de temas aquí y le pedimos que vuelva a publicarlos en el repositorio de angular.
 
+Por último, para problemas con la localización al Español de esta documentación, por favor abra un issue en el repositorio de [angular-es](https://github.com/angular/angular-es)
+
 ## Cómo puedes ayudar
 
-Crear issues de Github acerca de problemas es útil pero **pull requests** que mejoren la documentación son aun mejores!
+Crear issues en Github es útil, pero ¡**pull requests** que mejoren la documentación son aun mejores!
 
 Aprende como [contribuir a Angular.io](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md).
 
@@ -57,18 +59,18 @@ Por ejemplo, todos los documentos de TypeScript están en `public/docs/ts/latest
 - `public/docs/ts/latest/cookbook/component-communication.jade`
 - `public/docs/ts/latest/tutorial/toh-pt5.jade`
 
-### Servidor local con observadores y recarga de navegador
+### Servidor local sincronizado y recarga del navegador
 1. cd dentro del directorio raiz `angular.io/`
 1. ejecute `gulp serve-and-sync`
 1. el navegador se lanzará en localhost:3000 y se mantendrá actualizado automáticamente.
 
 <a id="serve-and-sync"></a>
-Si va a trabajar en una parte especifica de los documentos, tal como la guía de desarrollo, se puede utilizar una de las tareas más especificas de gulp para ver solo esas partes de los archivos del sistema:
+Si va a trabajar en una parte especifica de la documentación, tal como la guía de desarrollo, se puede utilizar una de las tareas más especificas de gulp para sincronizar solo esos archivos del sistema:
 
-* `gulp serve-and-sync` : ver todos los archivos Jade/Sass locales, los ejempos y recursos de la API y los archivos de la guía de desarrollo
-* `gulp serve-and-sync-api` : ver solo los archivos de ejemplo y de código fuente de la API
-* `gulp serve-and-sync-devguide` : ver solo los archivos de la guía de desarrollo
-* `gulp build-and-serve` : ver solo los archivos Jade/Sass locales
+* `gulp serve-and-sync` : sincronice todos los archivos Jade/Sass locales, los ejempos y recursos de la API y los archivos de la guía de desarrollo
+* `gulp serve-and-sync-api` : sincronice solo los archivos de ejemplo y de código fuente de la API
+* `gulp serve-and-sync-devguide` : sincronice solo los archivos de la guía de desarrollo
+* `gulp build-and-serve` : sincronice solo los archivos Jade/Sass locales
 
 ## Desarrollo Del Código De Ejemplo
 
@@ -79,26 +81,25 @@ Los ejemplos del Inicio Rápido en Typescript están en `public/docs/_examples/q
 
 Todos los ejemplos están en una estructura consistente de directorios usando los mismos estilos y los mismos paquetes npm, incluyendo la última versión de Angular 2.
 Esta consistencia es posible en parte, gracias a las herramientas impulsadas por gulp.
-Para correr los ejemplos localmente y confirmar que trabajan apropiadamente,
-tomar los siguientes pasos extra para preparar el ambiente:
+Para lanzar los ejemplos localmente y confirmar que trabajan apropiadamente,
+ejecute los siguientes pasos extra para preparar el entorno:
 
 1. cd a `public/docs/_examples`
 
 1. instale los paquetes canónicos para todos los ejemplos ejecutando `npm install`
 
-1. cd de regreso a la raiz `angular.io`: `cd ../../..`
+1. cd de vuelta a la raiz `angular.io`: `cd ../../..`
 
 1. ejecute `gulp add-example-boilerplate` (elevar a administrador en Windows)
 para copiar los archivos en los directorios de los ejemplos y crear symlinks ahí para node_modules y typings.
 
-
-Ahora entra en cualquier ejemplo particular a un languaje (ej., `public/docs/_examples/quickstart/ts`) y probar:
-- `npm start`  para compilar-observar y servir-y-observar en el navegador simultaneamente
+Ahora entra en cualquier ejemplo particular de un languaje (ej., `public/docs/_examples/quickstart/ts`) y pruebe:
+- `npm start`  para compilar y servir en el navegador de forma sincronizada
 - `npm run tsc` para solo compilar
-- `npm run lite` para servir-y-observar en el navegador
+- `npm run lite` para servir en el navegador de forma sincronizada
 
 Mire los scripts en `package.json` para otras opciones.
-También, se puede abrir cualquier `plunkr.no-link.html` para ver la ejecución de código en plunker
+También, puede abrir cualquier `plunkr.no-link.html` para ver la ejecución del código en plunker
 (tal vez se debe ejecutar `gulp build-plunkers` primero para crear/actualizar).
 
 Se debe verificar que los ejemplos estén libres de errores de estilo.
@@ -120,11 +121,11 @@ Este proyecto genera muchos archivos, si deseas reiniciarlo a su estado original
 
 - `git clean -xdf`
 
-También, hay un script disponible para los usuarios de Linux, OSX Windows Gitbash que configurará el proyecto usando los pasos mostrados en esta sección:
+También, hay un script disponible para los usuarios de Linux, OSX y Windows Gitbash que configurará el proyecto usando los pasos mostrados en esta sección:
 
 - `./scripts/install.sh`
 
-### Trabajar con el build actual en lugar de los paquetes de la versión actual
+### Trabajar con la versión build de Angular en vez de la última versión publicada
 Se pueden cambiar los paquetes de `@angular` en `~/public/docs/_examples/node_modules` por los paquetes del build con
 ```
 gulp install-example-angular --build
@@ -138,6 +139,8 @@ gulp install-example-angular
 >El síntoma es típicamente un error al tratar de `rm -rf node_modules/@angular`.
 >
 >_Solución_: Para desbloquear un paquete. En VS Code, recargar la ventana (`cmd-P` luego ingresar `>relow`).
+
+NOTA: La versión build corresponde con la versión en master de Angular 2
 
 
 ## Technología Usada
