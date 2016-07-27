@@ -11,7 +11,7 @@ Angular 2, Angular 1, Angular Material y AngularFire.
 
 ## Problemas
 
-Por favor crea **issues de Guithub _sólo_ referentes a la Guía del Desarrollador, a las Recetas y/o de ejemplos de código** al
+Por favor crea **issues en Guithub _sólo_ referentes a la Guía del Desarrollador, a las Recetas y/o de ejemplos de código** al
 repositorio [Angular.io](https://github.com/angular/angular.io/issues) de github. Este repositorio es para los errores generales de la doc.
 
 **Problemas con la API de Angular, correcciones del cheatsheet, peticiones de funcionalidad, informes de defectos, y preguntas técnicas** referentes a Angular en si,
@@ -133,7 +133,7 @@ Restaurar a los paquetes de la VERSIÓN ACTUAL con
 ```
 gulp install-example-angular
 ```
->Estos comandos fallaran si algo está bloqueando algunos de los paquetes ... como algún IDE hace a menudo.
+>Estos comandos fallarán si algo está bloqueando algunos de los paquetes ... como algún IDE hace a menudo.
 >
 >El síntoma es típicamente un error al tratar de `rm -rf node_modules/@angular`.
 >
@@ -146,7 +146,7 @@ gulp install-example-angular
 - Gulp: Librería basada en node que sirve para automatizar tareas comunes de desarrollo
 - Harp: El servidor web estático con preprocesamiento incorporado
 - Sass: Una extensión de CSS.
-- Normalize: Una alternativa moderna lista para HTML5 para reducir CSS
+- Normalize: Una alternativa moderna lista para HTML5 y normalizar el CSS
 - Grids: Una sistema de cuadrícula de CSS altamente personalizable construido con Sass
 - Prettify: Un módulo de JS y CSS para resaltar sintaxis de fragmentos de código fuente
 - Icomoon: Fuentes de iconos personalizados
