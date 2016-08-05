@@ -4,24 +4,45 @@ a(id="top")
   There are many conceptual and syntactical differences between Angular&nbsp;1 and Angular&nbsp;2.
   This chapter provides a quick reference guide to some of the common Angular&nbsp;1
   syntax and its equivalent in Angular&nbsp;2.
+  
+  Hay muchas diferencias conceptuales y sintácticas entre Angular&nbsp;1 y Angular&nbsp;2.
+  Este capítulo proporcina una guía de referencia rápida para algunas de las sintaxis comúnes de Angular&nbsp;1
+  y sus equivalentes en Angular&nbsp;2.
 
 :marked
   **See the Angular 2 syntax in this [live example](/resources/live-examples/cb-a1-a2-quick-reference/ts/plnkr.html)**.
+  
+  **Mire la sintaxis de Angular 2 en este [ejemplo funcional](/resources/live-examples/cb-a1-a2-quick-reference/ts/plnkr.html)**.
 
   ## Contents
   This chapter covers
   * [Template Basics](#template-basics) - binding and local variables
-
+  
+  ## Contenidos
+  Este capítulo abarca
+  * [Fundamentos de plantilla](#template-basics) - binding y variables locales.
+  
   * [Template Directives](#template-directives) - built-in directives `ngIf` and `ngClass`
-
+  
+  * [Directivas de plantilla](#template-directives) - directivas incorporadas `ngIf` y `ngClass`
+  
   * [Filters/Pipes](#filters-pipes) - built-in *filters*, known as *pipes* in Angular&nbsp;2
-
+  
+  * [Filtros/Pipes](#filters-pipes) - *filtros* incorporados, conocidos como *pipes* en Angular&nbsp;2
+  
   * [Controllers/Components](#controllers-components) - *controllers* are *components* in Angular&nbsp;2.
   Also covers modules.
+  
+  * [Controladores/Componentes](#controllers-components) - *controladores* son *componentes* en Angular&nbsp;2.
+    También abarca módulos.
 
   * [Style Sheets](#style-sheets) - more options for CSS in  Angular&nbsp;2.
+  
+  * [Hojas de estilo](#style-sheets) - más opciones para CSS en Angular&nbsp;2.
 
   * [String date pipe](#string-dates) - a tip for displaying string date values.
+  
+  * [Pipe de String de fecha](#string-dates) - un tip para mostrar valores de cadenas de fecha.
 
 .l-main-section
 :marked
@@ -29,6 +50,11 @@ a(id="top")
   Templates are the user-facing part of an Angular application and are written in HTML.
   The following are some of the key Angular&nbsp;1 template features with the equivalent
   template syntax in Angular&nbsp;2.
+  
+  ## Fundamentos de plantilla
+  Las plantillas son la parte orientada a los usuarios en una aplicación de Angular y están escritas en HTML.
+  Las siguientes son algunas de las características de plantilla principales de Angular&nbsp;1 con su equivalente
+  sintaxis de plantilla en Angular&nbsp;2.
 
 - var top="vertical-align:top"
 table(width="100%")
@@ -41,37 +67,63 @@ table(width="100%")
     td
       :marked
         ### Bindings/Interpolation
+        
+        ### Bindings/Interpolación
       code-example.
-         Your favorite hero is: {{vm.favoriteHero}}
+        Your favorite hero is: {{vm.favoriteHero}}
+
+        Tu héroe favorito es: {{vm.favoriteHero}}
       :marked
         In Angular&nbsp;1, an expression in curly braces denotes one-way binding.
         This binds the value of the element to a property in the controller
         associated with this template.
+        
+        En Angular&nbsp;1, una expresión en llaves indica binding en una dirección.
+        Esto liga el valor del elemento a una propiedad en el controlador 
+        asociado con esta plantilla.
 
         When using the `controller as` syntax,
         the binding is prefixed with the controller alias (`vm`) because we
         have to be specific about the source of the binding.
+        
+        Cuando usamos la sintaxis `controller as`,
+        el binding es antepuesto con el alias del controlador (`vm`) porque 
+        tenemos que ser específicos con la fuente del binding.
     td
       :marked
         ### Bindings/Interpolation
+        
+        ### Bindings/Interpolación
       +makeExample('cb-a1-a2-quick-reference/ts/app/movie-list.component.html', 'interpolation')(format="." )
       :marked
         In Angular&nbsp;2, a template expression in curly braces still denotes one-way binding.
         This binds the value of the element to a property of the component.
         The context of the binding is implied and is always the
         associated component, so it needs no reference variable.
+        
+        En Angular&nbsp;2, una expresión de plantilla en llaves sigue indicando un binding en una dirección.
+        Esto liga el valor de un elemento a una propiedad del componente.
+        El contexto del binding es implícito y es siempre el
+        componente asociado, entonces no es necesario una variable de referencia.
 
         For more information see [Template Syntax](../guide/template-syntax.html#interpolation).
+        Para más información mire [Sintaxis de plantilla](../guide/template-syntax.html#interpolation).
   tr(style=top)
     td
       :marked
         ### Filters
+        
+        ### Filtros
       code-example.
-         &lt;td>{{movie.title | uppercase}}&lt;/td>
+        &lt;td>{{movie.title | uppercase}}&lt;/td>
       :marked
         To filter output in our templates in Angular&nbsp;1, we use the pipe character (|) and one or more filters.
+        
+        Para filtrar una salida en nuestras plantillas en Angular&nbsp;1, usamos el carácter pipe (|) y uno o más filtros.
 
         In this example, we filter the `title` property to uppercase.
+        
+        En este ejemplo filtramos la propiedad `title` a mayúsculas.
     td
       :marked
         ### Pipes
@@ -80,28 +132,45 @@ table(width="100%")
         In Angular&nbsp;2, we use similar syntax with the pipe (|) character to filter output, but now we call them **pipes**.
         Many (but not all) of the built-in filters from Angular&nbsp;1 are
         built-in pipes in Angular&nbsp;2.
+        
+        En Angular&nbsp;2, usamos una sintaxis similar con el carácter pipe (|) para filtrar la salida, pero ahora los llamámos **pipes**.
+        Muchos (pero no todos) de los filtros incluídos en Angular&nbsp;1 son pipes incluídos Angular&nbsp;2.
 
         See the heading [Filters / Pipes](#Pipes) below for more information.
+        
+        Mire el apartado [Filtros / Pipes](#Pipes) abajo para más información.
   tr(style=top)
     td
       :marked
         ### Local variables
+        
+        ### Variables locales
       code-example(format="").
         &lt;tr ng-repeat="movie in vm.movies">
           &lt;td>{{movie.title}}&lt;/td>
         &lt;/tr>
       :marked
         Here, `movie` is a user-defined local variable.
+        
+        Aquí, `movie` es una variable local definida por el usuario.
     td
       :marked
         ### Input variables
+        
+        ### Variables de entrada
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'local')(format="." )
       :marked
         In Angular&nbsp;2, we have true template input variables that are explicitly defined using the `let` keyword.
+        
+        En Angular&nbsp;2, tenemos verdaderas variables de entrada de plantilla que son explícitamente definidas usando la palabra `let`.
 
         For more information see [ngFor micro-syntax](../guide/template-syntax.html#ngForMicrosyntax).
+        
+        Para más información mire [ngFor micro-sintaxis](../guide/template-syntax.html#ngForMicrosyntax).
 :marked
   [Back to top](#top)
+  
+  [Ir arriba](#top)
 
 .l-main-section
 :marked
@@ -109,6 +178,12 @@ table(width="100%")
   Angular&nbsp;1 provides over seventy built-in directives for use in our templates.
   Many of them are no longer needed in Angular&nbsp;2 because of its more capable and expressive binding system.
   The following are some of the key Angular&nbsp;1 built-in directives and the equivalent feature in Angular&nbsp;2.
+  
+  ## Directivas de plantilla
+  Angular&nbsp;1 proporciona alrededor de setenta directivas incluídas para usar en nuestras plantillas.
+  Muchas de ellas ya no son necesarias en Angular&nbsp;2 debido a su sistema de binding más capaz y expresivo.
+  Las siguientes son algunas de las principales directivas incluídas en Angular&nbsp;1 y su equivalente
+  característica en Angular&nbsp;2.
 
 table(width="100%")
   col(width="50%")
@@ -124,10 +199,16 @@ table(width="100%")
         &lt;body ng-app="movieHunter">
       :marked
         The application startup process is called **bootstrapping**.
+        
+        El proceso de inicialización de la aplicación es llamado **bootstrapping**.
 
         Although we can bootstrap an Angular&nbsp;1 app in code,
         many applications bootstrap declaratively with the `ng-app` directive,
         giving it the name of the application's module (`movieHunter`).
+        
+        A pesar de que podemos inicializar una aplicación de Angular&nbsp;1 en el código,
+        muchas aplicaciones se inicializan declarativamente con la directiva `ng-app`,
+        dándole el nombre del módulo de la aplicación (`movieHunter`).
     td
       :marked
         ### Bootstrapping
@@ -136,8 +217,14 @@ table(width="100%")
         Angular&nbsp;2 does not have a bootstrap directive.
         We always launch the app in code by explicitly calling a bootstrap function
         and passing it the name of the application's module (`AppComponent`).
+        
+        Angular&nbsp;2 no tiene una directiva de inicialización.
+        Siempre lanzamos la aplicación desde el código explícitamente llamando una función de inicialización
+        y pasándole el nombre del módulo de la aplicación (`AppComponent`).
 
         For more information see [Quick Start](../quickstart.html).
+        
+        Para más información mire [Inicio rápido](../quickstart.html).
   tr(style=top)
     td
       :marked
@@ -151,26 +238,49 @@ table(width="100%")
         based on an expression. That expression is often a key-value control object with each
         key of the object defined as a CSS class name, and each value defined as a template expression
         that evaluates to a Boolean value.
+        
+        En Angular&nbsp;1, la directiva `ng-class` incluye/excluye clases CSS
+        basadas en una expresión. Esa expresión es a menudo un objeto de control de valor clave con cada
+        llave del objeto definida como un nombre de clase CSS, y cada valor definido como una expresión de plantilla
+        que evalúa a un valor Booleano.
 
         In the first example, the `active` class is applied to the element if `isActive` is true.
+        
+        En el primer ejemplo, la clase `active` es aplicada al elemento si `isActive` es verdadero.
 
         We can specify multiple classes as shown in the second example.
+        
+        Podemos especificar varias clases como se muestra en el segundo ejemplo.
     td
       :marked
         ### ngClass
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'ngClass')(format="." )
       :marked
         In Angular&nbsp;2, the `ngClass` directive works similarly.
+        
         It includes/excludes CSS classes based on an expression.
+        
+        En Angular&nbsp;2, la directiva `ngClass` funciona de manera similar.
+        
+        Incluye/excluye las clases CSS basadas en una expresión.
 
         In the first example, the `active` class is applied to the element if `isActive` is true.
+        
+        En el primer ejemplo, la clase `active` es aplicada al elemento si `isActive` es verdadero.
 
         We can specify multiple classes as shown in the second example.
+        
+        Podemos especificar varias clases como se muestra en el segundo ejemplo.
 
         Angular&nbsp;2 also has **class binding**, which is a good way to add or remove a single class
         as shown in the third example.
+        
+        Angular&nbsp;2 tiene también **binding de clases**, que es una buena manera de añadir o eliminar clases simples
+        como se muestra en el tercer ejemplo.
 
         For more information see [Template Syntax](../guide/template-syntax.html#other-bindings).
+        
+        Para más información mire [Sintaxis de plantilla](../guide/template-syntax.html#other-bindings).
 
   tr(style=top)
     td
@@ -181,32 +291,57 @@ table(width="100%")
         &lt;button ng-click="vm.toggleImage($event)">
       :marked
         In Angular&nbsp;1, the `ng-click` directive allows us to specify custom behavior when an element is clicked.
+        
+        En Angular&nbsp;1, la directiva `ng-click` nos permite especificar un comportamiento personalizado cuando un elemento es pulsado.
 
         In the first example, when the button is clicked, the `toggleImage()` method in the controller referenced by the `vm` `controller as` alias is executed.
+        
+        En el primer ejemplo, cuando un botón es pulsado, el método `toggleImage()` en el controlador referenciado con el alias `vm` `controller as` es ejecutado.
 
         The second example demonstrates passing in the `$event` object, which provides details about the event
         to the controller.
+        
+        El segundo ejemplo muestra lo que pasa en el objeto `$event`, que proporciona detalles sobre el evento
+        al controlador.
     td
       :marked
         ### bind to the `click` event
+        
+        ### ligando al evento `click`
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'event-binding')(format="." )
       :marked
         The Angular&nbsp;1 event-based directives do not exist in Angular&nbsp;2.
         Rather, we define one-way binding from the template view to the component using **event binding**.
+        
+        Las directivas de Angular&nbsp;1 basadas en eventos no existen en Angular&nbsp;2.
+        Más bien, definimos un binding en una dirección desde la plantilla de la vista hasta el componente usando un **binding de evento**.
 
         For event binding, we define the name of the target event within parenthesis and
         specify a template statement in quotes to the right of the equals. Angular&nbsp;2 then
         sets up an event handler for the target event. When the event is raised, the handler
         executes the template statement.
+        
+        Para un binding de evento, definimos el nombre del evento objetivo entre paréntesis y
+        especificamos una sentencia de plantilla en comillas a la derecha del igual. Angular&nbsp;2
+        establece entonces un manejador de evento para el evento objetivo. Cuando el evento es disparado, el manejador
+        ejecuta la sentencia de plantilla.
 
         In the first example, when the button is clicked, the `toggleImage()` method in the associated component is executed.
+        En el primer ejemplo, cuando el botón es pulsado, el método `toggleImage()` en el componente asociado es ejecutado.
 
         The second example demonstrates passing in the `$event` object, which provides details about the event
         to the component.
+        
+        El segundo ejemplo muestra lo que pasa en el objeto `$event`, que proporciona detalles sobre el evento 
+        al componente.
 
         For a list of DOM events, see: https://developer.mozilla.org/en-US/docs/Web/Events.
+        
+        Para una lista de eventos DOM, mire https://developer.mozilla.org/en-US/docs/Web/Events.
 
         For more information see [Template Syntax](../guide/template-syntax.html#event-binding).
+        
+        Para mayor información mire [Sinaxis de plantilla](../guide/template-syntax.html#event-binding).
 
   tr(style=top)
     td
@@ -218,15 +353,26 @@ table(width="100%")
         In Angular&nbsp;1, the `ng-controller` directive attaches a controller to the view.
         Using the `ng-controller` (or defining the controller as part of the routing) ties the
         view to the controller code associated with that view.
+        
+        En Angular&nbsp;1, la directiva `ng-controller` adjunta un controlador a la vista.
+        Usando `ng-controller` (o definiendo el controlador como parte del enrutamiento) se liga la
+        vista al código del controlador asociado con esa vista.
     td
       :marked
         ### Component decorator
+        
+        ### Decorador Component
       +makeExample('cb-a1-a2-quick-reference/ts/app/movie-list.component.ts', 'component')(format="." )
       :marked
         In Angular&nbsp;2, the template no longer specifies its associated controller.
         Rather, the component specifies its associated template as part of the component class decorator.
+        
+        En Angular&nbsp;2, la plantilla ya no especifíca su controlador asociado.
+        Más bien, el componente especifíca su plantilla asociada como parte del decorador de la clase componente.
 
         For more information see [Architecture Overview](../guide/architecture.html#component).
+        
+        Para más información mire [Vista general de la arquitectura](../guide/architecture.html#component).
 
   tr(style=top)
     td
@@ -234,11 +380,18 @@ table(width="100%")
         ### ng-hide
         In Angular&nbsp;1, the `ng-hide` directive shows or hides the associated HTML element based on
         an expression. See [ng-show](#ng-show) for more information.
+        
+        En Angular&nbsp;1, la directiva `ng-hide` muestra u oculta el elemento HTML asociado basándose en 
+        una expresión. Mire [ng-show](#ng-show) para más información.
     td
       :marked
         ### bind to the `hidden` property
         In Angular&nbsp;2, we use property binding; there is no built-in *hide* directive.
         See [ng-show](#ng-show) for more information.
+        
+        ### ligar a la propiedad `hidden`
+        En Angular&nbsp;2, usamos binding de propiedad; no hay una directiva *hide* incluída.
+        Mire [ng-show](#ng-show) para más información.
   tr(style=top)
     td
       :marked
@@ -249,26 +402,45 @@ table(width="100%")
         The `ng-href` directive allows Angular&nbsp;1 to preprocess the `href` property so it
         can replace the binding expression with the appropriate URL before the browser
         fetches from that URL.
+        
+        La directiva `ng-href` permite a Angular&nbsp;1 preprocesar la propiedad `href` por lo que
+        puede reemplazar la expresión de binding con la URL apropiada antes de que el navegador
+        vaya a buscar en esa URL.
 
         In Angular&nbsp;1, the `ng-href` is often used to activate a route as part of navigation.
+        
+        En Angular&nbsp;1, el `ng-href` es a menudo usada para activar una ruta como parte de la navegación.
       code-example(format="").
         &lt;a ng-href="#movies">Movies&lt;/a>
       :marked
         Routing is handled differently in Angular&nbsp;2.
+        
+        El enrutaminto es manejado diferente en Angular&nbsp;2.
     td
       :marked
         ### bind to the `href` property
+        
+        ### ligar a la propiedad `href`
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'href')(format="." )
       :marked
         In Angular&nbsp;2, we use property binding; there is no built-in *href* directive.
         We place the element's `href` property in square brackets and set it to a quoted template expression.
+        
+        En Angular&nbsp;2, usamos binding de propiedad; no hay una directiva *href* incluída.
+        Ponemos los elementos `href` propiamente en corchetes y los asignamos a una expresión de plantilla entre comillas.
 
         For more information on property binding see [Template Syntax](../guide/template-syntax.html#property-binding).
+        
+        Para más información de binding de propiedad mire [Sintaxis de plantilla](../guide/template-syntax.html#property-binding).
 
         In Angular&nbsp;2, `href` is no longer used for routing. Routing uses `routerLink` as shown in the third example.
+        
+        En Angular&nbsp;2, `href` ya no se usa para enrutamiento. El enrutamiento usa `routerLink` como se muestra en el tercer ejemplo.
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'router-link')(format="." )
       :marked
         For more information on routing see [Routing & Navigation](../guide/router.html#router-link).
+        
+        Para más información de enrutamiento mire [Enrutamiento Y Navegación](../guide/router.html#router-link).
 
   tr(style=top)
     td
@@ -279,8 +451,12 @@ table(width="100%")
       :marked
         In Angular&nbsp;1, the `ng-if` directive removes or recreates a portion of the DOM
         based on an expression. If the expression is false, the element is removed from the DOM.
+        
+        En Angular&nbsp;1, la directiva `ng-if` elimina o recrea una porción del DOM
+        basándose en una expresión. Si la expresión es falsa, el elemento es eliminado del DOM.
 
         In this example, the `table` element is removed from the DOM unless the `movies` array has a length greater than zero.
+        En este ejemplo, el elemento `table` es eliminado del DOM a menos de que el arreglo `movies` tenga una longitud mayor a cero.
     td
       :marked
         ### *ngIf
@@ -288,11 +464,19 @@ table(width="100%")
       :marked
         The `*ngIf` directive in Angular&nbsp;2 works the same as the `ng-if` directive in Angular&nbsp;1,
         it removes or recreates a portion of the DOM based on an expression.
+        
+        La directiva `*ngIf` en Angular&nbsp;2 funciona igual que la directiva `ng-if` en Angular&nbsp;1,
+        elimina o recrea una porción del DOM basándose en una expresión.
 
         In this example, the `table` element is removed from the DOM unless the `movies` array has a length.
+        
+        En este ejemplo, el elemento `table` es eliminado del DOM a menos de que el arreglo `movies` tenga una longitud. 
 
         The (*) before `ngIf` is required in this example.
         For more information see [Structural Directives](../guide/structural-directives.html).
+        
+        El (*) antes de `ngIf` es requerido en este ejemplo.
+        Para más información mire [Directivas Estructurales](../guide/structural-directives.html).
   tr(style=top)
     td
       :marked
@@ -303,6 +487,10 @@ table(width="100%")
         In Angular&nbsp;1, the `ng-model` directive binds a form control to a property in the controller associated with the template.
         This provides **two-way binding** whereby any changes made to the value in the view is synchronized with the model and
         any changes to the model are synchronized with the value in the view.
+        
+        En Angular&nbsp;1, la directiva `ng-model` liga un control de formulario a una propiedad en el controlador asocido con la plantilla.
+        Esto proporciona un **two-way binding** por lo cual todo cambio hecho al valor en la vista es sincronizado con el modelo y
+        todo cambio en el modelo es sincronizado con el valor en la vista.
     td
       :marked
         ### ngModel
@@ -311,8 +499,12 @@ table(width="100%")
         In Angular&nbsp;2, **two-way binding** is denoted with [()], descriptively referred to as a "banana in a box".
         This syntax is a short-cut for defining both property binding (from the component to the view)
         and event binding (from the view to the component), thereby giving us two-way binding.
+        
+        En Angular&nbsp;2, el **two-way binding** es indicado con [()], descriptivamente se refiere a un "platano en una caja". 
 
         For more information on two-way binding with ngModel see [Template Syntax](../guide/template-syntax.html#ngModel).
+        
+        Para más información sobre two-way binding con ngModel mire [Sintaxis de plantilla](../guide/template-syntax.html#ngModel).
   tr(style=top)
     td
       :marked
@@ -322,8 +514,12 @@ table(width="100%")
       :marked
         In Angular&nbsp;1, the `ng-repeat` directive repeats the associated DOM element
         for each item from the specified collection.
+        
+        En Angular&nbsp;1, la directiva `ng-repeat` repite el elemento asociado del DOM
+        para cada elemento de la colección especificada.
 
         In this example, the table row (`tr`) element is repeated for each movie object in the collection of movies.
+        En este ejemplo, el elemento fila (`tr`) de tabla es repetido para cada objeto movie en la colección de movies.
     td
       :marked
         ### *ngFor
@@ -333,13 +529,24 @@ table(width="100%")
         It repeats the associated DOM element for each item from the specified collection.
         More accurately, it turns the defined element (`tr` in this example) and its contents into a template and
         uses that template to instantiate a view for each item in the list.
+        
+        La directiva `*ngFor` en Angular&nbsp;2 es similar a la directiva `ng-repeat` en Angular&nbsp;1.
+        Repite el elemento asociado del DOM para cada elemento en la colección especificada.
+        Más precisamente, toma el elemento definido (`tr` en este ejemplo) y su contenido en una platilla y
+        usa esa plantilla para instanciar una vista por cada elemento en la lista.
 
         Notice the other syntax differences:
         The (*) before `ngFor` is required;
         the `let` keyword identifies `movie` as an input variable;
         the list preposition is `of`, not `in`.
+        
+        Nótese las otras diferencias de sintaxis:
+        El (*) antes de `ngFor` es requerido;
+        la palabra clave `let` identifica a `movie` como una variable de entrada;
+        la preposición de la lista es `of`, no `in`.
 
         For more information see [Structural Directives](../guide/structural-directives.html).
+        Para más información mire [Directivas Estructurales](../guide/structural-directives.html).
   tr(style=top)
     td
       :marked
@@ -347,26 +554,45 @@ table(width="100%")
       code-example(format="").
         &lt;h3 ng-show="vm.favoriteHero">
           Your favorite hero is: {{vm.favoriteHero}}
+
+          Tu héroe favorito es: {{vm.favoriteHero}}
         &lt;/h3>
       :marked
         In Angular&nbsp;1, the `ng-show` directive shows or hides the associated DOM element based on
         an expression.
+        
+        En Angular&nbsp;1, la directiva `ng-show` muestra u oculta el elemento asociado del DOM basándose en
+        una expresión.
 
         In this example, the `div` element is shown if the `favoriteHero` variable is truthy.
+        
+        En este ejemplo, el elemento `div` es mostrado si la variable `favoriteHero` es verdadera.
     td
       :marked
         ### bind to the `hidden` property
+        
+        ### ligando a la propiedad `hidden`
       +makeExample('cb-a1-a2-quick-reference/ts/app/movie-list.component.html', 'hidden')(format="." )
       :marked
         In Angular&nbsp;2, we use property binding; there is no built-in *show* directive.
         For hiding and showing elements, we bind to the HTML `hidden` property.
+        
+        En Angular&nbsp;2, usamos binding de propiedad; no hay una directiva *show* incluída.
+        Para ocultar y mostrar elementos, ligamos a la propiedad HTML `hidden`.
 
         To conditionally display an element, place the element's `hidden` property in square brackets and
         set it to a quoted template expression that evaluates to the *opposite* of *show*.
+        
+        Para mostrar un elemento condicionalmente, ponga la propiedad `hidden` del elemento en corchetes y
+        asignela a una expresión de plantilla en comillas que evalúe lo *contrario* de *show*.
 
         In this example, the `div` element is hidden if the `favoriteHero` variable is not truthy.
+        
+        En este ejemplo, el elemento `div` es ocultado si la variable `favoriteHero` no es verdadera.
 
         For more information on property binding see [Template Syntax](../guide/template-syntax.html#property-binding).
+        
+        Para más información sobre binding de propiedad mire [Sintaxis de plantilla](../guide/template-syntax.html#property-binding).
   tr(style=top)
     td
       :marked
@@ -377,15 +603,26 @@ table(width="100%")
         The `ng-src` directive allows Angular&nbsp;1 to preprocess the `src` property so it
         can replace the binding expression with the appropriate URL before the browser
         fetches from that URL.
+        
+        La directiva `ng-src` permite a Angular&nbsp;1 preprocesar la propiedad `src` por lo que
+        puede reemplazar la expresión de binding con la URL apropiada  antes de que el navegador 
+        vaya a buscar en esa URL.
     td
       :marked
         ### bind to the `src` property
+        
+        ### ligar a la propiedad `src`
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'src')(format="." )
       :marked
         In Angular&nbsp;2, we use property binding; there is no built-in *src* directive.
         We place the `src` property in square brackets and set it to a quoted template expression.
+        
+        En Angular&nbsp;2, usamos binding de propiedad; no hay una directiva *src* incluída.
+        Ponemos la propiedad `src` en corchetes y la asignamos a una expresión de plantilla en comillas.
 
         For more information on property binding see [Template Syntax](../guide/template-syntax.html#property-binding).
+        
+        Para más información sobre binding de propiedad mire [Sintaxis de plantilla](../guide/template-syntax.html#property-binding).
   tr(style=top)
     td
       :marked
@@ -397,22 +634,39 @@ table(width="100%")
         based on an expression. That expression is often a key-value control object with each
         key of the object defined as a CSS style name, and each value defined as an expression
         that evaluates to a value appropriate for the style.
+        
+        En Angular&nbsp;1, la directiva `ng-style` establece un estilo CSS en un elemento HTML
+        basándose en una expresión. Esa expresión es a menudo un objeto de control de valor clave con cada
+        llave del objeto definida como un nombre de estilo CSS, y cada valor definido como una expresión
+        que evalúa a un valor apropiado para el estilo.
 
         In the example, the `color` style is set to the current value of the `colorPreference` variable.
+        
+        En el ejemplo, el estilo `color` es asignado al valor actual de la variable `colorPreference`.
     td
       :marked
         ### ngStyle
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'ngStyle')(format="." )
       :marked
         In Angular&nbsp;2, the `ngStyle` directive works similarly. It sets a CSS style on an HTML element based on an expression.
+        
+        En Angular&nbsp;2, la directiva `ngStyle` funciona de manera similar. Establece un estilo CSS en un elemento HTML basándose en una expresión.
 
         In the first example, the `color` style is set to the current value of the `colorPreference` variable.
+        
+        En el primer ejemplo, el estilo `color` es asignado al valor actual de la variable `colorPreference`.
 
         Angular&nbsp;2 also has **style binding**, which is good way to set a single style. This is shown in the second example.
+        
+        Angular&nbsp;2 también tiene **binding de estilo**, que es una buena manera de asignar un estilo simple. Esto es mostrado en el segundo ejemplo.
 
         For more information on style binding see [Template Syntax](../guide/template-syntax.html#style-binding).
+        
+        Para más información sobre binding de estilo mire [Sintaxis de plantilla](../guide/template-syntax.html#style-binding).
 
         For more information on the ngStyle directive see [Template Syntax](../guide/template-syntax.html#ngStyle).
+        
+        Para más información sobre la directiva ngStyle mire [Sintaxis de plantilla](../guide/template-syntax.html#ngStyle).
   tr(style=top)
     td
       :marked
@@ -433,11 +687,19 @@ table(width="100%")
       :marked
         In Angular&nbsp;1, the `ng-switch` directive swaps the contents of
         an element by selecting one of the templates based on the current value of an expression.
+        
+        En Angular&nbsp;1, la directiva `ng-switch` intercambia el contenido de 
+        un elemento seleccionando una de sus plantillas basándose en el valor actual de una expresión.
 
         In this example, if `favoriteHero` is not set, the template displays "Please enter ...".
         If the `favoriteHero` is set, it checks the movie hero by calling a controller method.
         If that method returns `true`, the template displays "Excellent choice!".
         If that methods returns `false`, the template displays "No movie, sorry!".
+        
+        En este ejemplo, si `favoriteHero` no está asignado, la plantilla muestra "Please enter ...".
+        Si `favoriteHero` es asignado, verifica el héroe de la película llamando un método del controlador.
+        Si ese método devuelve `true`, la plantilla muestra "Excellent choice!".
+        Si ese método devuelve `false`, la plantilla muestra "No movie, sorry!".
     td
       :marked
         ### ngSwitch
@@ -445,18 +707,33 @@ table(width="100%")
       :marked
         In Angular&nbsp;2, the `ngSwitch` directive works similarly.
         It displays an element whose `*ngSwitchCase` matches the current `ngSwitch` expression value.
+        
+        En Angular&nbsp;2, la directiva `ngSwitch` funciona de manera similar.
+        Muestra un elemento cuyo `*ngSwitchCase` coincide con el valor actual de la expresión `ngSwitch`.
 
         In this example, if `favoriteHero` is not set, the `ngSwitch` value is `null`
         and we see the `*ngSwitchDefault` paragraph, "Please enter ...".
         If the `favoriteHero` is set, it checks the movie hero by calling a component method.
         If that method returns `true`, we see "Excellent choice!".
         If that methods returns `false`, we see "No movie, sorry!".
+        
+        En este ejemplo, si `favoriteHero` no está asignado, el valor de `ngSwitch` es `null`
+        y vemos el párrafo de `*ngSwitchDefault`, "Please enter ...".
+        Si `favoriteHero` está asignado, verifica el héroe de la película llamando a un método del componente.
+        Si ese método devuelve `true`, vemos "Excellent choice!".
+        Si ese método devuelve `false`, vemos "No movie, sorry!".
 
         The (*) before `ngSwitchCase` and `ngSwitchDefault` is required in this example.
+        
+        El (*) antes de `ngSwitchCase` y `ngSwitchDefault` es reuerido en este ejemplo.
 
         For more information on the ngSwitch directive see [Template Syntax](../guide/template-syntax.html#ngSwitch).
+        
+        Para más información sobre la directiva ngSwitch mire [Sintaxis de plantilla](../guide/template-syntax.html#ngSwitch).
 :marked
   [Back to top](#top)
+  
+  [Ir arriba](#top)
 
 a(id="filters-pipes")
 .l-main-section
@@ -465,6 +742,11 @@ a(id="filters-pipes")
   Angular&nbsp;2 **pipes** provide formatting and transformation for data in our template, similar to Angular&nbsp;1 **filters**.
   Many of the built-in filters in Angular&nbsp;1 have corresponding pipes in Angular&nbsp;2.
   For more information on pipes see [Pipes](../guide/pipes.html).
+  
+  ## Filtros / Pipes
+  Los **pipes** de Angular&nbsp;2 proporcionan formateo y transformación para datos en nuestra plantilla, de manera similar a los **filtros** de Angular&nbsp;1.
+  Muchos de los filtros incluídos en Angular&nbsp;1 tienen correspondencia con los pipes en Angular&nbsp;2.
+  Para más información sobre los pipes mire [Pipes](../guide/pipes.html).
 
 table(width="100%")
   col(width="50%")
@@ -480,12 +762,16 @@ table(width="100%")
         &lt;td>{{movie.price | currency}}&lt;/td>
       :marked
         Formats a number as a currency.
+        
+        Formatea un número como moneda.
     td
       :marked
         ### currency
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'currency')(format="." )
       :marked
         The Angular&nbsp;2 `currency` pipe is similar although some of the parameters have changed.
+        
+        El pipe `currency` de Angular&nbsp;2 es similar a pesar de que algunos de los parámetros han cambiado.
   tr(style=top)
     td
       :marked
@@ -494,12 +780,16 @@ table(width="100%")
         &lt;td>{{movie.releaseDate  | date}}&lt;/td>
       :marked
         Formats a date to a string based on the requested format.
+        
+        Formatea una fecha a una cadena basándose en el formato solicitado.
     td
       :marked
         ### date
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'date')(format=".")
       :marked
         The Angular&nbsp;2 `date` pipe is similar. See [note](#string-dates) about string date values.
+        
+        El pipe `date` de Angular&nbsp;2 es similar. Mire la [nota](#string-dates) sobre valores de cadena de fecha.
 
   tr(style=top)
     td
@@ -509,6 +799,8 @@ table(width="100%")
         &lt;tr ng-repeat="movie in movieList | filter: {title:listFilter}">
       :marked
         Selects a subset of items from the defined collection based on the filter criteria.
+        
+        Selecciona un subconjunto de elementos de la colección definida basándose en un criterio de búsqueda.
     td
       :marked
         ### none
@@ -516,6 +808,12 @@ table(width="100%")
         Filtering should be coded in the component.
         Consider building a custom pipe if the same filtering code
         will be reused in several templates.
+        
+        ### ninguno
+        No hay un pipe comparable en Angular&nbsp;2 por razones de rendimiento.
+        La filtración debería ser codificada en el componente.
+        Considere construir un pipe personalizado si el mismo código para la filtración
+        será reutilizado en varias plantillas.
 
   tr(style=top)
     td
@@ -525,12 +823,16 @@ table(width="100%")
         &lt;pre>{{movie | json}}&lt;/pre>
       :marked
         Converts a JavaScript object into a JSON string. This is useful for debugging.
+        
+        Convierte un objeto JavaScript en una cadena JSON. Esto es útil para depuración.
     td
       :marked
         ### json
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'json')(format=".")
       :marked
         The Angular&nbsp;2 `json` pipe does the same thing.
+        
+        El pipe `json` de Angular&nbsp;2 hace lo mismo.
   tr(style=top)
     td
       :marked
@@ -540,6 +842,9 @@ table(width="100%")
       :marked
         Selects up to the first parameter (2) number of items from the collection
         starting (optionally) at the beginning index (0).
+        
+        Selecciona un número de elementos arriba del primer parámetro (2) de la colección
+        iniciando (opcionalmente) en el índice del principio (0).
     td
       :marked
         ### slice
@@ -549,6 +854,11 @@ table(width="100%")
         with the JavaScript `Slice` method.
         The first parameter is the starting index; the second is the limit.
         As in Angular 1, performance may improve if we code this operation within the component instead.
+        
+        El `SlicePipe` hace lo mismo pero el *orden de los parámetros es revertido* de acuerdo
+        con el método `Slice` de JavaScript.
+        El primer parámetro es el índice inicial; el segundo es el límite.
+        Como en Angular 1, el rendimiento puede mejorar si en lugar de eso, codificamos esta operación en un componente.
   tr(style=top)
     td
       :marked
@@ -557,12 +867,16 @@ table(width="100%")
         &lt;div>{{movie.title | lowercase}}&lt;/div>
       :marked
         Converts the string to lowercase.
+        
+        Convierte la cadena a minúsculas.
     td
       :marked
         ### lowercase
       +makeExample('cb-a1-a2-quick-reference/ts/app/app.component.html', 'lowercase')(format=".")
       :marked
         The Angular&nbsp;2 `lowercase` pipe does the same thing.
+        
+        El pipe `lowercase` de Angular&nbsp;2 hace lo mismo.
   tr(style=top)
     td
       :marked
@@ -571,6 +885,8 @@ table(width="100%")
         &lt;td>{{movie.starRating  | number}}&lt;/td>
       :marked
         Formats a number as text.
+        
+        Formatea un número como texto.
     td
       :marked
         ### number
@@ -579,9 +895,16 @@ table(width="100%")
         The Angular&nbsp;2 `number` pipe is similar.
         It provides more functionality when defining
         the decimal places as shown in the second example above.
+        
+        El pipe `number` de Angular&nbsp;2 es similar.
+        Proporciona más funcionalidad cuando definimos 
+        las cifras decimales como se muestra en el segundo ejemplo de arriba. 
 
         Angular 2 also has a `percent` pipe which formats a number as a local percentage
         as shown in the third example.
+        
+        Angular 2 también tiene un pipe `percent` que formatea un número como un porcentaje local
+        como se muestra en el tercer ejemplo.
   tr(style=top)
     td
       :marked
@@ -591,6 +914,9 @@ table(width="100%")
       :marked
         Orders the collection as specified by the expression.
         In this example, the movieList is ordered by the movie title.
+        
+        Ordena la colección como se especifíca en la expresión.
+        En este ejemplo, la movieList es ordenada por el título de película.
     td
       :marked
         ### none
@@ -598,8 +924,16 @@ table(width="100%")
         Ordering/sorting the results should be coded in the component.
         Consider building a custom pipe if the same ordering/sorting code
         will be reused in several templates.
+        
+        ### ninguno
+        No hay un pipe comparable en Angular&nbsp;2 por razones de rendimiento.
+        Ordenar/clasificar los resultados deberían ser codificados en el componente.
+        Considere construir un pipe personalizado si el mismo código de ordenamiento/clasificación 
+        será reutilizado en varias plantillas. 
 :marked
   [Back to top](#top)
+  
+  [Ir arriba](#top)
 
 a(id="controllers-components")
 .l-main-section
@@ -607,9 +941,16 @@ a(id="controllers-components")
   ## Controllers / Components
   In Angular&nbsp;1, we write the code that provides the model and the methods for the view in a **controller**.
   In Angular&nbsp;2, we build a **component**.
+  
+  ## Controladores / Componentes
+  En Angular&nbsp;1, escribimos el código que proporciona el modelo y los métodos para la vista en un **controlador**.
+  En Angular&nbsp;2, construímos un **componente**.
 
   Because much of our Angular&nbsp;1 code is in JavaScript, JavaScript code is shown in the Angular&nbsp;1 column.
   The Angular&nbsp;2 code is shown using TypeScript.
+  
+  Debido a que gran parte de nuestro código de Angular&nbsp;1 está en JavaScript, el código de JavaScript es mostrado en la columna de Angular&nbsp;1.
+  El código de Angular&nbsp;2 es mostrado usando TypeScript.
 
 table(width="100%")
   col(width="50%")
@@ -628,23 +969,38 @@ table(width="100%")
       :marked
         In Angular&nbsp;1, we often defined an immediately invoked function expression (or IIFE) around our controller code.
         This kept our controller code out of the global namespace.
+        
+        En Angular&nbsp;1, a menudo definimos una expresión de función invocada inmediatamente (o IIFE) en el código de nuestro controlador.
+        Esto mantiene nuestro código del controlador fuera del espacio de nombres global.
     td
       :marked
         ### none
         We don't need to worry about this in Angular&nbsp;2 because we use ES 2015 modules
         and modules handle the namespacing for us.
+        
+        ### ninguno
+        No necesitamos preocuparnos de esto en Angular&nbsp;2 porque usamos los módulos ES 2015
+        y los módulos manejan el espacio de nombres por nosotros.
 
         For more information on modules see [Architecture Overview](../guide/architecture.html#module).
+        
+        Para más información sobre módulos mire [Vista general de la arquitectura](../guide/architecture.html#module).
   tr(style=top)
     td
       :marked
         ### Angular modules
+        
+        ### Módulos de Angular
       code-example.
         angular.module("movieHunter", ["ngRoute"]);
       :marked
         In Angular&nbsp;1, we define an Angular module, which keeps track of our
         controllers, services, and other code. The second argument defines the list
         of other modules that this module depends upon.
+        
+        En Angular&nbsp;1, definimos un módulo de Angular, que hace seguimiento de nuestros
+        controladores, servicios y otro código. El segundo argumento define la lista 
+        de otros módulos de los que este elemento depende a su vez.
     td
       :marked
         ### import
@@ -652,14 +1008,22 @@ table(width="100%")
       :marked
         Angular&nbsp;2 does not have its own module system. Instead we use ES 2015 modules.
         ES 2015 modules are file based, so each code file is its own module.
+        
+        Angular&nbsp;2 no tiene su propio sistema de módulo. En su lugar usamos los módulos ES 2015.
 
         We `import` what we need from the module files.
+        
+        `Importamos` lo que necesitamos de los archivos de módulo.
 
         For more information on modules see [Architecture Overview](../guide/architecture.html#module).
+        
+        Para más información sobre módulos mire [Vista general de la arquitectura](../guide/architecture.html#module).
   tr(style=top)
     td
       :marked
         ### Controller registration
+        
+        ### Registro de controladores
       code-example.
         angular
           .module("movieHunter")
@@ -669,45 +1033,76 @@ table(width="100%")
       :marked
         In Angular&nbsp;1, we have code in each controller that looks up an appropriate Angular module
         and registers the controller with that module.
+        
+        En Angular&nbsp;1, tenemos código en cada controlador que apunta a un módulo de Angular apropiado
+        y registra el controlador en ese módulo.
 
         The first argument is the controller name. The second argument defines the string names of
         all dependencies injected into this controller, and a reference to the controller function.
+        
+        El primer argumento es el nombre del controlador. El segundo argumento define las cadenas de nombres de
+        todas las dependencias inyectadas en este controlador, y una referencia a la función del controlador.
     td
       :marked
         ### Component Decorator
+        
+        ### Decorador Component
       +makeExample('cb-a1-a2-quick-reference/ts/app/movie-list.component.ts', 'component')(format=".")
       :marked
         In Angular&nbsp;2, we add a decorator to the component class to provide any required metadata.
         The Component decorator declares that the class is a component and provides metadata about
         that component, such as its selector (or tag) and its template.
+        
+        En Angular&nbsp;2, añadimos un decorador a la clase del componente para proporcionar cualquier metadato requerido.
+        El decorador Component declara que la clase es un componente y proporciona metadatos sobre
+        ese componente, como su selector (o tag) y su plantilla.
 
         This is how we associate a template with code, which is defined in the component class.
+        
+        Es así como asociamos una plantilla con código, que es definido en la clase del componente.
 
         For more information on components see [Architecture Overview](../guide/architecture.html#component).
+        
+        Para más información sobre componentes mire [Vista general de la arquitectura](../guide/architecture.html#component).
   tr(style=top)
     td
       :marked
         ### Controller function
+        
+        ### Función del controlador
       code-example.
         function MovieListCtrl(movieService) {
         }
       :marked
         In Angular&nbsp;1, we write the code for the model and methods in a controller function.
+        
+        En Angular&nbsp;1, escribimos el código para el modelo y los métodos en una función controlador.
     td
       :marked
         ### Component class
+        
+        ### Clase Component
       +makeExample('cb-a1-a2-quick-reference/ts/app/movie-list.component.ts', 'class')(format=".")
       :marked
         In Angular&nbsp;2, we create a component class.
+        
+        En Angular&nbsp;2, creamos una clase componente.
 
         NOTE: If you are using TypeScript with Angular&nbsp;1 then the only difference here is
         that the component class must be exported using the `export` keyword.
+        
+        NOTA: Si ha usado TypeScript con Angular&nbsp;1 entonces la única diferencia aquí es 
+        que la clase componente debe ser exportada usando la palabra clave `export`.
 
         For more information on components see [Architecture Overview](../guide/architecture.html#component).
+        
+        Para más información sobre componentes mire [Vista general de la arquitectura](../guide/architecture.html#component).
   tr(style=top)
     td
       :marked
         ### Dependency injection
+        
+        ### Inyección de dependencias
       code-example.
         MovieListCtrl.$inject = ['MovieService'];
         function MovieListCtrl(movieService) {
@@ -715,21 +1110,36 @@ table(width="100%")
       :marked
         In Angular&nbsp;1, we pass in any dependencies as controller function arguments.
         In this example, we inject a `MovieService`.
+        
+        En Angular&nbsp;1, pasamos cualquier dependencia como argumentos de la función controlador.
+        En este ejemplo, inyectamos un servicio `MovieService`.
 
         We also guard against minification problems by telling Angular explicitly
         that it should inject an instance of the `MovieService` in the first parameter.
+        
+        También nos protegemos de los problemas de minificación diciéndole explícitamente a Angular
+        que debería inyectar una instancia del servicio `MovieService` en el primer parámetro.
     td
       :marked
         ### Dependency injection
+        
+        ### Inyección de dependencias
       +makeExample('cb-a1-a2-quick-reference/ts/app/movie-list.component.ts', 'di')(format=".")
       :marked
         In Angular&nbsp;2, we pass in dependencies as arguments to the component class constructor.
         In this example, we inject a `MovieService`.
         The first parameter's TypeScript type tells Angular what to inject even after minification.
+        
+        En Angular&nbsp;2, pasamos las dependencias como argumentos al constructor de la clase del componente.
+        En este ejemplo, inyectamos un servicio `MovieService`.
+        El primer parámetro de tipo TypeScript le dice a Angular qué inyectar incluso después de la minificación.
 
         For more information on dependency injection see [Architecture Overview](../guide/architecture.html#dependency-injection).
+        Para más información sobre inyección de dependencias mire [Vista general de la arquitectura](../guide/architecture.html#dependency-injection).
 :marked
   [Back to top](#top)
+  
+  [Ir arriba](#top)
 
 a(id="style-sheets")
 .l-main-section
@@ -741,6 +1151,14 @@ a(id="style-sheets")
   are merged, which can cause unexpected results.
   In Angular&nbsp;2, we can still define style sheets for our entire application. But now we can
   also encapculate a style sheet within a specific component.
+  
+  ## Hojas de estilo 
+  Las hojas de estilo nos ofrecen aplicaciones de aspecto agradable.
+  En Angular&nbsp;1, especificamos las hojas de estilo para la aplicación completa.
+  Como la aplicación crece con el tiempo, los estilos para las muchas partes de la aplicación
+  son mezclados, lo que puede causar resultados indesperados.
+  En Angular&nbsp;2, podemos seguir definiendo hojas de estilo para la aplicación completa. Pero ahora podemos
+  también encapsular una hoja de estilo en un componente específico.
 table(width="100%")
   col(width="50%")
   col(width="50%")
@@ -751,45 +1169,74 @@ table(width="100%")
     td
       :marked
         ### Link tag
+        
+        ### Etiqueta link
       code-example.
         &lt;link href="styles.css" rel="stylesheet" />
       :marked
         In Angular&nbsp;1, we use a `link` tag in the head section of our `index.html` file
         to define the styles for our application.
+        
+        En Angular&nbsp;1, usamos una etiqueta `link` en la sección de encabezado de nuestro archivo `index.html`
+        para definir el estilo para nuestra aplicación.
     td
       :marked
         ### Link tag
+        
+        ### Etiqueta link
       +makeExample('cb-a1-a2-quick-reference/ts/index.html', 'style')(format=".")
       :marked
         In Angular&nbsp;2, we can continue to use the link tag to define the styles for our application in the `index.html` file.
         But we can now also encapsulate styles for our components.
+        
+        En Angular&nbsp;2, podemos continuar usando la etiqueta link para definir los estilos para nuestra aplicación en el archivo `index.html`.
+        Pero ahora podemos encapsular estilos para nuestros componentes.
       :marked
         ### StyleUrls
         In Angular&nbsp;2, we can use the `styles` or `styleUrls` property of the `@Component` metadata to define
         a style sheet for a particular component.
+        
+        En Angular&nbsp;2, podemos usar las propiedades `styles` o `styleUrls` de los metadatos de `@Component` para definir
+        una hoja de estilo para un componente particular.
       +makeExample('cb-a1-a2-quick-reference/ts/app/movie-list.component.ts', 'style-url')(format=".")
       :marked
         This allows us to set appropriate styles for individual components that won’t leak into
         other parts of the application.
+        
+        Esto nos permite establecer estilos apropiados para componentes individuales que no escaparán a
+        otras partes de la aplicación.
 :marked
   [Back to top](#top)
+  
+  [Ir arriba](#top)
 
 a(id="string-dates")
 .l-main-section
 :marked
   ## Appendix: String dates
+  
+  ## Apéndice: Cadenas de fecha
 
   Currently the Angular&nbsp;2 `date` pipe does not process string dates such as
   "2015-12-19T00:00:00".
+  
+  Actualmente el pipe `date` de Angular&nbsp;2 no procesa cadenas de fecha como "2015-12-19T00:00:00".
 
   As a work around, subclass the Angular `DatePipe` with a version that can convert strings
   and substitute that pipe in the HTML:
+  
+  Como solución, herede el `DatePipe` de Angular con una versión que pueda convertir cadenas
+  y sustituya ese pipe en el HTML:
 
 +makeExample('cb-a1-a2-quick-reference/ts/app/date.pipe.ts', 'date-pipe', 'date.pipe.ts')(format=".")
 :marked
   Then import and declare that pipe in the `@Component` metadata `pipes` array:
+  
+  Después importe y declare ese pipe en el arreglo `pipes` de los metadatos de `@Component`:
 :marked
 +makeExample('cb-a1-a2-quick-reference/ts/app/movie-list.component.ts', 'date-pipe')(format=".")
 
 :marked
   [Back to top](#top)
+  
+  [Ir arriba](#top)
