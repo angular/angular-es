@@ -4,89 +4,151 @@ a(id='top')
 :marked
   Our app should be able to make the browser title bar say whatever we want it to say.
   This cookbook explains how to do it.
+  
+  Nuestra aplicación debe ser capaz de hacer que la barra de título del navegador diga lo que queremos que diga.
+  Esta receta explica cómo hacerlo.
 :marked
   **See the [live example](/resources/live-examples/cb-set-document-title/ts/plnkr.html)**.
+  **Mire el [ejemplo funcional)(/resources/live-examples/cb-set-document-title/ts/plnkr.html)**.
 .l-sub-section
   img(src='/resources/images/devguide/plunker-separate-window-button.png' alt="pop out the window" align="right" style="margin-right:-20px")
   :marked
     To see the browser Title bar changes, 
     pop out the preview window by clicking the blue 'X' button in the upper right corner.
+    
+    Para ver los cambios en la barra de Título del navegador,
+    extraiga la ventana de vista previa pulsando el botón azul 'X' en la esquina superior derecha.
+
 :marked
   ## The problem with *&lt;title&gt;*
   
+  ## El problema con  *&lt;title&gt;*
+  
   The obvious approach is to bind a property of the component to the HTML `<title>` like this:
+  
+  La manera obvia de abordarlo es enlazar una propiedad del componente a la etiqueta HTML `<title>` de esta forma:
 code-example(format='')
-  &lt;title&gt;{{This_Does_Not_Work}}&lt;/title&gt;
+&lt;title&gt;{{This_Does_Not_Work}}&lt;/title&gt;
+
+&lt;title&gt;{{Esto_No_Funciona}}&lt;/title&gt;
 :marked
   Sorry but that won't work. 
   The root component of our application is an element contained within the `<body>` tag.
   The HTML `<title>` is in the document `<head>`, outside the body, making it inaccessible to Angular data binding.
+  
+  Lo sentimos, pero eso no funcionará.
+  El componente raíz de nuestra aplicación es un elemento contenido en la etiqueta `<body>`. 
+  La etiqueta HTML `<title>` se encuentra en el encabezado del documento (etiqueta `<head>`), afuera de `<body>`, haciéndola inaccesible al data binding de Angular.   
 
   We could grab the browser `document` object and set the title manually. 
   That's dirty and undermines our chances of running the app outside of a browser someday. 
+  
+  Podríamos tomar el objeto `document` del navegador y poner el título manualmente.
+  Eso es una mala práctica y acaba con nuestras posibilidades de ejecutar la aplicación afuera de un navegador algún día.
 .l-sub-section
   :marked
     Running your app outside a browser means that you can take advantage of server-side
     pre-rendering for near-instant first app render times and for SEO.  It means you could run from
     inside a Web Worker to improve your app's responsiveness by using multiple threads.  And it
     means that you could run your app inside Electron.js or Windows Universal to deliver it to the desktop.
+    
+    Ejecutar su aplicaión afuera de un navegador significa que puede tomar ventaja del lado del servidor
+    pre-renderizando para obtener tiempos de casi al instante en el primer renderizado de la aplicación y para propósitos de SEO. Esto significa que podría
+    ejecutar desde dentro un Web Worker para mejorar la sensibilidad de su aplicación usando multihilos. Y esto
+    significa que podría ejecutar su aplicación dentro de Electron.js o Windows Universal para entregarla al escritorio.
+
 
 :marked
   ## Use the *Title* service
   Fortunately, Angular 2 bridges the gap by providing a `Title` service as part of the *Browser platform*.
   The [Title](../api/platform-browser/index/Title-class.html) service is a simple class that provides an API
   for getting and setting the current HTML document title:
-
+  
+  ## Use el servicio *Title*
+  Afortunadamente, Angular 2 atraviesa la brecha proporcionando un servicio `Title` como parte de la *Plataforma del navegador*.
+  El servicio [Title](../api/platform-browser/index/Title-class.html) es una simple clase que proporciona una API 
+  para obtener y configurar el título del documento HTML actual.
+  
   * `getTitle() : string` &mdash; Gets the title of the current HTML document.
   * `setTitle( newTitle : string )` &mdash; Sets the title of the current HTML document.
+  
+  * `getTitle() : string` &mdash; Obtiene el título del documento HTML actual.
+  * `setTitle( newTitle : string )` &mdash; Establece el título del documento HTML actual.
 
   While this class is part of the Browser platform package, it is *not part of the default Browser 
   platform providers* that Angular loads automatically. 
   This means as we bootstrap our application using the Browser platform `boostrap()`
   function, we'll also have to include `Title` service explicitly as one of the bootstrap providers:
+  
+  Si bien esta clase es parte del paquete Plataforma del navegador, *No es parte de los proveedores de la Plataforma
+  del navegador por defecto* que Angular carga automáticamente.
+  Esto significa que así como inicializamos nuestra aplicación utilizando la función de la Plataforma del navegador `boostrap()`,
+  también tendremos que incluír el servicio `Title` como uno de nuestros proveedores de inicialización.
 
 +makeExample( "cb-set-document-title/ts/app/main.ts", "bootstrap-title", "app/main.ts (provide Title service)" )(format='.')
 :marked
   Once we've explicitly provided the `Title` service we can then inject the `Title` service into any of our
   custom application components and services. 
   
+  Una vez que hemos proporcionado explícitamente el servicio `Title` podemos entonces inyectar el servicio `Title` en cualquiera de nuestros
+  propios componentes y servicios de la aplicación.
+  
   Let's inject the `Title` service into the root `AppComponent` and expose a bindable `setTitle` method that calls it:
+  
+  Vamos a inyectar el servicio `Title` en el `AppComponent` raíz y mostrar un método `setTitle` enlazable que lo llama:
 
 +makeExample( "cb-set-document-title/ts/app/app.component.ts", "class", "app/app.component.ts (class)" )(format='.')
 :marked
   We bind that method to three anchor tags and, voilà!
+  
+  Ligamos ese método a tres etiquetas de anclaje y, !voilà!
 figure.image-display
-   img(src="/resources/images/cookbooks/set-document-title/set-title-anim.gif" alt="Set title")
+  img(src="/resources/images/cookbooks/set-document-title/set-title-anim.gif" alt="Set title")
 
 :marked
   Here's the complete solution
+  
+  Aquí está la solución completa
 
-+makeTabs( 
-  `cb-set-document-title/ts/app/main.ts,
-   cb-set-document-title/ts/app/app.component.ts`, 
-  '', 
-  'app/main.ts, app/app.component.ts' )
++makeTabs(
+`cb-set-document-title/ts/app/main.ts,
+cb-set-document-title/ts/app/app.component.ts`,
+'',
+'app/main.ts, app/app.component.ts' )
 
 //
   Todo: tie this back to the router so we can see how to use this Title service to (re)set the title 
   that appears in the window navigation history and shows up in the back/forward buttons
   during routing.
-  
+
   See https://github.com/angular/angular/issues/7630#issuecomment-198328802
-  
+
 .l-main-section
 :marked
   ## Why we provide the *Title* service in *bootstrap*
   
+  ## Por qué proporcionamos el servicio *Title* en *bootstrap*
+  
   We generally recommended providing application-wide services in the root application component, `AppComponent`.
+  
+  Por lo general recomendamos la inclusión de servicios en toda la aplicación en el componente raíz, `AppComponent`.
   
   Here we recommend registering the title service during bootstrapping, 
   a location we reserve for configuring the runtime Angular environment.
+  
+  Aquí recomendamos incluír el servicio de título durante la inicialización, 
+  un lugar que reservamos para configurar el entorno de ejecución de Angular.
   
   That's exactly what we're doing.
   The `Title` service is part of the Angular *browser platform*. 
   If we bootstrap our application into a different platform, 
   we'll have to provide a different `Title` service that understands the concept of a "document title" for that specific platform.
   Ideally the application itself neither knows nor cares about the runtime environment.
+  
+  Eso es exactamente lo que estamos haciendo.
+  El servicio `Title` es parte de la *Plataforma del navegador* de Angular.
+  Si inicializamos nuestra aplicación en una plataforma diferente,
+  tendremos que proporcionar un servicio `Title` diferente que entienda el concepto de un "título de documento" para esa plataforma específica.
+  Lo ideal es que la aplicación por sí misma no conozca ni le importe el entorno de ejcución.
 :marked
   [Back to top](#top)
