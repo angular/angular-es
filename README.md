@@ -32,7 +32,8 @@ si no, instala [nvm](https://github.com/creationix/nvm) para conseguir node en t
 
 2. Instale *globalmente* estos paquetes npm: `npm install -g harp gulp`
 
-3. Clone este repositorio y el [repositorio de código fuente de angular](https://github.com/angular/angular) en el mismo directorio.
+3. Clone este repositorio y el [repositorio de código fuente de angular](https://github.com/angular/angular), y el [repositorio de código fuente de dart-lang/angular 2](https://github.com/dart-lang/angular2) en el mismo directorio.
+El repositorio de angular tiene que llamarse **angular** y el de dart **angular-dart**.
 
 4. cd dentro del directorio raiz `angular.io/`
 
