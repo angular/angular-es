@@ -7,25 +7,70 @@ Angular-es es la traducción oficial de Angular.io
 Este sitio incluye también enlaces a otros recursos útiles de angular incluyendo
 Angular 2, Angular 1, Angular Material y AngularFire.
 
-## Problemas
+## Problemas (issues)
 
-Por favor crea **issues en Guithub _sólo_ referentes a la Guía del Desarrollador, a las Recetas y/o de ejemplos de código** en el
-repositorio [Angular.io](https://github.com/angular/angular.io/issues) de github.
+Por favor crea **issues en Github referentes al contenido de la guía y/o de ejemplos de código** en el
+repositorio de [Angular.io](https://github.com/angular/angular.io/issues).
 
-**Problemas con la API de Angular, correcciones del cheatsheet, peticiones de funcionalidad, informes de defectos, y preguntas técnicas** referentes a Angular en si,
-pertenecen al repositorio de [**código fuente de angular**](https://github.com/angular/angular/issues) de github.
-No podemos manejar esos tipos de temas aquí y le pedimos que vuelva a publicarlos en el repositorio de angular.
+**Problemas con la API de Angular, correcciones del cheatsheet, peticiones de
+funcionalidad, informes de defectos, y preguntas técnicas** referentes a
+Angular en si, pertenecen al repositorio de [**código fuente de
+angular**](https://github.com/angular/angular/issues).
+No podemos manejar esos tipos de temas aquí y le pedimos que vuelva a
+publicarlos en el repositorio de Angular.
 
-Por último, para problemas con la localización al Español de esta documentación, por favor abra un issue en el repositorio de [angular-es](https://github.com/angular/angular-es)
+Por último, para problemas con la localización al Español de esta
+documentación, por favor abra issues en el repositorio de
+[angular-es](https://github.com/angular/angular-es).
 
 ## Cómo puedes ayudar
 
-Crear issues en Github es útil, pero ¡**pull requests** que mejoren la documentación son aun mejores!
+Crear issues en Github es útil, pero ¡**pull requests** que mejoren la documentación son aún mejores!
 
-Aprende como [contribuir a Angular.io](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md).
+Aprende como [contribuir a Angular](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md).
+
+### Contribuir a angular-es
+
+¡Contribuir al website de Angular-es es muy sencillo!
+
+* Escoja un
+[issue](https://github.com/angular/angular-es/issues/38) que no esté asignada a
+otra persona.
+* Encuentre el archivo correspondiente:
+  * Los archivos con el contenido de la página se encuentran en la carpeta `public`.
+  * Los elementos comunes de la página, ej el encabezado, se encuentran en la carpeta
+  `public/_includes/`.
+  * Para la documentación mire la carpeta `public/docs/`; la documentación está disponible
+  para JavaScript, Dart y Typescript, los archivos de cada se encuentran en sus respectivas
+  carpetas `js/latest/`, `dart/latest/` y `ts/latest/`.
+  * Los archivos de css, JavaScript e imagenes se encuentran en la carpeta `public/resources/`.
+* Para hacer cambios:
+  * La mayoría de las secciones y páginas están construidas utilizando [jade](http://learnjade.com/).
+  * `Show English`, la página usa un script para permitir ver el inglés original en que la traducción está basada. Para que
+el código funcione correctamente debe agregar el contenido traducido debajo del inglés original, de esta forma:
+
+```jade
+.l-main-section
+  h2 Angular Projects
+  h2 Proyectos de Angular
+
+  p We'd love for you to contribute to our source code and to make Angular projects even better.
+  p Nos encantaría que contribuya a nuestro código fuente y hacer hacer los proyectos de Angular aún mejores.
+```
+* Guía de estilo:
+  * La guía de estilo aún está en desarrollo, encuentre más información en el
+  [issue correspondiente](https://github.com/angular/angular-es/issues/38).
+  * Utilice lenguaje formal.
+  * Algunas palabras que no tienen equivalente en español claro, o que los desarrolladores usan coloquialmente
+  en inglés pueden dejarse así; por ejemplo, `binding`.
+* Integrando los cambios:
+  * [Copia](https://help.github.com/articles/fork-a-repo/) el repositorio de [angular-es](https://github.com/angular/angular-es)
+  y haga las modificaciones en una [rama](https://git-scm.com/book/es/v1/Ramificaciones-en-Git-Procedimientos-b%C3%A1sicos-para-ramificar-y-fusionar) en su copia.
+  * Empuja los cambios a github y crea un pull request.
+  * Aprenda más sobre como contribuir en github [aquí](https://guides.github.com/activities/contributing-to-open-source/).
 
 ## Configuración para desarrollo
-Este sitio depende en gran medida de node y npm.
+Este sitio depende en gran medida de node y npm.q
 
 1. Asegúrese de estar usando la versión más reciente de node y npm;
 si no, instala [nvm](https://github.com/creationix/nvm) para conseguir node en tu máquina.
@@ -35,7 +80,7 @@ si no, instala [nvm](https://github.com/creationix/nvm) para conseguir node en t
 3. Clone este repositorio y el [repositorio de código fuente de angular](https://github.com/angular/angular), y el [repositorio de código fuente de dart-lang/angular 2](https://github.com/dart-lang/angular2) en el mismo directorio.
 El repositorio de angular tiene que llamarse **angular** y el de dart **angular-dart**.
 
-4. cd dentro del directorio raiz `angular.io/`
+4. cd dentro del directorio raiz `angular.io`
 
 5. Instale los paquetes locales del sitio ejecutando el comando `npm install`
 > Si está ejecutando node v.5+, probablemente deba reconstruir `node-sass` en un paso a parte: `npm rebuild node-sass`
@@ -46,7 +91,7 @@ El repositorio de angular tiene que llamarse **angular** y el de dart **angular-
 Todo el contenido de documentación está escrito en Jade, el cual tiene [su propia sintaxis](http://jade-lang.com/reference/).
 Hay que tener en cuenta las estrictas exigencias de formato de texto impuestas por Jade.
 Recomendamos encarecidamente ejecutar uno de los comandos `serve-and-sync` de gulp [descritos debajo](#serve-and-sync),
-mientras se edita contenido para poder ver el efecto de los cambios *mientras se teclea*. 
+mientras se edita contenido para poder ver el efecto de los cambios *mientras se teclea*.
 
 La documentación se basa en estilos y mixins específicos.
 Aprenda acerca de ellos en la [guía de estilo de documentación](https://angular.io/docs/ts/latest/styleguide.html).
@@ -59,7 +104,7 @@ Por ejemplo, todos los documentos de TypeScript están en `public/docs/ts/latest
 - `public/docs/ts/latest/tutorial/toh-pt5.jade`
 
 ### Servidor local sincronizado y recarga del navegador
-1. cd dentro del directorio raiz `angular.io/`
+1. cd dentro del directorio raiz `angular.io`
 1. ejecute `gulp serve-and-sync`
 1. el navegador se lanzará en localhost:3000 y se mantendrá actualizado automáticamente.
 
