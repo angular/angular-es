@@ -69,6 +69,8 @@ el código funcione correctamente debe agregar el contenido traducido debajo del
   * Empuja los cambios a github y crea un pull request.
   * Aprenda más sobre como contribuir en github [aquí](https://guides.github.com/activities/contributing-to-open-source/).
 
+> **IMPORTANTE**: _NO_ haga cambios a los ficheros cacheados de `public/docs_ts/_cache`. Esos ficheros serán actualizados aparte.
+
 ## Configuración para desarrollo
 Este sitio depende en gran medida de node y npm.q
 
