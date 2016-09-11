@@ -72,7 +72,7 @@ el código funcione correctamente debe agregar el contenido traducido debajo del
 > **IMPORTANTE**: _NO_ haga cambios a los ficheros cacheados de `public/docs_ts/_cache`. Esos ficheros serán actualizados aparte.
 
 ## Configuración para desarrollo
-Este sitio depende en gran medida de node y npm.q
+Este sitio depende en gran medida de node y npm.
 
 1. Asegúrese de estar usando la versión más reciente de node y npm;
 si no, instala [nvm](https://github.com/creationix/nvm) para conseguir node en tu máquina.
