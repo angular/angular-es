@@ -7,6 +7,12 @@ block includes
   navigates, whole sections of the DOM appear and disappear according
   to the application state. In this chapter we'll to look at how Angular
   manipulates the DOM and how we can do it ourselves in our own directives.
+  
+  Una de las características definitoria de una aplicación de página simple es su manipulación
+  del árbol DOM. En lugar de servir toda una nueva página cada vez que un usuario
+  navega, secciones enteras del DOM aparecen y desaparecen de acuerdo
+  al estado de la aplicación. En este capítulo se verá cómo Angular
+  manipula el DOM y cómo lo puede hacer en sus propias directivas.
 
   In this chapter we will
   - [learn what structural directives are](#definition)
@@ -14,31 +20,60 @@ block includes
   - [discover the &lt;template> element](#template)
   - [understand the asterisk (\*) in **ngFor*](#asterisk)
   - [write our own structural directive](#unless)
+  
+  En este capítulo 
+  - [aprenderá qué son las directivas estructurales](#definition)
+  - [estudiará *ngIf*](#ngIf)
+  - [descubrirá el elemento &lt;template>](#template)
+  - [entenderá el asterisco (\*) en **ngFor*](#asterisk)
+  - [escribirá su propia directiva estructural](#unless)
 
   Try the <live-example></live-example>.
+  
+  Pruebe el <live-example></live-example>.
 
 <a id="definition"></a>
 .l-main-section
 :marked
   ## What are structural directives?
+  
+  ## ¿Qué son las directivas estructurales?
 
   There are three kinds of Angular directives:
   1. Components
   1. Attribute directives
   1. Structural directives
+  
+  Hay tres tipos de directivas de Angular:
+  1. Componentes
+  1. Directivas de atributo
+  1. Directivas estructurales
 
   The *Component* is really a directive with a template.
   It's the most common of the three directives and we write lots of them as we build our application.
+  
+  El *Componente* es realmento una directiva con una plantilla.
+  Es la más común de las tres directivas y escribirá muchos de ellos conforme construya su aplicación.
 
   The [*Attribute* directive](attribute-directives.html) changes the appearance or behavior of an element.
   The built-in [NgStyle](template-syntax.html#ngStyle) directive, for example,
   can change several element styles at the same time.
   We can use it to render text bold, italic, and lime green by binding to a
   component property that requests such a sickening result.
+  
+  La [Directiva de *atributo*](attribute-directives.html) cambia la apariencia o comportamiento de un elemento.
+  La directiva [NgStyle](template-syntax.html#ngStyle) incluida, por ejemplo,
+  puede cambiar varios estilos de elemento al mismo tiempo.
+  Se puede utilizar para representar texto en negrita, itálica y verde lima enlazando a
+  una propiedad de componente que solicite un resultado tan repugnante.
 
   A *Structural* directive changes the DOM layout by adding and removing DOM elements.
   We've seen three of the built-in structural directives in other chapters: [ngIf](template-syntax.html#ngIf),
   [ngSwitch](template-syntax.html#ngSwitch) and [ngFor](template-syntax.html#ngFor).
+  
+  Una directiva *estructural* cambia el diseño del DOM agregando y eliminando elementos del DOM.
+  Se han visto tres de las directivas estructurales incluidas en otros capítulos: [ngIf](template-syntax.html#ngIf),
+    [ngSwitch](template-syntax.html#ngSwitch) y [ngFor](template-syntax.html#ngFor).
 
 +makeExample('structural-directives/ts/app/structural-directives.component.html', 'structural-directives')(format=".")
 
@@ -47,10 +82,16 @@ block includes
 .l-main-section
 :marked
   ## NgIf Case Study
+  
+  ## Estudio de caso NgIf
 
   Let’s focus on `ngIf`. It's a great example of a structural
   directive: it takes a boolean and makes an entire chunk of DOM appear
   or disappear.
+  
+  Vamos a centrarnos en `ngIf`. Es un gran ejemplo de una directiva
+  estructural: toma un booleano y hace a un pedazo entero del DOM aparecer 
+  o desaparecer.
 
 +makeExample('structural-directives/ts/app/structural-directives.component.html', 'ngIf')(format=".")
 
@@ -59,6 +100,11 @@ block includes
   Using browser developer tools we can see that, when the condition is true, the top
   paragraph is in the DOM and the bottom disused paragraph is completely
   absent from the DOM! In its place are empty `<script>` tags.
+  
+  La directiva `ngIf` no oculta el elemento.
+  Utilizando las herramientas para desarrollador del navegador se puede ver eso, cuando la condición es verdadera, el párrafo
+  superior está en el DOM y el párrafo inferior en desuso ¡está completamente 
+  ausente del DOM! En su lugar están etiquetas `<script>` vacías.
 
 figure.image-display
   img(src='/resources/images/devguide/structural-directives/element-not-in-dom.png' alt="element not in dom")
@@ -67,68 +113,123 @@ figure.image-display
   ### Why *remove* rather than *hide*?
   We could hide the unwanted paragraph by setting its css `display` style to `none`.
   The element would remain in the DOM while invisible. Instead we removed it with `ngIf`.
+  
+  ### ¿Por qué *eliminar* en lugar de *ocultar*?
 
   The difference matters. When we hide an element,
   the component's behavior continues.
   It remains attached to its DOM element. It continues to listen to events.
   Angular keeps checking for changes that could affect data bindings.
   Whatever the component was doing it keeps doing.
+  
+  La diferencia importa. Cuando se oculta un elemento,
+  el comportamiento del componente continúa.
+  Permanece unido a su elemento del DOM. Continúa escuchando eventos.
+  Angular se mantiene verificando cambios que podrían afectar los data bindings.
+  De cualquier forma el componente hacía lo que sigue haciendo.
 
   Although invisible, the component &mdash; and all of its descendent components &mdash;
   tie up resources that might be more useful elsewhere.
   The performance and memory burden can be substantial and the user may not benefit at all.
+  
+  Aunque invisible, el componente &mdash; y todos sus componentes descendientes &mdash;
+  atan recursos que podrían ser más útiles en otro lugar.
+  El rendimiento y la carga de memoria puede ser sustanciales y el usuaurio no podrá beneficiarse del todo.
 
   On the positive side, showing the element again is very quick.
   The component's previous state is preserved and ready to display.
   The component doesn't re-initialize &mdash; an operation that could be expensive.
+  
+  Del lado positivo, mostrar el elemento de nuevo es muy rápido.
+  El estado previo del componente es preservado y listo para mostrarse
+  El componente no reinicializa &mdash; una operación que podría ser costosa.
 
   `ngIf` is different.
   Setting `ngIf` to false **does** affect the component's resource consumption.
   Angular removes the element from DOM, stops change detection for the associated component,
   detaches it from DOM events (the attachments that it made) and destroys the component.
   The component can be garbage-collected (we hope) and free up memory.
+  
+  `ngIf` es diferente.
+  Establecer `ngIf` a falso **afecta** el consumo de recursos del componente.
+  Angular elimina el elemento del DOM, detiene la detección de cambio para el componente asociado,
+  lo quita de los eventos del DOM (los eventos adjuntos que hizo) y destruye el componente.
+  El componente puede ser recolectado de basura (es deseable) y liberado de la memoria.
 
   Components often have child components which themselves have children.
   All of them are destroyed when `ngIf` destroys the common ancestor.
   This cleanup effort is usually a good thing.
+  
+  Los componentes a menudo tienen componentes hijos que tienen sus propios hijos.
+  Todos ellos son drestuidos cuando `ngIf` destruye el ancestro común.
 
   Of course it isn't *always* a good thing.
   It might be a bad thing if we need that particular component again soon.
+  
+  Claro que no es *siempre* algo bueno.
+  Puede ser algo malo si se necesita ese particular componente de nuevo pronto.
 
   The component's state might be expensive to re-construct.
   When `ngIf` becomes `true` again, Angular recreates the component and its subtree.
   Angular runs every component's initialization logic again. That could be expensive ... as when
   a component re-fetches data that had been in memory just moments ago.
+  
+  El estado del componente puede ser costoso de reconstruir.
+  Cuando `ngIf` se convierte en `verdadero` de nuevo, Angular recrea el componente y su sub árbol.
+  Angular ejecuta cualquier lógica de inicialización del componente de nuevo. Eso podría ser costoso ... como cuando
+  un componente trae de nuevo datos que estaban en memoria sólo unos momentos antes.
 .l-sub-section
   :marked
     *Design thought*: minimize initialization effort and consider caching state in a
     companion service.
+    
+    *Pensamiento de diseño*: minimice el esfuerzo de inicialización y considere conservar el estado en un
+    servicio ayudante.
 :marked
   Although there are pros and cons to each approach,
   in general it is best to use `ngIf` to remove unwanted components rather than
   hide them.
+  
+  A pesar de que hay pros y contras para cada enfoque,
+  en general es mejor utilizar `ngIf` para eliminar componentes no deseados en lugar de 
+  ocultarlos.
 
   **These same considerations apply to every structural directive, whether built-in or custom.**
   We should ask ourselves &mdash; and the users of our directives &mdash; to think carefully
   about the consequences of adding and removing elements and of creating and destroying components.
+  
+  **Estas mismas consideraciones aplican a cualquier directiva estructural, ya sea incluida o personalizada.**
+  Se debe pedir &mdash; y a los usuarios mismos de las directivas &mdash; pensar cuidadosamente
+  sobre las consecuencias de agregar y eliminar elementos y crear y destruir componentes.
 
   Let's see these dynamics at work. For fun, we'll stack the deck *against*
   our recommendation and consider a component called `heavy-loader` that
   ***pretends*** to load a ton of data when initialized.
+  
+  Veamos estas dinámicas en acción. Por diversión, se apilará la baraja *de nuevo*
+  de recomendaciones y se considerará un componente llamado `heavy-loader` que
+  ***pretende*** cargar montones de datos cuando se inicializa.
 
   We'll display two instances of the component.  We toggle the visibility of the first one with CSS.
   We toggle the second into and out of the DOM with `ngIf`.
+  
+  Se mostrarán dos instancias del componente. Se alternará la visibilidad del primero con CSS.
+  Se alternará el segundo dentro y fuera del DOM con `ngIf`.
 
 +makeTabs(
-    `structural-directives/ts/app/structural-directives.component.html,
-    structural-directives/ts/app/heavy-loader.component.ts`,
-    'message-log,',
-    'template (excerpt), heavy-loader.component.ts')
+`structural-directives/ts/app/structural-directives.component.html,
+structural-directives/ts/app/heavy-loader.component.ts`,
+'message-log,',
+'template (excerpt), heavy-loader.component.ts')
 
 :marked
   We also log when a component is created or destroyed
   using the built-in `ngOnInit` and `ngOnDestroy` [lifecycle hooks](lifecycle-hooks.html).
   Here it is in action:
+  
+  También se registrará cuando un componente es creado o destruido
+  utilizando los [hooks de ciclo de vida](lifecycle-hooks.html) `ngOnInit` y `ngOnDestroy` incluidos.
+  Aquí está en acción.
 
 figure.image-display
   img(src='/resources/images/devguide/structural-directives/heavy-loader-toggle.gif' alt="heavy loader toggle")
@@ -137,34 +238,62 @@ figure.image-display
   Both components are in the DOM at the start.
   First we toggle the component's visibility repeatedly. The component never leaves the DOM.
   When visible it's always the same instance and the log is quiet.
+  
+  Ambos componentes están en el DOM al inicio.
+  Primero se alterna la visibilidad del componente repetidamente. El componente nunca deja el DOM.
+  Cuando es visible es siempre la misma instancia y el registro se mantiene tranquilo.
 
   Then we toggle the second component with `ngIf`.
   We create a new instance every time and the log shows that we're paying
   a heavy price to create and destroy it.
+  
+  Después se alterna el segundo componente con `ngIf`.
+  Se crea una nueva instancia cada vez y el registro muestra que se está pagando
+  un precio caro para crearlo y destruirlo.
 
   If we really expected to "wink" the component like this, toggling visibility would be the better choice.
   In most UIs, when we "close" a component we're unlikely see it again for a long time, if ever.
   The `ngIf` would be preferred in that case.
+  
+  Si realmente espera que el componente "parpadee" así, alternar la visibilidad sería una mejor elección.
+  En la mayoría de las UIs, cuando se "cierra" un componente es muy poco probable que se quiera ver de nuevo por un largo tiempo, alguna vez.
+  El `ngIf` sería preferible en ese caso.
 
 <a id="template"></a>
 .l-main-section
 :marked
   ## The *&lt;template>* tag
+  
+  ## La etiqueta *&lt;template>*
 
   Structural directives, like `ngIf`, do their magic by using the
   [HTML 5 template tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
+  
+  Directivas estructurales, como `ngIf`, hacen su magia utilizando la
+  [etiqueta template de HTML 5](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template).
 
   Outside of an Angular app, the `<template>` tag's default CSS `display` property is `none`.
   It's contents are ***invisible*** within
   a hidden [document fragment](https://developer.mozilla.org/en/docs/Web/API/DocumentFragment).
+  
+  Fuera de una aplicación Angular, la propiedad CSS `display` predeterminada de la etiqueta `<template>` es `none`.
+  Su contenido es ***invisible*** sobre
+  un [fragmento de documento](https://developer.mozilla.org/en/docs/Web/API/DocumentFragment) oculto.
 
   Inside of an app, Angular ***removes*** the`<template>` tags and their children.
   The contents are gone &mdash; but not forgotten as we'll see soon.
+  
+  Dentro de una aplicación, Angular ***elimina*** las etiquetas `<template>` y sus hijos.
+  Los contenidos se han ido &mdash; pero no olvidado como se verá pronto.
 
   We can confirm these effects by wrapping the middle "hip" of the phrase "Hip! Hip! Hooray!" within a `<template>` tag.
+  
+  Se pueden confirmar estos efectos envolviendo el "hip" de enmedio de la frase "Hip! Hip! Hooray!" en una etiqueta `<template>`.
 +makeExample('structural-directives/ts/app/structural-directives.component.html', 'template-tag')(format=".")
 :marked
   The display is a 'Hip! Hooray!', short of perfect enthusiasm. The DOM effects are different when Angular is in control.
+  
+  Lo que se muestra es un 'Hip! Hooray!', corto o perfecto de entusiasmo. Los efectos del DOM son diferentes cuando Angular está en control.
 figure.image-display
   img(src='/resources/images/devguide/structural-directives/template-in-out-of-a2.png' alt="template outside angular")
 
@@ -172,73 +301,127 @@ figure.image-display
   Evidently Angular replaces the `<template>` tag and its contents with empty `<script>` tags.
   That's just its default behavior.
   It can do something different as we saw when applying a variety of `ngSwitch` directives to `<template>` tags:
+  
+  Evidentemente Angular reemplaza la etiqueta `<template>` y sus contenidos con etiquetas `<script>` vacías.
+  Ese es justo el comportamiento predeterminado.
+  Se puede hacer algo diferente como se vió aplicando una variedad de directivas `ngSwitch` a etiquetas `<template>`:
 
 +makeExample('structural-directives/ts/app/structural-directives.component.html', 'ngSwitch')(format=".")
 :marked
   When one of those `ngSwitch` conditions is true, Angular inserts the template's content into the DOM.
+  
+  Cuando una de esas condiciones `ngSwitch` es verdadera, Angular agrega el contenido de la plantilla al DOM.
 
   What does this have to do with `ngIf` and `ngFor`?  We didn't use a `<template>` tag with those directives.
+  
+  ¿Qué tiene que ver esto con `ngIf` y `ngFor`? No se utilizó una etiqueta `<template>` con esas directivas.
 
 <a id="asterisk"></a>
 .l-main-section
 :marked
   ## The asterisk (\*) effect
   Here are those directives again. See the difference?
+  
+  ## El efecto asterisco (\*)
+  Aquí están esas directivas de nuevo. ¿Nota la diferencia?
 
 +makeExample('structural-directives/ts/app/structural-directives.component.html', 'asterisk')(format=".")
 :marked
   We're prefixing these directive names with an asterisk (\*).
+  
+  Se están anteponiendo esos nombres de directivas con un asterisco (\*).
 
   The asterisk is "syntactic sugar". It simplifies `ngIf` and `ngFor` for both the writer and the reader.
   Under the hood, Angular replaces the asterisk version with a more verbose `<template>` form.
+  
+  El asterisco es "azúcar sintáctica". Simplifica `ngIf` y `ngFor` para ambos, el escritor y el lector.
+  Bajo la capucha, Angular reemplaza la versión con el asterisco a una forma `<template>` más verbosa.
 
   The next two `ngIf` examples are effectively the same and we may write in either style:
+  
+  Los siguientes dos ejemplos `ngIf` son efectivamente el mismo y se puede escribir cualquiera de las dos formas:
 
 +makeExample('structural-directives/ts/app/structural-directives.component.html', 'ngIf-template')(format=".")
 
 :marked
   Most of us would rather write in style (A).
+  
+  La mayoría lo preferiría escribir de la forma (A).
 
   It's worth knowing that Angular expands style (A) into style (B).
   It moves the paragraph and its contents inside a `<template>` tag.
   It moves the directive up to the `<template>` tag where it becomes a property binding,
   surrounded in square brackets. The boolean value of the host component's `condition` property
   determines whether the templated content is displayed or not.
+  
+  Vale la pena saber que Angular expande la forma (A) a la forma (B).
+  Mueve el párrafo y su contenido dentro de la etiqueta `<template>`.
+  Mueve la directiva a la etiqueta `<template>` donde se convierte en un binding de propiedad,
+  rodeado de corchetes. El valor booleano de la propiedad `condition` del componente anfitrión
+  determina si el contenido de la plantilla es mostrado o no.
 
   Angular transforms `*ngFor` in a similar manner:
+  
+  Angular transforma `*ngFor` de una manera similar:
 
 +makeExample('structural-directives/ts/app/structural-directives.component.html', 'ngFor-template')(format=".")
 :marked
   The basic pattern is the same:&nbsp; create a `<template>`, relocate the content,
   and move the directive onto the `<template>`.
+  
+  El patrón básico es el mismo: &nbsp; crear una `<template>`, recolocar el contenido,
+  y mover la directiva a la `<template>`.
 
   There are extra nuances stemming from
   Angular's [ngFor micro-syntax](template-syntax.html#ngForMicrosyntax) which expands
   into an additional `ngForOf` property binding (the iterable) and
   the `hero` template input variable (the current item in each iteration).
+  
+  Hay matices extra derivados de la
+  [micro sintaxis ngFor](template-syntax.html#ngForMicrosyntax) de Angular que expanden
+  a un binding de propiedad `ngForOf` adicional (el iterable) y
+  la variable de entrada `hero` de plantilla (el elemento actual en cada iteración).
 
 <a id="unless"></a>
 .l-main-section
 :marked
   ## Make a structural directive
   Let's write our own structural directive, an `Unless` directive, the not-so-evil twin of `ngIf`.
+  
+  ## Cree una directiva estructural
+  Se escribirá su propia directiva estructural, una directiva `Unless`, el gemelo no tan malo de `ngIf`.
 
   Unlike `ngIf` which displays the template content when `true`,
   our directive displays the content when the condition is ***false***.
+  
+  A diferencia de `ngIf` que muestra el contenido de la plantilla cuando es `verdadero`,
+  la directiva muestra el contenido cuando la condición es ***falsa***.
 
 block unless-intro
   :marked
     Creating a directive is similar to creating a component.
     * import the `Directive` decorator.
+    
+    Crear una directiva es similar a crear un componente.
+    * importe el decorador `Directive`
 
     * add a CSS **attribute selector** (in brackets) that identifies our directive.
+    
+    * agregue un **selector de atributo** CSS (en corchetes) que identifique la directiva.
 
     * specify the name of the public `input` property for binding
     (typically the name of the directive itself).
+    
+    * especifique el nombre de la propiedad pública `input` para binding
+    (típicamente el nombre de la directiva en sí).
 
     * apply the decorator to our implementation class.
+    
+    * aplique el decorador a la implementación de la clase.
 
     Here is how we begin:
+    
+    Aquí está cómo se inicia:
 
 +makeExample('structural-directives/ts/app/unless.directive.ts', 'unless-declaration', 'unless.directive.ts (excerpt)')(format=".")
 .l-sub-section
@@ -247,90 +430,152 @@ block unless-intro
     The CSS syntax for selecting an attribute is a name in square brackets.
     We surround our directive name in square brackets. See *Directive configuration* on the
     [cheatsheet](cheatsheet.html).
+    
+    ### Corchetes de selector [&nbsp;]
+    La sintaxis CSS para seleccionar un atributo es un nombre en corchetes.
+    Se encierra el nombre de la directiva en corchetes. Vea *Configuración de directiva* en la
+    [cheatsheet](cheatsheet.html).
 
     ### Selector name prefixes
+    
+    ### Prefijos de selector de nombre
 
     We recommend picking a selector name with a prefix to ensure
     that it cannot conflict with any standard HTML attribute, now or in the future.
+    
+    Se recomienda tomar un nombre de selector con un prefijo para asegurar
+    que no tenga conflicto con ningún estándar de atributo HTML, ahora o en el futuro.
 
     We do **not** prefix our `unless` directive name with **`ng`**.
     That prefix belongs to Angular and
     we don't want to confuse our directives with their directives.
+    
+    **No** se antepone al nombre de la directiva `unless` un **`ng`**.
+    Ese prefijo pertenece a Angular y
+    no se desea confundir a las directivas con las directivas de Angular.
 
     Our prefix is `my`.
+    
+    El prefijo es `my`.
 :marked
   We'll need access to the template *and* something that can render its contents.
   We access the template with a `TemplateRef`.  The renderer is a `ViewContainerRef`.
   We inject both into our constructor as private variables.
+  
+  Se necesita acceder a la plantilla *y* a algo que puede representar su contenido.
+  Se accesa a la plantilla con un `TemplateRef`. El mostrador es un `ViewContainerRef`.
+  Se inyectan ambos en un constructor como variables privadas.
 
 +makeExample('structural-directives/ts/app/unless.directive.ts', 'unless-constructor')(format=".")
 
 :marked
   The consumer of our directive will bind a boolean value to our directive's `myUnless` input property.
   The directive adds or removes the template based on that value.
+  
+  El consumidor de la directiva enlazará un valor booleano a la propiedad de entrada de la directiva `myUnless`.
+  La directiva agrega o elimina la plantilla con base en ese valor.
 
   Let's add the `myUnless` property now as a setter-only property.
+  
+  Agreguemos la propiedad `myUnless` ahora como una propiedad de sólo configuración.
 
 +makeExample('structural-directives/ts/app/unless.directive.ts', 'unless-set')(format=".")
 .l-sub-section
   :marked
     The `@Input()` annotation marks this property as an input for the directive.
+    
+    La anotación `@Input()` marca esta propiedad como una entrada para la directiva.
 :marked
   Nothing fancy here: if the condition is false,
   we render the template, otherwise we clear the element content.
+  
+  Nada lujoso aquí: si la condición es falsa,
+  se muestra la plantilla, de otro modo se limpia el contenido del elemento.
 
   The end result should look like this:
+  
+  El resultado final debería verse algo así:
 
 +makeExample('structural-directives/ts/app/unless.directive.ts', null, 'unless.directive.ts')
 
 :marked
   Now we add it to the `declarations` array of the AppModule and try it.
   First we add some test HTML to the template:
+  
+  Ahora se agrega al arreglo `declarations` del AppModule y se intenta.
+  Primero se agrega algo de HTML de prueba a la plantilla:
 
 +makeExample('structural-directives/ts/app/structural-directives.component.html', 'myUnless')(format=".")
 :marked
   We run it and it behaves as expected, doing the opposite of `ngIf`.
   When `condition` is `true`, the top paragraph is removed (replaced by `<script>` tags) and the bottom paragraph appears.
+  
+  Se ejecuta y comporta conforme a lo esperado, haciendo lo contrario de `ngIf`.
+  Cuando condition` es `true`, el primer párrafo es eliminado (reemplaado por etiquetas `<script>`) y el párrafo inferior aparece.
 figure.image-display
   img(src='/resources/images/devguide/structural-directives/myUnless-is-true.png' alt="myUnless is true" )
 
 :marked
   Our `myUnless` directive is dead simple. Surely we left something out.
   Surely `ngIf` is more complex?
+  
+  La directiva `myUnless` es muy simple. Sin duda, dejó algo.
 
   [Look at the source code](https://github.com/angular/angular/blob/master/modules/%40angular/common/src/directives/ng_if.ts).
   It's well documented and we shouldn't be shy
   about consulting the source when we want to know how something works.
+  
+  [Mire el código fuente](https://github.com/angular/angular/blob/master/modules/%40angular/common/src/directives/ng_if.ts).
+  Está bien documentado y no debería temer
+  sobre consultar la fuente cuando necesite saber cómo funciona algo.
 
   `ngIf` isn't much different! There are a few
   additional checks to improve performance (don't clear or recreate the
   view unless necessary) but otherwise it's much the same.
+  
+  ¡`ngIf no es muy diferente! Hay algunas 
+  comprobaciones adicionales para mejorar el rendimiento (no limpiar o recrear la
+  vista a menos de que sea necesario) pero de otra forma es prácticamente lo mismo.
 
 .l-main-section
 :marked
   ## Wrap up
   Here is the pertinent source for this chapter.
+  
+  ## Envuelva
+  Aquí está el fuente pertinente para este capítulo.
 
 +makeTabs(`
   structural-directives/ts/app/unless.directive.ts,
-  structural-directives/ts/app/heavy-loader.component.ts,
-  structural-directives/ts/app/structural-directives.component.ts,
-  structural-directives/ts/app/structural-directives.component.html
+structural-directives/ts/app/heavy-loader.component.ts,
+structural-directives/ts/app/structural-directives.component.ts,
+structural-directives/ts/app/structural-directives.component.html
   `,
-  null,
-  `unless.directive.ts,
-   heavy-loader.component.ts,
-   structural-directives.component.ts,
-   structural-directives.component.html
-   `)
+null,
+`unless.directive.ts,
+heavy-loader.component.ts,
+structural-directives.component.ts,
+structural-directives.component.html
+  `)
 :marked
   We learned that we can manipulate our HTML layout with
   structural directives like `ngFor` and `ngIf` and we
   wrote our own structural directive, `myUnless`, to do something similar.
+  
+  Se aprendió que se puede manipular el diseño HTML con 
+  directivas estructurales como `ngFor` y `ngIf` y
+  se escribió una directiva estructural, `myUnless`, para hacer algo similar.
 
   Angular offers more sophisticated techniques for managing layout
   such as *structural components* that can take external content
   and incorporate that content within their own templates.
   Tab and tab pane controls are good examples.
+  
+  Angular ofrece técnicas más sofisticadas para manejar diseño
+  como *componentes estructurales* que pueden tomar contenido externo
+  e incorporar ese contenido a sus propias plantillas.
+  Los controles de panel de pestaña y pestaña son buenos ejemplos.
 
   We'll learn about structural components in a future chapter.
+  
+  Se aprenderá acerca de los componentes estructurales en capítulos futuros.
