@@ -6,27 +6,44 @@ block includes
 :marked
   We typically display data in Angular by binding controls in an HTML template
   to properties of an Angular component.
+  
+  Típicamente, visualizamos datos en Angular al unir (bind) controles en una plantilla HTML
+  con las propiedades de un componente de Angular.
 
   In this chapter, we'll create a component with a list of heroes. Each hero has a name.
   We'll display the list of hero names and
   conditionally show a message below the list.
+  
+  En este capítulo, creará un componente con una lista de héroes. Cada héroe tiene un nombre.
+  Visualizará la lista de nombres y
+  condicionalmente mostrará un mensaje debajo de la lista.
 
   The final UI looks like this:
+  
+  La interfaz final se ve así:
 
 figure.image-display
   img(src="/resources/images/devguide/displaying-data/final.png" alt="Final UI")
 
 :marked
   # Table Of Contents
+  
+  # Tabla de Contenido
 
   * [Showing component properties with interpolation](#interpolation)
+  * [Mostrar propiedades de componentes usando interpolación](#interpolation)
   * [Showing !{_an} !{_array} property with NgFor](#ngFor)
+  * [Mostrar un array de propiedades con NgFor](#ngFor)
   * [Conditional display with NgIf](#ngIf)
+  * [Visualización condicional con NgIf](#ngIf)
 
 .l-sub-section
   :marked
     The <live-example></live-example> demonstrates all of the syntax and code
     snippets described in this chapter.
+    
+    El <live-example></live-example> demuestra toda la sintaxis y trozos de
+    código descrito en este capítulo.
 
 .l-main-section#interpolation
 :marked
@@ -34,10 +51,19 @@ figure.image-display
   The easiest way to display a component property
   is to bind the property name through interpolation.
   With interpolation, we put the property name in the view template, enclosed in double curly braces: `{{myHero}}`.
+  
+  ## Mostrar propiedades de componentes usando interpolación
+  La manera más facil de visualizar una propiedad de un componente,
+  es uniéndola (bind) con el nombre de la propiedad mediante interpolación.
+  Con la interpolación, ponemos el nombre de la propiedad en la plantilla, encerrada en llaves dobles: `{{myHero}}`.
 
   Let's build a small illustrative example together.
+  
+  Construyamos un pequeño ejemplo ilustrativo juntos.
 
   Create a new project folder (<ngio-ex path="displaying-data"></ngio-ex>) and follow the steps in the [QuickStart](../quickstart.html).
+  
+  Cree una nueva carpeta en el proyecto (<ngio-ex path="displaying-data"></ngio-ex>) y sigue los pasos en la [Guía Rápida](../quickstart.html).
 
 block quickstart-repo
   include ../_quickstart_repo
@@ -46,14 +72,23 @@ block quickstart-repo
   Then modify the <ngio-ex path="app.component.ts"></ngio-ex> file by 
   changing the template and the body of the component.
   When we're done, it should look like this:
+  
+  Luego modifique el archivo <ngio-ex path="app.component.ts"></ngio-ex>
+  cambiando la plantilla y el cuerpo del componente.
+  Cuando termine, tendrá algo como esto:
 
 +makeExample('app/app.component.1.ts')
 
 :marked
   We added two properties to the formerly empty component: `title` and `myHero`.
+  
+  Agregó dos propiedades al componente que estaba vacio: `title` y `myHero`.
 
   Our revised template displays the two component properties using double curly brace
   interpolation:
+  
+  Su revisada plantilla visualiza las dos propiedades del componente usando la interpolación de
+  llaves dobles:
 
 +makeExcerpt('app/app.component.1.ts', 'template', '')
 
@@ -65,11 +100,21 @@ block quickstart-repo
       quote (`'`) &mdash; has many nice features. The feature we're exploiting here
       is the ability to compose the string over several lines, which makes for
       much more readable HTML.
+      
+      La plantilla es un cadena multi línea entre comillas inversas (<code>\`</code>) de ECMAScript 2015.
+      Las comillas inversas (<code>\`</code>) &mdash; que *no* son el mismo caracter que la comilla 
+      simple (`'`) &mdash; tienen muchas características interesantes. La funcionalidad que explotamos aquí
+      es la habilidad de componer una cadena en varias líneas, lo que hace
+      más legible nuestro HTML.
 
 :marked
   Angular automatically pulls the value of the `title` and `myHero` properties from the component and
   inserts those values into the browser. Angular updates the display
   when these properties change.
+  
+  Angular extrae automáticamente el valor de las propiedades `title` y `myHero` del componente e
+  inserta esos valores en el navegador. Angular actualiza lo visualizado
+  cuando estas propiedades cambian.
 
 .l-sub-section
   :marked
@@ -77,13 +122,24 @@ block quickstart-repo
     the view such as a keystroke, a timer completion, or an async `XHR` response.
     We don't have those in this sample.
     But then the properties aren't changing on their own either. For the moment we must operate on faith.
+    
+    Para ser más precisos, la re-visualización ocurre después de algún tipo de evento asíncrono relacionado a
+    la vista tal como pulsar una tecla, que un temporizador finalice, o una respuesta `XHR` asíncrona.
+    No tenemos ninguno de esos en este ejemplo.
+    Pero entonces, las propiedades no están cambiando por si solas. Por el momento, siga leyendo.
 
 :marked
   Notice that we haven't called **new** to create an instance of the `AppComponent` class.
   Angular is creating an instance for us. How?
+  
+  Dese cuenta de que no hemos llamado a **new** para crear una instancia de la clase `AppComponent`.
+  Angular crea una instancia por nosotros. ¿Cómo?
 
   Notice the CSS `selector` in the `@Component` !{_decorator} that specifies an element named `my-app`.
   Remember back in [QuickStart](../quickstart.html) that we added the `<my-app>` element to the body of our `index.html` file:
+  
+  Note el `selector` CSS en el decorador `@Component` que especifica un elemento llamado `my-app`.
+  Recuerde que en la [Guía Rápida](../quickstart.html) agregó el elemento `<my-app>` al "body" del archivo `index.html`:
 
 +makeExcerpt('index.html', 'body')
 
@@ -91,61 +147,103 @@ block quickstart-repo
   When we bootstrap with the `AppComponent` class (in <ngio-ex path="main.ts"></ngio-ex>), Angular looks for a `<my-app>`
   in the `index.html`, finds it, instantiates an instance of `AppComponent`, and renders it
   inside the `<my-app>` tag.
+  
+  Cuando haga el bootstrap con la clase del componente `AppComponent` (en <ngio-ex path="main.ts"></ngio-ex>), Angular busca un elemento `<my-app>`
+  en el `index.html`, lo encuentra, crea una instancia del `AppComponent` y lo renderiza
+  dentro del elemento `<my-app>`.
 
   Try running the app. It should display the title and hero name:
+  
+  Intente ejecutar la aplicación. Debería visualizar el titulo y el nombre del héroe:
 figure.image-display
   img(src="/resources/images/devguide/displaying-data/title-and-hero.png" alt="Title and Hero")
 
 +ifDocsFor('ts')
   :marked
     Let's review some of the choices we made and consider alternatives.
+    
+    Revisemos algunas de las decisiones que hemos tomado y consideremos alternativas.
 
 :marked
   ## Template inline or template file?
+  
+  ## ¿Plantilla dentro del componente o plantilla externa?
 
   We can store our component's template in one of two places.
   We can define it *inline* using the `template` property, as we do here.
   Or we can define the template in a separate HTML file and link to it in
   the component metadata using the `@Component` !{_decorator}'s `templateUrl` property.
+  
+  Puede guardar la plantilla de nuestro componente en dos sitios diferentes.
+  Puede definirlo *en línea* (dentro del componente) usando la propiedad `template`, como lo hace aquí.
+  O puede definir la plantilla en un archivo HTML a parte y relacionarlos en el
+  metadato del componente usando la propiedad `templateUrl` del decorador `@Component`.
 
   The choice between inline and separate HTML is a matter of taste,
   circumstances, and organization policy.
   Here we're using inline HTML because the template is small, and the demo
   is simpler without the additional HTML file.
+  
+  La elección entre en línea y un HTML a parte es cuestion de gusto,
+  circunstancias y política de la empresa.
+  Aquí está utilizando HTML en línea porque la plantilla es pequeña, y en el ejemplo
+  es más simple sin el archivo HTML adicional.
 
   In either style, the template data bindings have the same access to the component's properties.
+  
+  En ambos estilos, los data bindings de la plantilla acceden de la misma forma a las propiedades del componente.
 
 +ifDocsFor('ts')
   :marked
     ## Constructor or variable initialization?
+    
+    ## ¿Constructor o inicializar variables?
 
     We initialized our component properties using variable assignment.
     This is a wonderfully concise and compact technique.
+    
+    Ha inicializado las propiedades de su componente usando asignacion de variables.
+    Esta es una técnica maravillosa, concisa y compacta.
 
     Some folks prefer to declare the properties and initialize them within a constructor like this:
+    
+    Algunas personas prefieren declarar las propiedades e inicializarlas dentro del constructor, de esta manera: 
   +makeExcerpt('app/app-ctor.component.ts', 'class')
 
   :marked
     That's fine too. The choice is a matter of taste and organization policy.
     We'll adopt the more terse "variable assignment" style in this chapter simply because
     there will be less code to read.
+    
+    Esto está bien también. La elección es cuestion de gusto y política de la empresa.
+    Adoptará el estilo más breve de "asignación de variable" en este capítulo porque
+    habrá menos código que leer.
 
 .l-main-section#ngFor
 :marked
   ## Showing !{_an} !{_array} property with ***ngFor**
+  
+  ## Mostrar un array de propiedades con ***ngFor**
 
   We want to display a list of heroes. We begin by adding !{_an} !{_array} of hero names to the component and redefine `myHero` to be the first name in the !{_array}.
+  
+  Queremos visualizar una lista de héroes. Empezamos añadiendo un array de nombres de héroes al componente y redefinimos `myHero` para ser el primer nombre in el !{_arreglo}.
 
 +makeExcerpt('app/app.component.2.ts', 'class')
 
 :marked
   Now we use the Angular `ngFor` directive in the template to display
   each item in the `heroes` list.
+  
+  Ahora use la directiva `ngFor` de Angular en la plantilla para visualizar
+  cada héroe en la lista.
 
 +makeExcerpt('app/app.component.2.ts', 'template')
 
 :marked
   Our presentation is the familiar HTML unordered list with `<ul>` and `<li>` tags. Let's focus on the `<li>` tag.
+  
+  Usará la lista desordenada de HTML con los elementos `<ul>` y `<li>`. Enfóquese en el elemento `<li>`.
 
 +makeExcerpt('app/app.component.2.ts ()', 'li', '')
 
@@ -153,27 +251,46 @@ figure.image-display
   We added a somewhat mysterious `*ngFor` to the `<li>` element.
   That's the Angular "repeater" directive.
   Its presence on the `<li>` tag marks that `<li>` element (and its children) as the "repeater template".
+  
+  Agregó el un tanto misterioso `*ngFor` al elemento `<li>`.
+  Esta es la directiva "de repetición" de Angular.
+  Su presencia en el elemento `<li>` marca ese elemento (y sus hijos) como "plantilla de repetición".
 
 .alert.is-important
   :marked
     Don't forget the leading asterisk (\*) in `*ngFor`. It is an essential part of the syntax.
     Learn more about this and `ngFor` in the [Template Syntax](./template-syntax.html#ngFor) chapter.
+    
+    No olvide el asterisco (\*) inicial en el `*ngFor`. Es una parte esencial de la sintaxis.
+    Aprenda más acerca de `*ngFor` en el capítulo de [Sintaxis de Plantilla](./template-syntax.html#ngFor).
 
 :marked
   Notice the `hero` in the `ngFor` double-quoted instruction;
   it is an example of a [template input variable](./template-syntax.html#ngForMicrosyntax).
+  
+  Fíjese en el `hero` dentro de la instrucción `ngFor`;
+  es un ejemplo de una [variable de plantilla](./template-syntax.html#ngForMicrosyntax).
 
   Angular duplicates the `<li>` for each item in the list, setting the `hero` variable
   to the item (the hero) in the current iteration. Angular uses that variable as the
   context for the interpolation in the double curly braces.
+  
+  Angular duplica el `<li>` por cada objeto de la lista, poniendo a la variable `hero`
+  el objeto (héroe) en la iteración actual. Angular usa esa variables como el
+  contexto para la interpolación en las llaves dobles.
 
 .l-sub-section
   :marked
     We happened to give `ngFor` !{_an} !{_array} to display.
     In fact, `ngFor` can repeat items for any [iterable](!{_iterableUrl})
     object.
+
+    Ha dado la casualidad de que hemos usado un array en el `ngFor` para ser visualizado.
+    De hecho, `ngFor` puede repetir elementos de cualquier objecto [iterable](!{_iterableUrl})
 :marked
   Now the heroes appear in an unordered list.
+
+  Ahora, los heroes aparecerán en una lista desordenada.
 
 figure.image-display
   img(src="/resources/images/devguide/displaying-data/hero-names-list.png" alt="After ngfor")
@@ -181,28 +298,48 @@ figure.image-display
 .l-main-section
 :marked
   ## Creating a class for the data
+  
+  ## Crear una clase para los datos
 
   We are defining our data directly inside our component.
   That's fine for a demo but certainly isn't a best practice. It's not even a good practice.
   Although we won't do anything about that in this chapter, we'll make a mental note to fix this down the road.
+  
+  Está definiendo los datos directamente en su componente.
+  Eso está bien para una demostración pero definitivamente no es la mejor practica. Ni siquiera es una buena práctica.
+  Aunque no haremos nada al respecto en este capítulo, haremos una nota mental para arreglar esto en el camino.
 
   At the moment, we're binding to !{_an} !{_array} of strings. We do that occasionally in real applications, but
   most of the time we're binding to more specialized objects.
+  
+  Por el momento, estamos haciendo un binding a un array de cadenas. Hacemos esto en aplicaciones reales ocacionalmente, pero
+  la mayor parte del tiempo haremos bindings a objetos más especializados. 
 
   Let's turn our !{_array} of hero names into !{_an} !{_array} of `Hero` objects. For that we'll need a `Hero` class.
+  
+  Vamos a convertir nuestro array de nombres de héroes en un array de objectos `Hero`. Para eso necesitaremos una clase `Hero`.
 
   Create a new file in the `!{_appDir}` folder called  <ngio-ex path="hero.ts"></ngio-ex> with the following code:
+  
+  Cree en la carpeta `!{_appDir}` un nuevo archivo llamado <ngio-ex path="hero.ts"></ngio-ex> con el siguiente código:
   
 +makeExcerpt('app/hero.ts')
 
 block hero-class
   :marked
     We've defined a class with a constructor and two properties: `id` and `name`.
+    
+    Ha definido una clase con un constructor y dos propiedades: `id` y `name`.
 
     It might not look like we have properties, but we do. We're taking
     advantage of a TypeScript shortcut in our declaration of the constructor parameters.
+    
+    Podría parecer que no tiene propiedades, pero sí. Está aprovechando
+    ventaja de "un atajo" de TypeScript en nuestra declaración de los parámetros del constructor.
 
     Consider the first parameter:
+    
+    Considere el primer parámetro:
 
   +makeExcerpt('app/hero.ts ()', 'id')
 
@@ -211,11 +348,19 @@ block hero-class
     * Declares a constructor parameter and its type
     * Declares a public property of the same name
     * Initializes that property with the corresponding argument when we "new" an instance of the class
+    
+    Esta breve sintaxis hace mucho:
+    * Declara un parámetro de constructor con su tipo
+    * Declara una propiedad pública del mismo nombre
+    * Inicializa la propiedad con el argumento correspondiente cuando usamos "new" para crear la instancia de la clase
 
 .l-main-section
 :marked
   ## Using the Hero class
   Let's make the `heroes` property in our component return !{_an} !{_array} of these `Hero` objects.
+  
+  ## Usando la clase Hero
+  Hagamos que la propiedad `heroes` en nuestro componente devuelve un array de estos objetos `Hero`.
 
 +makeExcerpt('app/app.component.3.ts', 'heroes')
 
@@ -223,22 +368,37 @@ block hero-class
   We'll have to update the template.
   At the moment it displays the hero's `id` and `name`.
   Let's fix that so we display only the hero's `name` property.
+  
+  Tiene que actualizar la plantilla.
+  En este momento visualiza el `id` y el `name` del héroe.
+  Arréglelo para que podamos visualizar solo la propiedad `name` del héroe.
 
 +makeExcerpt('app/app.component.3.ts', 'template')
 
 :marked
   Our display looks the same, but now we know much better what a hero really is.
+  
+  Está viendo lo mismo, pero ahora sabemos mucho mejor lo que es un héroe en realidad.
 
 .l-main-section#ngIf
 :marked
   ## Conditional display with NgIf
+  
+  ## Visualización condicional con NgIf
 
   Sometimes an app needs to display a view or a portion of a view only under specific circumstances.
+  
+  A veces un aplicación necesita visualizar una vista o una porción de una vista solo bajo circunstancias específicas.
 
   In our example, we'd like to display a message if we have a large number of heroes, say, more than 3.
+  
+  En este ejemplo, podría visualizar un mensaje si tenemos un gran numero de héroes, digamos, más de 3.
 
   The Angular `ngIf` directive inserts or removes an element based on a !{_boolean} condition.
   We can see it in action by adding the following paragraph at the bottom of the template:
+  
+  La directiva `ngIf` de Angular inserta o elimina un elemento basado en una condición boleana.
+  Puede verlo en acción agregando el siguiente párrafo al final de la plantilla:
 
 +makeExcerpt('app/app.component.ts', 'message')
 
@@ -246,34 +406,62 @@ block hero-class
   :marked
     Don't forget the leading asterisk (\*) in `*ngIf`. It is an essential part of the syntax.
     Learn more about this and `ngIf` in the [Template Syntax](./template-syntax.html#ngIf) chapter.
+    
+    No olvide el asterisco (\*) al principio del `*ngIf`. Es una parte esencial de la sintaxis.
+    Aprenda más acerca de `ngIf` en el capítulo [Sintaxis de Plantilla](./template-syntax.html#ngIf)
 
 :marked
   The [template expression](./template-syntax.html#template-expressions) inside the double quotes
   looks much like !{_Lang}, and it _is_ much like !{_Lang}.
   When the component's list of heroes has more than 3 items, Angular adds the paragraph to the DOM and the message appears.
   If there are 3 or fewer items, Angular omits the paragraph, so no message appears.
+  
+  La [expresión de plantilla](./template-syntax.html#template-expressions) dentro de las dobles comillas
+  se parece mucho a TypeScript, y de hecho _es_ como TypeScript.
+  Cuando la lista de héroes tiene más de 3 héroes, Angular añade el párrafo al DOM y el mensaje aparece.
+  Si hay 3 o menos héroes, Angular omite el párrafo, así que el mensaje nunca aparece.
 
 .alert.is-helpful
   :marked
     Angular isn't showing and hiding the message. It is adding and removing the paragraph element from the DOM.
     That hardly matters here. But it would matter a great deal, from a performance perspective, if
     we were conditionally including or excluding a big chunk of HTML with many data bindings.
+    
+    Angular no está mostrando y ocultando el mensaje. Añade o elimina el elemento de párrafo del DOM.
+    Esto no es muy importante en nuestro ejemplo, pero sería de gran importancia desde el punto de vista del rendimiento, si
+    incluimos o excluimos condicionalmente un pedazo grande de HTML con muchos data bindings.
 
 :marked
   Try it out. Because the !{_array} has four items, the message should appear.
   Go back into <ngio-ex path="app.component.ts"></ngio-ex> and delete or comment out one of the elements from the hero !{_array}.
   The browser should refresh automatically and the message should disappear.
+  
+  Pruébelo. Como el array tiene cuatro héroes, el mensaje debe aparecer.
+  Vuelva a <ngio-ex path="app.component.ts"></ngio-ex> y borre o comente uno de los elementos del array de héroes.
+  El navegador debe actualizarse automáticamente y el mensaje debe desaparecer.
 
 .l-main-section
 :marked
   ## Summary
+
+  ## Resumen
+
   Now we know how to use:
+
+  Ahora ya sabemos como usar:
+
   - **Interpolation** with double curly braces to display a component property
+  - **Interpolación** con llaves dobles para desplegar una propiedad del componente
   - **ngFor** to display !{_an} !{_array} of items
+  - **ngFor** para visualizar un array
   - A !{_Lang} class to shape the **model data** for our component and display properties of that model
+  - Una clase TypeScript para dar forma al **modelo de datos** para nuestro componente y visualizar propiedades de ese modelo
   - **ngIf** to conditionally display a chunk of HTML based on a boolean expression
+  - **ngIf** para visualizar condicionalmente pedasos de HTML de basados en una expresión boleana
 
   Here's our final code:
+  
+  Aquí está nuestro código final:
 
 block final-code
   +makeTabs(`displaying-data/ts/app/app.component.ts,
