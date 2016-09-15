@@ -23,6 +23,7 @@ Por último, para problemas con la localización al Español de esta documentaci
 Crear issues en Github es útil, pero ¡**pull requests** que mejoren la documentación son aun mejores!
 
 Aprende como [contribuir a Angular.io](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md).
+> **IMPORTANTE**: _NO_ haga cambios a los ficheros cacheados de `public/docs_ts/_cache`. Esos ficheros serán actualizados aparte.
 
 ## Configuración para desarrollo
 Este sitio depende en gran medida de node y npm.
