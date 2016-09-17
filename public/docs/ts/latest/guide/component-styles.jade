@@ -6,12 +6,23 @@ block includes
   everything we know about CSS stylesheets, selectors, rules, and media queries
   to our Angular applications directly.
   
+  El estilo de las aplicaciones de Angular 2 se hace con CSS regular. Eso significa que puede aplicar
+  todo lo que sabe de las hojas de estilo CSS, selectores, reglas, y media queries
+  a sus aplicaciones de Angular directamente.
+  
   On top of this, Angular has the ability to bundle *component styles*
   with our components enabling a more modular design than regular stylesheets.
   
+  Además de esto, Angular tiene la habilidad de agrupar *estilos de componente*
+  con sus componentes permitiendo un diseño más modular que las hojas de estilo regulares.
+  
   In this chapter we learn how to load and apply these *component styles*.
   
+  En este capítulo aprenderá cómo cargar y aplicar esos estilos de componente*.
+  
   # Table Of Contents
+  
+  # Tabla De Contenidos
 
   * [Using Component Styles](#using-component-styles)
   * [Special selectors](#special-selectors)
@@ -19,59 +30,108 @@ block includes
   * [Controlling View Encapsulation: Emulated, Native, and None](#view-encapsulation)
   * [Appendix 1: Inspecting the generated runtime component styles](#inspect-generated-css)
   * [Appendix 2: Loading Styles with Relative URLs](#relative-urls)
+  
+  * [Utilizando Estilos de Componente](#using-component-styles)
+  * [Selectores Especiales](#special-selectors)
+  * [Cargando Estilos A Los Componentes](#loading-styles)
+  * [Controlando La Encapsulación De La Vista: Emulada, Nativa, y Ninguna](#view-encapsulation)
+  * [Apéndice 1: Inspeccionando los estilos de componente de tiempo de ejecución generados](#inspect-generated-css)
+  * [Apéndice 2: Cargando Estilos Con URLs Relativas](#relative-urls)
 
   Run the <live-example></live-example> of the code shown in this chapter.
+  
+  Ejecute el <live-example></live-example> del código mostrado en este capítulo.
 
 .l-main-section
 :marked
   ## Using Component Styles
   
+  ## Utilizando Estilos de Componente
+  
   For every Angular 2 component we write, we may define not only an HTML template,
   but also the CSS styles that go with that template, 
   specifying any selectors, rules, and media queries that we need.
+  
+  Para todo componente de Angular 2 que escriba, puede definir no sólo una plantilla HTML,
+  sino también los estilos CSS que vayan con esa plantilla,
+  especificando cualesquiera selectores, reglas y media queries que necesite.
 
   One way to do this is to set the `styles` property in the component metadata.
   The `styles` property takes #{_an} #{_array} of strings that contain CSS code.
   Usually we give it one string as in this example:
   
+  Una manera de hacer esto es establecer la propiedad `styles` en los metadatos del componente.
+  La propiedad `styles` toma #{_un} #{_arreglo} de cadenas que contienen código CSS.
+  Usualmente se proporciona una cadena como en este ejemplo:
+
 +makeExample('component-styles/ts/app/hero-app.component.ts')(format='.')
 
 :marked
   Component styles differ from traditional, global styles in a couple of ways.
+  
+  Los estilos de componente difieren de los estilos tradicionales y globales en un par de formas.
   
   Firstly, the selectors we put into a component's styles *only apply within the template
   of that component*. The `h1` selector in the example above only applies to the `<h1>` tag
   in the template of `HeroAppComponent`. Any `<h1>` elements elsewhere in
   the application are unaffected.
   
+  Primeramente, los selectores que se ponen en los estilos de componente *sólo aplican sobre la plantilla
+  de ese componente*. El selector `h1` en el ejemplo de arriba sólo aplica a la etiqueta `h1`
+  en la plantilla de `HeroAppComponent`. Cualquier elemento `<h1>` en otro lugar 
+  de la aplicación no será afectado.
+  
   This is a big improvement in modularity compared to how CSS traditionally works:
   
+  Esta es una gran mejora en modularidad comparada en cómo trabaja tradicionalmente CSS:
+  
   1. We can use the CSS class names and selectors that make the most sense in the context of each component. 
+  
+  1. Se pueden utilizar nombres de clase CSS y selectores que tengan mayor sentido en el contexto de cada componente.
      
   1. Class names and selectors are local to the component and won't collide with 
   classes and selectors used elsewhere in the application.
+  
+  1. Los nombres de las clases y selectores son locales al componente y no chocarán con
+  clases y selectores utilizados en otro lugar de la aplicación.
      
   1. Our component's styles *cannot* be changed by changes to styles elsewhere in the application.
+  
+  1. Los estilos de componente *no pueden* ser modificados por cambios a los estilos en otro lugar de la aplación.
      
   1. We can co-locate the CSS code of each component with the TypeScript and HTML code of the component,
      which leads to a neat and tidy project structure.
      
+  1. Se puede compartir la localización del código CSS de cada componente con el código TypeScript y HTML del componente,
+     lo que conduce a una estructura de proyecto limpia y ordenada. 
+     
   1. We can change or remove component CSS code in the future without trawling through the
      whole application to see where else it may have been used. We just look at the component we're in.
+  
+  1. Se puede modificar o remover código de componente CSS en el futuro sin pasar por toda
+     la aplicación para ver dónde más puede haber sido utilizado. Sólo busque en el componente en el que está.
 
 a(id="special-selectors")
 .l-main-section
 :marked
   ## Special selectors
   
+  ## Selectores especiales
+  
   Component styles have a few special *selectors* from the world of 
   [shadow DOM style scoping](https://www.w3.org/TR/css-scoping-1):
+  
+  Los estilos de componente tienen algunos *selectores* especiales del mundo del
+  [alcance del estilo de la sombra del DOM](https://www.w3.org/TR/css-scoping-1):
   
   ### :host
 
   Use the `:host` pseudo-class selector to target styles in the element that *hosts* the component (as opposed to
   targeting elements *inside* the component's template):
   
+  Utilice el selector de pseudoclase `:host` para apuntar a estilos en el elemento que *hospeda* al componente (en oposición a
+  apuntar a elementos *dentro* de la plantilla del componente):
+
 +makeExample('component-styles/ts/app/hero-details.component.css', 'host')(format='.')
 
 :marked
@@ -79,13 +139,22 @@ a(id="special-selectors")
   it from inside the component with other selectors, because it is not part of the
   component's own template. It is in a parent component's template.
   
+  Esta es la *única* manera de que pueda apuntar al elemento huésped. No se puede alcanzar
+  desde dentro del componente con otros selectores, porque no es parte de la
+  propia plantilla del componente. Está en una plantilla del componente padre.
+  
   Use the *function form* to apply host styles conditionally by 
   including another selector inside parentheses after `:host`.
   
+  Utilice la *forma de función* para aplicar estilos al huésped condicionalmente 
+  incluyendo otro selector dentro de paréntesis después de `:host`.
+  
   In the next example we target the host element again, but only when it also has the `active` CSS class.
   
+  En el siguiente ejemplo se apunta al elemento huésped nuevamente, pero sólo cuando tiene también la clase CSS `active`.
+
 +makeExample('component-styles/ts/app/hero-details.component.css', 'hostfunction')(format=".")
-  
+
 :marked
   ### :host-context
   
@@ -93,30 +162,52 @@ a(id="special-selectors")
   For example, there may be a CSS theme class applied to the document `<body>` element, and
   we want to change how our component looks based on that.
   
+  A veces es útil aplicar estilos basados en alguna condición *afuera* de la vista del componente.
+  Por ejemplo, puede haber una clase de tema CSS aplicada al elemento `<body>` del documento, y
+  se quiere cambiar cómo luce el componente con base en ella.
+  
   Use the `:host-context()` pseudo-class selector. It works just like the function
   form of `:host()`. It looks for a CSS class in *any ancestor* of the component host element, all the way
   up to the document root. It's useful when combined with another selector.
   
+  Utilice el selector de pseudoclase `:host-context()`. Funciona justo como la función  
+  de forma `:host()`. Busca una clase CSS en *cualquier ancestro* del componente del elemento huésped, durante todo
+  el camino hasta la raíz del documento. Es útil cuando se combina con otro selector.
+  
   In the following example, we apply a `background-color` style to all `<h2>` elements *inside* the component, only
   if some ancestor element has the CSS class `theme-light`.
   
+  En el siguiente ejemplo, se aplica un estilo `background-color` a todos los elementos `<h2>` *dentro* del componente, sólo
+  si algún elemento ancestro tiene la clase CSS `theme-light`.
+
 +makeExample('component-styles/ts/app/hero-details.component.css', 'hostcontext')(format='.')
-  
+
 :marked
   ### /deep/
   
   Component styles normally apply only to the HTML in the component's own template. 
   
+  Los estilos de componente normalmente aplican sólo al HTML en la propia plantilla del componente.
+  
   We can use the `/deep/` selector to force a style down through the child component tree into all the child component views.
   The `/deep/` selector works to any depth of nested components, and it applies *both to the view
   children and the content children* of the component. 
   
+  Se puede utilizar el selector `/deep/` para forzar a un estilo a bajar a través del árbol de componentes hijos a todas las vistas de los componentes hijos.
+  El selector `/deep/` funciona a cualquier profundidad de componentes anidados, y aplica *a la vista 
+  hija y el contenido hijo* del componente.
+  
   In this example, we target all `<h3>` elements, from the host element down 
   through this component to all of its child elements in the DOM: 
+  
+  En este ejemplo, se apunta a todos los elementos `<h3>`, desde el elemento huésped hacia abajo
+  a través de este componente a todos sus elementos hijos en el DOM:
 +makeExample('component-styles/ts/app/hero-details.component.css', 'deep')(format=".")
 
 :marked
   The `/deep/` selector also has the alias `>>>`. We can use either of the two interchangeably.
+  
+  El selector `/deep/` también tiene el alias `>>>`. Se puede utilizar cualquiera de los dos indistintamente.
 
 .alert.is-important
   :marked
@@ -124,40 +215,69 @@ a(id="special-selectors")
     This is the default and it is what we use most of the time. See the
     [Controlling View Encapsulation](#view-encapsulation)
     section for more details.
+    
+    Los selectores `/deep/` y `>>>` deberían sólo ser utilizados sobre encapsulación de vista **emulada**.
+    Este es el valor predeterminado y es el que se utiliza la mayoría del tiempo. Mire la
+    sección [Controlando la Encapsulación de Vista](#view-encapsulation)
+    para más detalles.
 
 a(id='loading-styles')
 .l-main-section
 :marked
   ## Loading Styles into Components
   
+  ## Cargando Estilos en Componentes
+  
   We have several ways to add styles to a component: 
   * inline in the template HTML
   * by setting `styles` or `styleUrls` metadata
   * with CSS imports
   
+  Se dispone de varias maneras de agregar estilos al componente:
+  * en línea en la plantilla HTML
+  * configurando metadatos `styles` o `styleUrls`
+  * importando CSS
+  
   The scoping rules outlined above apply to each of these loading patterns.
   
+  Las reglas de alcance señaladas anteriormente se aplican a cada uno de estos patrones de carga.
+  
   ### Styles in Metadata
+  
+  ### Estilos en Metadatos
   
   We can add a `styles` #{_array} property to the `@Component` #{_decorator}.
   Each string in the #{_array} (usually just one string) defines the CSS.
   
+  Se puede agregar una propiedad #{_arreglo} `styles` al #{_decorador} `@Component`.
+  Cada cadena en el #{_arreglo} (usualmente solo una cadena) define el CSS.
+
 +makeExample('component-styles/ts/app/hero-app.component.ts')
-  
+
 :marked
   ### Template Inline Styles
+  
+  ### Estilos En Línea de Plantilla
   
   We can embed styles directly into the HTML template by putting them
   inside `<style>` tags.
   
+  Se pueden incrustar estilos directmanete en la plantilla HTML poniéndolos
+  dentro de las etiquetas `<style>`.
+
 +makeExample('component-styles/ts/app/hero-controls.component.ts', 'inlinestyles')
 
 :marked
   ### Style URLs in Metadata
   
+  ### URLs de Estilo en Metadatos
+  
   We can load styles from external CSS files by adding a `styleUrls` attribute
   into a component's `@Component` #{_decorator}:
   
+  Se pueden cargar estilos desde archivos CSS externos agregando un atributo `styleUrls`
+  en un #{_decorador} `@Component` del componente:
+
 +makeExample('component-styles/ts/app/hero-details.component.ts', 'styleurls')
 
 block style-url
@@ -169,12 +289,22 @@ block style-url
       That's why the example URL begins `app/`.
       See [Appendix 2](#relative-urls) to specify a URL relative to the 
       component file.
+      
+      La URL es ***relativa a la raíz de la aplicación*** que es usualmente la
+      ubicación de la página web `index.html` que hospeda la aplicación.
+      La URL del archivo de estilo *no* es relativa al archivo del componente.
+      Ese es el por qué la URL de ejemplo comienza con `app/`.
+      Mire el [Apéndice 2](#relative-urls) para especificar una URL relativa al
+      archivo del componente.
 
 block module-bundlers
   .l-sub-section
     :marked
       Users of module bundlers like Webpack may also use the `styles` attribute
       to load styles from external files at build time. They could write:
+      
+      Los usuarios de agrupadores de módulos como Webpack pueden también utilizar el atributo `styles`
+      para cargar estilos desde archivos externos en tiempo de construcción. Pueden escribir:
 
       `styles: [require('my.component.css')]`
 
@@ -184,27 +314,46 @@ block module-bundlers
       To Angular it is as if we wrote the `styles` array by hand. 
       Refer to the module bundler's documentation for information on 
       loading CSS in this manner.
-  
+      
+      Se establece la propiedad `styles`, ¡**no** la propiedad `styleUrls`! El módulo
+      agrupador está cargando las cadenas CSS, no Angular.
+      Angular sólo mira las cadenas CSS *después* de que el agrupador las carga.
+      Para Angular es como si se hubiera escrito el arreglo `styles` a mano.
+      Vaya a la documentación de los agrupadores de módulos para más información sobre
+      cargar CSS de esta manera.
+
 :marked
   ### Template Link Tags
   
+  ### Etiquetas de Enlace de Plantilla
+  
   We can also embed `<link>` tags into the component's HTML template. 
+  
+  Se pueden incrustar también etiquetas `<link>` en la plantilla HTML del componente.
   
   As with `styleUrls`, the link tag's `href` URL is relative to the 
   application root, not relative to the component file.
   
+  Como con `styleUrls`, la URL de `href` de la etiqueta link es relativa a la
+  raíz de la aplicación, no relativa al archivo del componente.
+
 +makeExample('component-styles/ts/app/hero-team.component.ts', 'stylelink')
-  
+
 :marked
   ### CSS @imports
   
   We can also import CSS files into our CSS files by using the standard CSS
   [`@import` rule](https://developer.mozilla.org/en/docs/Web/CSS/@import).
   
+  Se pueden también importar archivos CSS en los archivos CSS utilizando la regla CSS
+  estándar [`@import`](https://developer.mozilla.org/en/docs/Web/CSS/@import).
+
 block css-import-url
   :marked
     In *this* case the URL is relative to the CSS file into which we are importing.
-  
+    
+    En *este* caso la URL es relativa al archivo CSS en el cual se está importando.
+
 +makeExample('component-styles/ts/app/hero-details.component.css', 'import', 'app/hero-details.component.css (excerpt)')
 
 a#view-encapsulation
@@ -212,28 +361,52 @@ a#view-encapsulation
 :marked
   ## Controlling View Encapsulation: Native, Emulated, and None
   
+  ## Controlando La Encapsulación De La Vista: Emulada, Nativa, y Ninguna
+  
   As discussed above, component CSS styles are *encapsulated* into the component's own view and do
   not affect the rest of the application.
+  
+  Como se comentó anteriormente, los estilos CSS del componente son *encapsulados* en la propia vista del componente y
+  no afectan al resto de la aplicación.
   
   We can control how this encapsulation happens on a *per
   component* basis by setting the *view encapsulation mode* in the component metadata. There
   are three modes to choose from:
   
+  Se puede controlar cómo esta encapsulación ocurre en una base *por
+  componente* configurando el *modo de encapsulación de la vista* en los metadatos del componente. Hay
+  tres modos a elegir:
+  
   * `Native` view encapsulation uses the browser's native [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM)
     implementation to attach a Shadow DOM to the component's host element, and then puts the component
     view inside that Shadow DOM. The component's styles are included within the Shadow DOM.
     
+  * La encapsulación `Nativa` de la vista utiliza la implementación nativa del navegador [Sombra del DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM)
+    para adjuntar una Sombra del DOM al elemento huésped del componente, y luego poner la vista del
+    componente dentro de la sombra del DOM. Los estilos del componente son incluidos sobre la Sombra del DOM.
+    
   * `Emulated` view encapsulation (**the default**) emulates the behavior of Shadow DOM by preprocessing
     (and renaming) the CSS code to effectively scope the CSS to the component's view.
     See [Appendix 1](#inspect-generated-css) for details.
+    
+  * La encapsulación `Emulada` de la vista (**la predeterminada**) emula el comportamiento de la sombra del DOM preprocesando
+    (y renombrando) el código CSS para llevar eficazmente el CSS a la vista del componente.
+    Mire el [Apéndice 1](#inspect-generated-css) para más detalles.
     
   * `None` means that Angular does no view encapsulation. 
     Angular adds the CSS to the global styles. 
     The scoping rules, isolations, and protections discussed earlier do not apply. 
     This is essentially the same as pasting the component's styles into the HTML.
     
+  * `Ninguna` significa que Angular no hace encapsulación de la vista.
+    Angular agrega el CSS a los estilos globales.
+    Las reglas de alcance, aislamientos y pretecciones comentadas anteriormente no aplican.
+    Esto es esencialmente lo mismo que copiar los estilos del componente en el HTML.
+    
   Set the components encapsulation mode using the `encapsulation` property in the component metadata:
   
+  Establezca el modo de encapsulación de componentes utilizando la propiedad `encapsulation` en los metadatos del componente:
+
 +makeExample('component-styles/ts/app/quest-summary.component.ts', 'encapsulation.native')(format='.')
 
 :marked
@@ -241,19 +414,33 @@ a#view-encapsulation
   for Shadow DOM](http://caniuse.com/#feat=shadowdom). The support is still limited,
   which is why `Emulated` view encapsulation is the default mode and recommended
   in most cases.
+  
+  La encapsulación `Nativa` sólo funciona en [navegadores que tienen soporte nativo
+  para la Sombra del DOM](http://caniuse.com/#feat=shadowdom). El soporte sigue siendo limitado,
+  es por eso que la encapsulación de vista `Emulada` es el modo predeterminado y recomendado
+  en la mayoría de los casos.
 
 a#inspect-generated-css
 .l-main-section
 :marked
   ## Appendix 1: Inspecting The CSS Generated in Emulated View Encapsulation
   
+  ## Apéndice 1: Inspeccionando El CSS Generado en la Encapsulación de Vista Emulada
+  
   When using the default emulated view encapsulation, Angular preprocesses
   all component styles so that they approximate the standard Shadow CSS scoping rules.
+  
+  Cuando se utiliza la encapsulación de vista emulada predeterminada, Angular preprocesa
+  todos los estilos de componente así que se aproximan a las reglas de alcance de Sombra CSS estándar.
   
   When we inspect the DOM of a running Angular application with emulated view
   encapsulation enabled, we see that each DOM element has some extra attributes
   attached to it:
   
+  Cuando se inspecciona el DOM de una aplicación de Angular en ejecución con encapsulación 
+  de vista emulada activada, se observa que cada elemento del DOM tiene atributos extra 
+  adjuntados a ellos:
+
 code-example(format="").
   &lt;hero-details _nghost-pmm-5>
     &lt;h2 _ngcontent-pmm-5>Mister Fantastic&lt;/h2>
@@ -267,13 +454,24 @@ code-example(format="").
   * An element that would be a Shadow DOM host in native encapsulation has a
     generated `_nghost` attribute. This is typically the case for component host elements.
     
+  Se obervan dos tipos de atributos generados:
+  * Un elemento que sería un huésped de la Saombra del DOM en una encapsulación nativa tiene un
+  atributo `_nghost` generado. Esto es típicamente el caso para elementos huésped del componente.
+    
   * An element within a component's view has a `_ngcontent` attribute 
   that identifies to which host's emulated Shadow DOM this element belongs.
+  
+  * Un elemento dentro de la vista de un componente tiene un atributo `_ngcontent`
+  que identifica a cuál huésped de Sombra del DOM emulado pertenece este elemento.
   
   The exact values of these attributes are not important. They are automatically
   generated and we never refer to them in application code. But they are targeted
   by the generated component styles, which we'll find in the `<head>` section of the DOM:
   
+  Los valores exactos de estos atributos no son importantes. Ellos son automáticamente
+  generados y nunca se hará referencia a ellos en el código de la aplicación. Pero son apuntados
+  por los estilos de componente generados, los que se encontrarán en la sección `<head>` del DOM:
+
 code-example(format="").
   [_nghost-pmm-5] {
     display: block;
@@ -284,21 +482,31 @@ code-example(format="").
     background-color: white;
     border: 1px solid #777;
   }
-  
+
 :marked
   These are the styles we wrote, post-processed so that each selector is augmented
   with `_nghost` or `_ngcontent` attribute selectors. 
   These extra selectors enable the scoping rules described in this guide.
   
+  Estos son los estilos que se han escrito, posprocesados así que cada selector es aumentado
+  con los selectores de atributo `_nghost` o `_ngcontent`.
+  Estos selectores extra activan las reglas de alcance descritas en esta guía.
+  
   We'll likely live with *emulated* mode until shadow DOM gains traction.
   
+  Probablemente se utilice el modo *emulado* hasta que la sombra del DOM gane terreno.
+
 a#relative-urls
 .l-main-section
 :marked
   ## Appendix 2: Loading Styles with Relative URLs
   
+  ## Apéndice 2: Cargando Estilos con URLs Relativas
+  
   It's common practice to split a component's code, HTML, and CSS into three separate files in the same directory:
   
+  Es una práctica común dividir un componente en código, HTML y CSS en tres archivos separados en el mismo directorio:
+
 code-example(format='').
   quest-summary.component.ts
   quest-summary.component.html
@@ -308,12 +516,20 @@ code-example(format='').
   We include the template and CSS files by setting the `templateUrl` and `styleUrls` metadata properties respectively.
   Because these files are co-located with the component,
   it would be nice to refer to them by name without also having to specify a path back to the root of the application.
+  
+  Se incluyen los archivos de plantilla y CSS configurando las propiedades de los metadatos `templateUrl` y `styleUrls` respectivamente.
+  Debido a que estos archivos son compartidos con el componente,
+  sería bueno referirse a ellos con el nombre sin tener que especificar una ruta atrás a la raíz de la aplicación.
 
 block module-id
   :marked
     We can change the way Angular calculates the full URL be setting the component metadata's `moduleId` property to `module.id`.
+    
+    Se puede cambiar la manera en que Angular calcula la URL completa configurando la propiedad `moduleId` de los metadatos del componente a `module.id`.
 
   +makeExample('component-styles/ts/app/quest-summary.component.ts','', 'app/quest-summary.component.ts')
   :marked
     Learn more about `moduleId` in the [Component-Relative Paths](../cookbook/component-relative-paths.html) chapter.
+    
+    Aprenda más sobre `moduleId` en el capítulo [Rutas Relativas del Componente](../cookbook/component-relative-paths.html).
 
