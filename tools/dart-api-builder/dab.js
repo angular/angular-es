@@ -94,7 +94,7 @@ module.exports = function dabFactory(ngIoProjPath) {
 =======
             // const [, exRelPath, /*regionTagAndValue*/, region, rest] = matches;
             const rest = matches[4].trim();
-            if (rest) log.warn(enclosedByName, eltId, '@example must be the only element in a paragraph, but found:', text);                
+            if (rest) log.warn(enclosedByName, eltId, '@example must be the only element in a paragraph, but found:', text);
             const exRelPath = matches[1];
             const region = matches[3];
 
@@ -135,7 +135,7 @@ module.exports = function dabFactory(ngIoProjPath) {
         while (lines && lines.pop().trim() !== '```') {}
 >>>>>>> angulario/master
         const code = lines.map((line) => encoder.htmlEncode(line)).join('\n');
-        // TS uses format="linenums"; removing that for now. 
+        // TS uses format="linenums"; removing that for now.
         return `<code-example language="dart">${code}\n</code-example>`;
     }
 
@@ -242,23 +242,15 @@ extends ${baseHref}/../../../_layout-dart-api
 
 include ${baseHref}/../_util-fns
 
-block var-def
-  //- FIXME: a CSS expert needs to figure out why the header CSS needs to be patched for Dart.
-  //- This enables the patch:
-  - var fixHeroCss = 1;
-
 block head-extra
   // generated Dart API page template: head-extra
   //- <base> is required because all the links in dartdoc generated pages are "pseudo-absolute"
   base(href="${baseHref}")
-  link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Code+Pro|Roboto:500,400italic,300,400' type='text/css')
-  link(rel="stylesheet" href="static-assets/prettify.css")
-  link(rel="stylesheet" href="static-assets/css/bootstrap.min.css")
   link(rel="stylesheet" href="static-assets/styles.css")
 
 block breadcrumbs
   // generated Dart API page template: breadcrumbs
-  nav.dropdown
+  .banner
     ol.breadcrumbs.gt-separated.hidden-xs
 ${breadcrumbs}
 
