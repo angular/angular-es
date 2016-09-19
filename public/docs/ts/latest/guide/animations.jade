@@ -47,24 +47,25 @@ include ../_util-fns
   # Tabla de Contenido
 
   * [Quickstart Example: Transitioning Between Two States](#example-transitioning-between-states)
-  * [States and Transitions](#states-and-transitions)
-  * [Example: Entering and Leaving](#example-entering-and-leaving)
-  * [Example: Entering and Leaving from Different States](#example-entering-and-leaving-from-different-states)
-  * [Animatable Properties and Units](#animatable-properties-and-units)
-  * [Automatic Property Calculation](#automatic-property-calculation)
-  * [Animation Timing](#animation-timing)
-  * [Multi-Step Animations with Keyframes](#multi-step-animations-with-keyframes)
-  * [Parallel Animation Groups](#parallel-animation-groups)
-  
   * [Ejemplo Quickstart: Transición Entre Dos Estados](#example-transitioning-between-states)
+  * [States and Transitions](#states-and-transitions)
   * [Estados y Transiciones](#states-and-transitions)
+  * [Example: Entering and Leaving](#example-entering-and-leaving)
   * [Ejemplo: Entrar y Salir](#example-entering-and-leaving)
+  * [Example: Entering and Leaving from Different States](#example-entering-and-leaving-from-different-states)
   * [Ejemplo: Entrar y Salir desde Estados Diferentes](#example-entering-and-leaving-from-different-states)
+  * [Animatable Properties and Units](#animatable-properties-and-units)
   * [Propiedades Animatable y Unidades](#animatable-properties-and-units)
+  * [Automatic Property Calculation](#automatic-property-calculation)
   * [Cálculo Automático de Propiedad](#automatic-property-calculation)
+  * [Animation Timing](#animation-timing)
   * [Tiempo de Animación](#animation-timing)
+  * [Multi-Step Animations with Keyframes](#multi-step-animations-with-keyframes)
   * [Animaciones de Multi-Paso con Keyframes](#multi-step-animations-with-keyframes)
+  * [Parallel Animation Groups](#parallel-animation-groups)
   * [Grupos de Animación Paralela](#parallel-animation-groups)
+  * [Animation callbacks](#animation-callbacks)
+  * [Callbacks de Animación](#animation-callbacks)
 
 .l-sub-section
   :marked
@@ -367,11 +368,10 @@ figure.image-display
   el valor como un string con un sufijo apropiado:
 
   * `'50px'`
-  * `'3em'`
-  * `'100%'`
-  
   * `'50px'`
   * `'3em'`
+  * `'3em'`
+  * `'100%'`
   * `'100%'`
 
   For most dimensional properties we can also just define a number which is then assumed to be
@@ -440,11 +440,12 @@ figure
   Se puede definir una duración de tres maneras:
 
   * As a plain number, in milliseconds: `100`
-  * In a string, as milliseconds: `'100ms'`
-  * In a string, as seconds: `'0.1s'`
-  
   * Como un número, en milisegundos: `100`
+  
+  * In a string, as milliseconds: `'100ms'`
   * Como un string, en milisegundos: `'100ms'`
+  
+  * In a string, as seconds: `'0.1s'`
   * Como un string, en segundos: `'0.1s'`
 
   ### Delay
@@ -479,9 +480,9 @@ figure
   y el retraso (o como *segundo* valor cuando no hay retraso):
 
   * Wait for 100ms and then run for 200ms, with easing: `'0.2s 100ms ease-out'`
-  * Run for 200ms, with easing: `'0.2s ease-in-out'`
-  
   * Espera por 100ms y luego corre por 200ms, con suavizado: `'0.2s 100ms ease-out'`
+  
+  * Run for 200ms, with easing: `'0.2s ease-in-out'`
   * Corre por 200ms, con suavizado: `'0.2s ease-in-out'`
 
 figure
@@ -580,3 +581,31 @@ figure
   One group animates the element transform and width. The other animates the opacity.
   
   Un grupo anima el elemento transform y width. El otro anima opacity.
+
+:marked
+  ## Animation callbacks
+  
+  ## Callbacks de Animación
+
+  A callback is fired when an animation is started and also when it is done.
+  
+  Cuando una animación comienza y tambien cuando termina se dispara una función callback.
+
+  In the keyframes example, we have a `trigger` called `@flyInOut`. There we can hook
+  those callbacks like:
+  
+  En ele ejemplo de los keyframes, se tiene un `trigger` llamado `@flyInOut`. Ahí se pueden usar 
+  esas funciones callbacks de esta manera:
+
++makeExample('animations/ts/app/hero-list-multistep.component.ts', 'template')(format=".")
+
+:marked
+  The callbacks receive an `AnimationTransitionEvent` which contains useful properties such as `fromState`,
+  `toState` and `totalTime`.
+  
+  Las funciones callback reciben un evento `AnimationTransitionEvent` el cual contiene prropiedades útiles, tales como `fromState`,
+  `toState` y `totalTime`.
+
+  Those callbacks will fire whether or not an animation is picked up.
+  
+  Esas funcines callback se dispararán ya sea que la animación se ejecute o no.
