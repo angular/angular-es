@@ -3,59 +3,97 @@ include ../_util-fns
 <a id="top"></a>
 :marked
    Some developers prefer Visual Studio as their Interactive Development Environment (IDE).
+   
+   Algunos desarrolladores prefieren Visual Studio como su Entorno de Desarrollo Interactivo (IDE)
 
    This cookbook describes the steps required to set up and use the
    Angular 2 QuickStart files in Visual Studio 2015 within an ASP.NET 4.x project.
+  
+   Este cookbook describe los pasos requeridos para preparar y usar los
+   archivos de inicio rápido de Angular 2 en Visual Studio 2015 dentro de un proyecto ASP.NET 4.x.
      
 .l-sub-section
   :marked
     There is no *live example* for this cookbook because it describes Visual Studio, not the application.
+    
+    No hay un *ejemplo real* para este cookbook porque describe Visual Studio, no una aplicación.
 .l-main-section
 <a id="asp-net-4"></a>
 :marked
   ## ASP.NET 4.x Project
   
+  ##Proyecto ASP.NET 4.x
+  
   The steps for setting up the QuickStart files with an ASP.NET 4.x project in
   Visual Studio 2015 are as follows:
   
+  Los pasos para configurar los archivos de inicio rápido en un proyecto ASP.NET 4.x en
+  Visual Studio 2015 son los siguientes: 
+  
 :marked
   - [Prerequisite](#prereq): Install Node.js
+  - [Requisito previo](#prereq): Instalar Node.js
   - [Step 1](#download): Download the QuickStart files
+  - [Paso 1](#download): Descargar los archivos de inicio rápido
   - [Step 2](#setup-vs): Set up Visual Studio for TypeScript
+  - [Paso 2](#setup-vs): Preparar Visual Studio para TypeScript
   - [Step 3](#create-project): Create the Visual Studio ASP.NET project
+  - [Paso 3](#create-project): Crear un proyecto Visual Studio ASP.NET
   - [Step 4](#copy): Copy the QuickStart files into the ASP.NET project folder
+  - [Paso 4](#copy): Copiar los archivos de inicio rápido a la carpeta del proyecto ASP.NET
   - [Step 5](#restore): Restore required packages
+  - [Paso 5](#restore): Restaurar los paquetes requeridos
   - [Step 6](#edit-config): Edit the TypeScript configuration file
+  - [Paso 6](#edit-config): Editar el archivo de configuración de TypeScript
   - [Step 7](#build-and-run): Build and run the app
+  - [Paso 7](#build-and-run): Construir y ejecutar la aplicación
   
 .l-main-section
 h2#prereq Prerequisite: Node.js
 :marked
   Install **[Node.js® and npm](https://nodejs.org/en/download/)**
   if they are not already on your machine.
+  
+  Instalar **[Node.js® and npm](https://nodejs.org/en/download/)**
+  si no se encuentra en la computadora.
 .l-sub-section
   :marked
     **Verify that you are running node version `4.4.x` - `5.x.x`, and npm `3.x.x`**
     by running `node -v` and `npm -v` in a terminal/console window.
     Older versions produce errors.
+    
+    *Verificar que esta ejecutandose la versión `4.4.x` - `5.x.x` de node, y `3.x.x`* de npm
+    ejecutando los comandos `node -v` y `npm -v` en una terminal/consola.
+    Versiones anteriores producen errores.
 
 .l-main-section
 h2#download Step 1: Download the QuickStart files
+
 :marked
   [Download the QuickStart source](https://github.com/angular/quickstart)
   from github. If you downloaded as a zip file, extract the files.
+  
+  [Descargar el código fuente de inicio rápido](https://github.com/angular/quickstart)
+  desde github. Si se descargo como archivo zip, extraer los archivos.
 
 .l-main-section
 h2#setup-vs Step 2: Set up Visual Studio for TypeScript
 :marked
   Ensure you have the latest version of Visual Studio 2015 installed. 
   Then open Visual Studio and install the latest set of TypeScript tools as follows:
+  
+  Asegurese de tener instalada la última versión de Visual Studio 2015.
 
   * Open `Tools` | `Extensions and Updates`.
+  * Abrir el menú `Tools` | `Extensions and Updates`.
   * Select `Online` in the tree on the left.
+  * Seleccionar `Online` en el árbol de la izquierda.
   * Search for `TypeScript` using the search box in the upper right.
+  * Buscar `TypeScript` usando el buscador ubicado en la parte superior derecha.
   * Select the most current available TypeScript version.
+  * Seleccionar la versión más actual de TypeScritp.
   * Download and install the package.
+  * Descargar e instalar el paquete.
 
 .l-main-section
 h2#create-project Step 3: Create the Visual Studio ASP.NET project
@@ -63,15 +101,24 @@ h2#create-project Step 3: Create the Visual Studio ASP.NET project
 :marked
   Create the ASP.NET 4.x project as follows:
   
+  Crear el proyecto ASP.NET 4.x como se indica a continuación:
+  
   * In Visual Studio, select `File` | `New` | `Project` from the menu.
+  * En Visual Studio, seleccionar `File` | `New` | `Project` del menu.
   * In the template tree, select `Templates` | `Visual C#` (or `Visual Basic`) | `Web`.
+  * En el árbol de plantilla, seleccionar `Templates` | `Visual C#` (or `Visual Basic`) | `Web`.
   * Select the `ASP.NET Web Application` template, give the project a name, and click OK.
+  * Seleccionar la plantilla `ASP.NET Web Application`, nombrar el proyecto, y dar click en OK.
   * Select the desired ASP.NET 4.5.2 template and click OK.
+  * Seleccionar la plantilla ASP.NET 4.5.2 que se desee y dar click en OK.
 
 .l-sub-section
   :marked
     In this cookbook we'll select the `Empty` template with no added folders, 
     no authentication and no hosting. Pick the template and options appropriate for your project.
+    
+    En este cookbook se seleccionará la plantilla `Empty` sin carpetas extra,
+    ni autentificación ni hosting. Escoja la plantilla y las opciones apropiadas para su proyecto.
     
 .l-main-section
 h2#copy Step 4: Copy the QuickStart files into the ASP.NET project folder
@@ -80,10 +127,20 @@ h2#copy Step 4: Copy the QuickStart files into the ASP.NET project folder
   Copy the QuickStart files we downloaded from github into the folder containing the `.csproj` file.
   Include the files in the Visual Studio project as follows:
   
+  Copiar los archivos de inicio rápido que se descargaron desde github dentro de la carpeta que contiene el archivo `.csproj`.
+  Incluir los arhivos en el proyecto de Visual Studio como se indica a continuación:
+  
   * Click the `Show All Files` button in Solution Explorer to reveal all of the hidden files in the project.
+  
+  * Click en el botón `Show All Files` del Explorador de la Solución para mostrar los archivos ocultos del proyecto.
   * Right-click on each folder/file to be included in the project and select `Include in Project`.
+  
+  * Click derecho en cada carpeta/archivo para incluir en el proyecto y seleccionar `Include in Project`.
     Minimally, include the following folder/files:
-    * app folder (answer *No*  if asked to search for TypeScript Typings)
+    
+    Incluir mínimo, los siguientes carpetas/archivos:
+    * app folder (answer *No*  if asked to search for TypeScript Typings)    
+    * carpeta app(responder *No* si pide buscar TypeScript Typings)    
     * styles.css
     * index.html
     * package.json
@@ -95,25 +152,55 @@ h2#restore Step 5: Restore the required packages
 :marked
   Restore the packages required for an Angular application as follows:
   
+  Restaurar los paquetes requeridos para una aplicación Angular como se indica a continuación:
+  
   * Right-click on the `package.json` file in Solution Explorer and select `Restore Packages`.
     <br>This uses `npm` to install all of the packages defined in the `package.json` file. 
     It may take some time.
+    
+  * Click derecho en el archivo `package.json` en el Explorador de la Solución y seleccionar `Restore Packages`.
+    <br>Esta opción usa `npm` para instalar todos los paquetes definidos en el archivo `package.json`.
+    Este proceso tomará un tiempo.
   * If desired, open the Output window (`View` | `Output`) to watch the npm commands execute.
+  
+  * Si lo desea, puede abrir la ventana (`View` | `Output`) para ver los comandos que npm ejecuta.
   * Ignore the warnings.
+    
+  * Ignore las advertencias.
   * When the restore is finished, a message should say: `npm command completed with exit code 0`.
+  
+  * Cuando la restauración haya concluido, saldrá un mensaje que dice: `npm command completed with exit code 0`.
   * Click the `Refresh` icon in Solution Explorer.
+  
+  * Dar click en el icono `Refresh` en el Explorador de la Solución.
   * **Do not** include the `node_modules` folder in the project. Let it be a hidden project project folder.
+  
+  * **No** incluir la carpeta `node_modules` en el proyecto. Dejarla como una carpeta oculta del proyecto.
 .alert.is-important
   :marked
     An error such as "*@angular/compiler is not in the npm registry*" suggests that Visual Studio 2015
     is using an older version of npm. Update to the latest installed version of npm:
     
+    Un error surgirá cuando "*@angular/compiler no está en el registro de npm*" Visual Studio 2015 sugiere que este error se da porque
+    se está usando una versión antigua de npm. Puede actualizarce a la última versión de nmp de la siguiente forma:
+    
     * `Tools` | `Options` to open the Options dialog.
+    
+    * Click en `Tools` | `Options` para abrir el cuadro de dialogo Options.
     * In the tree on the left, select `Projects and Solutions` | `External Web Tools`.
+    
+    * En el árbol de la izquierda, seleccionar `Projects and Solutions` | `External Web Tools`.
     * On the right, move the `$(PATH)` entry above the `$(DevEnvDir`) entries. This tells Visual Studio to
       use the external tools (such as npm) found in your path before using its own version of the external tools.
+      
+    * A la derecha, mover la entrada `$(PATH)` sobre las entradas `$(DevEnvDir`). Esto le indica a Visual Studio
+      que use una herramienta externa (como lo es npm) que encontrará en esa ruta antes de usar su propia versión de herramientas externas.
     * Click OK to close the dialog.
+    
+    * Click en OK para cerrar la ventana de dialgo.
     * Restart Visual Studio for this change to take effect.
+    
+    *Reiniciar Visual Studio para hacer efectivos los cambios.
       
 .l-main-section
 h2#edit-config Step 6: Edit the TypeScript configuration file
@@ -121,10 +208,14 @@ h2#edit-config Step 6: Edit the TypeScript configuration file
   For Visual Studio 2015 we must add `"compileOnSave": true` to the TypeScript configuration (`tsconfig.json`) file 
   as shown here. 
   
+  Para Visual Studio 2015 debe añadirce `"compileOnSave": true` al archivo de configuración de TypeScript(`tsconfig.json`)
+  como se muestra a continuación.
+  
 +makeJson('cb-visual-studio-2015/ts/tsconfig.json', null, 'tsconfig.json (scripts)')
 
 :marked
   After making this change, **exit** Visual Studio and reopen it to reload the project.  
+  Despues de hacer este cambio, **salir** de Visual Studio y volver a abrirlo para recargar el proyecto.
 
 .l-main-section
 h2#build-and-run Step 7: Build and run the app
@@ -132,23 +223,38 @@ h2#build-and-run Step 7: Build and run the app
 :marked
   Click the Run button or press F5 to build and run the application.
   
+  Dar click en el botón de ejecutar o presionar F5 para contruir y ejecutar la aplicación.
+  
   This launches the default browser and runs the QuickStart sample application.
+  
+  Esto ejecuta el navegador por defecto y ejecuta la aplicación de ejemplo.
   
   Try editing any of the project files. *Save* and refresh the browser to
   see the changes. 
+  
+  Trate de editar algun archivo del proyecto. *Guardelo* y actualice el navegador para
+  observar los cambios.
   
 .alert.is-important
   :marked
     Compiler errors such as "*Property `map` does not exist on type `Observable<Response>`*" and
     "*Observable cannot be found*" indicate an old release of Visual Studio.
     Exit Visual Studio and follow the [instructions here](https://github.com/Microsoft/TypeScript/issues/8518).
+    
+    Los errores del compilador como "*Property `map` no exíste en el tipo `Observable<Response>`*" y
+    "*Observable no puede ser encontrado*" indican una versión antigua de Visual Studio.
+    Salga de Visual Studio y siga las [instrucciones de](https://github.com/Microsoft/TypeScript/issues/8518).
 
     You'll be asked to replace the file
+    Le pedirá reemplazar el archivo.
+    
   code-example.
     c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\CommonExtensions\Microsoft\TypeScript.typescriptServices.js
 
   :marked
     This operation requires admin privileges.
+    
+    Esta acción requiere permisos de administrador.
 
 .l-main-section
 h2#routing Note on Routing Applications
@@ -157,4 +263,10 @@ h2#routing Note on Routing Applications
   Look at the address bar. Does it contain a navigation url (a "deep link")? 
   We'll have to configure the server to return `index.html` for these requests.
   Until we do, remove the navigation path and refresh again. 
+  
+  Si la aplicación usa el router de Angular, al actualizarce el navegador podría regresar un error *404 - Page Not Found*.
+  Ver la barra de direccionamiento. ¿Contine una URL (un "deep link") de navegación?
+  Deberá configuarse el servidor para que regrese al `index.html` para este tipo de solicitudes.
+  Hasta que se esto se haga, elimine la ruta de navegación y actualice nuevamente.
+  
     
