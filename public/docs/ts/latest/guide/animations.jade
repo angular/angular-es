@@ -5,53 +5,94 @@ include ../_util-fns
   user interfaces to have smooth transitions between states, and engaging animations
   that call attention where it's needed. Well-designed animations can make a UI not only
   more fun but also easier to use.
+  
+  El movimiento es parte importante en el diseño de las aplicacines web modernas. Se quiere que 
+  las interfaces tengan una transisión sutil entre estados aasí como animaciones atractivas 
+  que llamen la atención en donde sea necesario.Las animaciones bien diseñadas pueden hacer una UI no 
+  solo más divertida, sino también más facil de usar.
 
   Angular's animation system gives us what we need to make the kinds of animations we want.
   We can build animations that run with the same kind of native performance that we're used
   to with pure CSS animations. But we can also have our animation logic tightly integrated
   with the rest of our application code, where they can be easily triggered and controlled.
+  
+  El sistema de animaciones de Angular brinda lo necesesario para hacer los tipos de animaciones que se deseen.
+  Se pueden hacer animaciones que corran con el mismo desempeño nativo al que se está acostumbrado
+  con animaciones en puro CSS pero se puede tener la lógica de la animación integrada
+  con el resto del código de la aplicación, donde se pueden desencadenar y controlar facilmente.
 
 .alert.is-helpful
   :marked
     Angular animations are built on top of the standard [Web Animations API](https://w3c.github.io/web-animations/)
     and they run natively on [browsers that support it](http://caniuse.com/#feat=web-animation).
+    
+    Las animaciones de Angular están construidas encima del estandar [Web Animations API](https://w3c.github.io/web-animations/)
+    y corren nativamente en los [navegadores que la soportan](http://caniuse.com/#feat=web-animation).
 
     For other browsers, a polyfill is required. Grab
     [`web-animations.min.js` from here](https://github.com/web-animations/web-animations-js) and
     add it to your page.
 
+    Para otros navegadores, se requiere un polyfill. Obtén el archivo
+    [`web-animations.min.js` de aquí](https://github.com/web-animations/web-animations-js) y
+    agreguelo a su página.
+    
     A more lightweight polyfill maintained by the Angular team is coming soon.
+    
+    Más polyfill ligeros mantenidos por el equipo de Angular están en camino.
 
 :marked
   # Table of Contents
+  
+  # Tabla de Contenido
 
   * [Quickstart Example: Transitioning Between Two States](#example-transitioning-between-states)
+  * [Ejemplo Quickstart: Transición Entre Dos Estados](#example-transitioning-between-states)
   * [States and Transitions](#states-and-transitions)
+  * [Estados y Transiciones](#states-and-transitions)
   * [Example: Entering and Leaving](#example-entering-and-leaving)
+  * [Ejemplo: Entrar y Salir](#example-entering-and-leaving)
   * [Example: Entering and Leaving from Different States](#example-entering-and-leaving-from-different-states)
+  * [Ejemplo: Entrar y Salir desde Estados Diferentes](#example-entering-and-leaving-from-different-states)
   * [Animatable Properties and Units](#animatable-properties-and-units)
+  * [Propiedades Animatable y Unidades](#animatable-properties-and-units)
   * [Automatic Property Calculation](#automatic-property-calculation)
+  * [Cálculo Automático de Propiedad](#automatic-property-calculation)
   * [Animation Timing](#animation-timing)
+  * [Tiempo de Animación](#animation-timing)
   * [Multi-Step Animations with Keyframes](#multi-step-animations-with-keyframes)
+  * [Animaciones de Multi-Paso con Keyframes](#multi-step-animations-with-keyframes)
   * [Parallel Animation Groups](#parallel-animation-groups)
+  * [Grupos de Animación Paralela](#parallel-animation-groups)
   * [Animation callbacks](#animation-callbacks)
+  * [Callbacks de Animación](#animation-callbacks)
 
 .l-sub-section
   :marked
       The examples referenced in this chapter are available as a <live-example></live-example>.
+    
+      Los ejemplos referenciados en este capítulo están disconibles como un <live-example></live-example>.
 
 a(id="example-transitioning-between-states")
 .l-main-section
 :marked
   ## Quickstart Example: Transitioning Between Two States
+  
+  ## Ejemplo Quickstart: Transición Entre Dos Estados
 figure
   img(src="/resources/images/devguide/animations/animation_basic_click.gif" alt="A simple transition animation" align="right" style="width:220px;margin-left:20px" )
 :marked
   Let's build a simple animation that transitions an element between two states
   driven by a model attribute.
+  
+  Usted hará una animación simple que hace que un elemento tenga transiciones  entre dos estados
+  impolsada por un model attribute.
 
   Animations are defined inside `@Component` metadata. Before we can add some, we need
   to import a few animation-specific functions:
+  
+  Las animaciones se difinen dentro del metadato `@Component`. Antes de poder agregar cualquier animación, necesita
+  importar unas cuantas dinciones específicas de animación:
 
 +makeExample('animations/ts/app/hero-list-basic.component.ts', 'imports')(format=".")
 
@@ -59,6 +100,10 @@ figure
   With these we can now define an *animation trigger* called `heroState` in the component
   metadata. It has animated transitions between two states: `active` and `inactive`. When a
   hero is active, we display the element in a slightly larger size and lighter color.
+  
+  Con estas ahora ya puede definir un *animation trigger* llamado `heroState` en el metadato del 
+  componente. Tiene transiciones animadas entre dos estados: `active` e `inactive`. Cuando un 
+  héroe esté activo, se mostrará el elemento de un ligero tamaño más grande y un color más claro.
 
 +makeExample('animations/ts/app/hero-list-basic.component.ts', 'animationdef')(format=".")
 
@@ -67,12 +112,20 @@ figure
     In this example we are defining animation styles (color and transform) inline in the
     animation metadata. In an upcoming release of Angular, support will be added for pulling
     the styles in from the component CSS stylesheet instead.
+    
+    En este ejemplo está definiendo estilos de animación (color y transform) en linea en el 
+    metadato de animación. En una próxima versión de Angular, se agregará soporte para obtener
+    los estilos de la hoja de estilo CSS del componente en lugar de hacerlo en linea.
 
 :marked
   We now have an animation defined but it is not yet used anywhere. We can change that by
   attaching it to one or more elements in the component's template using the "`[@triggerName]`"
   syntax:
-
+  
+  Ahora tiene una animación definida pero aun no se utiliza en ninguna parte. Para poder hacerlo, es necesarion
+  agregarla a uno o más elementos en la plantilla del componente usando la sintaxis
+  "`@triggerName`":
+  
 +makeExample('animations/ts/app/hero-list-basic.component.ts', 'template')(format=".")
 
 :marked
@@ -80,25 +133,46 @@ figure
   the repeated elements will animate independently. We're binding the value of the
   attribute to the expression `hero.state`. We expect it to always be either `inactive`
   or `active`, since that's what we have defined animation states for.
+  
+  Aquí se ha aplicado el trigger de la animación a cada elemento repetido por un `ngFor`. Cada uno 
+  de los elementos repetidos será animado independientemente. Se hizo un binding del valor del 
+  atributo a la expresión `hero.state`. Esperamos que sea siempre `inactive` 
+  o `active`, ya que para eso ha definido estados de animación.
 
   With this setup, an animated transition is shown whenever a hero object changes state!
   Here's the full component implementation:
+  
+  Con esta configuración, un transición animada se muestra cuando un objeto héroe ¡cambia de estado!
+  Aquí estaá la implementación completa del componente:
 
 +makeExample('animations/ts/app/hero-list-basic.component.ts')
 
 :marked
   ## States and Transitions
+  
+  ## Estados y Transiciones
 
   Angular animations are defined in terms of logical **states** and **transitions**
   between states.
+  
+  Las animaciones de Angular están definidas en terminos de **estados** lógicos y **transiciones**
+  entre los estados.
 
   An animation state is a string value that we define in our application code. In the example
   above we used the states `'active'` and `'inactive'` based on the logical state of
   hero objects. The source of the state can be a simple object attribute as it was in this case,
   or it can be a value computed in a method. The important thing is that we can read it into the
   component's template.
+  
+  Una estado de animación es un string que se define en el código de su aplicación. En el ejemplo de
+  anterior utilizó los estados `'active'` e `'inactive'` basados en los estados lógicos de
+  los objetos héroe. La fuente del estado puede ser un simple atributo de un objeto como en este caso,
+  o puede ser un valor calculado en un método. Lo importante es que se pueda leer en la 
+  plantilla del componente.
 
   We can define *styles* for each animation state:
+  
+  Usted puede definir *estilos* para cada estado de animación:
 
 +makeExample('animations/ts/app/hero-list-basic.component.ts', 'states')(format=".")
 
@@ -107,9 +181,16 @@ figure
   They are applied to the element once it has transitioned to that state, and will stay
   *as long as it remains in that state*. In that sense, we are defining more than just
   animations here. We're actually defining what styles the element has in different states.
+  
+  Estas definiciones `state` especifican el *end styles* de cada estado.
+  Se aplican al elemento una vez que este haya hecho la transición a ese estado y así se quedará
+  *mientras permanezca en ese estado*
 
   Once we have states, we can define *transitions* between the states. Each transition
   controls the timing of switching between one set of styles and the next:
+  
+  Ona vez que se tienen estados, puede definir *transiciones* entre estados. Cada transición
+  controla el tiempo para hacer el cambio entre un set de estilos y el siguiente:
 
 +makeExample('animations/ts/app/hero-list-basic.component.ts', 'transitions')(format=".")
 
@@ -119,12 +200,18 @@ figure.image-display
 :marked
   If we have the same timing configuration for several transitions, we can combine
   them into the same `transition` definition:
+  
+  Si usted tiene el mismpo tiempo configurado para varias transiciones, puede combinarlas
+  en una misma definición de `transición`:
 
 +makeExample('animations/ts/app/hero-list-combined-transitions.component.ts', 'transitions')(format=".")
 
 :marked
   When we have the same timing for both directions of a transition, as we do in the previous
   example, we can use the `<=>` shorthand syntax:
+  
+  Cuando se tiene el mismo tiempo para ambas direcciones de una transición, como se hizo en el ejemplo
+  anterior, puede usar la sintaxis corta `<=>`:
 
 +makeExample('animations/ts/app/hero-list-twoway.component.ts', 'transitions')(format=".")
 
@@ -134,17 +221,31 @@ figure.image-display
   the element receives one set of styles immediately and is then animated to the next.
   When the transition finishes, none of these styles will be kept because they're not
   defined in a `state`.
+  
+  Algunas veces se tienen estilos que se quieren aplicar durante la animación pero no se quieren conservar
+  después de que termine. Usted puede definir dichos estilos en linea en la `transición`. En este ejemplo,
+  el elemento recibe un set de estilos inmediatamente y después es animada a la siguiente.
+  Cuando la transición termina, ninguno de estos estilos se guadará porque no están 
+  definidas en el `estado`.
 
 +makeExample('animations/ts/app/hero-list-inline-styles.component.ts', 'transitions')(format=".")
 
 :marked
   ### The wildcard state `*`
+  
+  ### Estado `*` wildcard
 
   The `*` ("wildcard") state matches *any* animation state. This is useful for defining styles and
   transitions that should apply regardless of which state the animation is in. For example:
+  
+  El estado `*` ("wildcard") coincide con *cualquier* estado de animación. Esto es útil para definir estilos y
+  transiciones que se deben aplicar sin importar en que estado está la animación. Por ejemplo:
 
   * The `active => *` transition applies when the element's state changes from `active` to anything else.
   * The `* => *` transition applies when *any* change between two states takes place.
+  
+  * La transición `active => *` se aplica cuando el estado del elemento cambia de `active` a cualquier otra cosa.
+  * La transicion `* => *` aplica cuando *cualquier* cambio entre los dos estados toma lugar.
 
 figure.image-display
   img(src="/resources/images/devguide/animations/ng_animate_transitions_inactive_active_wildcards.png" alt="The wildcard state can be used to match many different transitions at once" width="400")
@@ -152,30 +253,50 @@ figure.image-display
 
 :marked
   ### The `void` state
+  
+  ### El estado `void`
 
   There's one special state called `void` that may apply to any animation. It applies
   when the element is *not* attached to a view. This may be because it has not yet been
   added or because it has been removed. The `void` state is useful for defining "enter" and
   "leave" animations.
+  
+  Hay un estado especial llamado `void` que puede aplicarse a cualquier animacioón. Aplica
+  cuando un elemento *no* está ligado a una vista. Esto pude ser porque no ha sido 
+  agregado aún o porque ha sido removido. El estado `void` es útil al definir las animaciones "enter" y
+  "leave".
 
   For example the `* => void` transition applies when the element leaves the view,
   regardless of what state it was in before it left.
+  
+  Por ejemplo, la transición the `* => void` aplica cuando el elemento deja la vista,
+  sin importar en que estado se encontraba anteriormente.
 
 figure.image-display
   img(src="/resources/images/devguide/animations/ng_animate_transitions_void_in.png" alt="The void state can be used for enter and leave transitions" width="400")
 
 :marked
   The wildcard state `*` also matches `void`.
+  
+  El estado `*` o wildcard tambien coincide con el estado `void`.
 
   ## Example: Entering and Leaving
+  
+  ## Ejemplo: Entrar y Salir
 figure
   img(src="/resources/images/devguide/animations/animation_enter_leave.gif" alt="Enter and leave animations" align="right" style="width:250px;" )
 :marked
   Using the `void` and `*` states we can define transitions that animate the
   entering and leaving of elements:
+  
+  Al usar los estados `void` y `*` se pueden definir transisiones que animen la
+  entrada y salida de los elementos:
 
   * Enter: `void => *`
   * Leave: `* => void`
+  
+  * Entrada: `void => *`
+  * Salida: `* => void`
 
 +makeExample('animations/ts/app/hero-list-enter-leave.component.ts', 'animationdef')(format=".")
 
@@ -184,8 +305,15 @@ figure
   transition definitions, and not in a separate `state(void)` definition. We do this because
   we want the transforms to be different on enter and leave: The element enters from the left
   and leaves to the right.
+  
+  Note que en este caso se tiene el estilo aplicado al estado void directamente en la
+  definición de la transición y no en una definición separada del estado `state(void)`. Esto se hace porque
+  se quiere que las transformaciones sean diferentes al entrar y al salir: El elemento entra desde la izquierda
+  y sale desde la derecha.
 
   ## Example: Entering and Leaving from Different States
+  
+  ## Ejemplo: Entrar y Salir desde Estados Diferentes
 figure
   img(src="/resources/images/devguide/animations/animation_enter_leave_states.gif" alt="Enter and leave animations combined with state animations" align="right" style="width:200px" )
 :marked
@@ -193,13 +321,24 @@ figure
   using the hero state as the animation state. What this will let us do is configure
   different transitions for entering and leaving based on what the state of the hero
   is:
+  
+  También se pueden combinar esta animación con el estado de transición de animación visto al proncipio al
+   usar el estado del héroe como el estadp de animación. Lo que le permite configurar
+   diferentes transiciones para la entrada y salida con base al estado del héroe:
 
   * Inactive hero enter: `void => inactive`
   * Active hero enter: `void => active`
   * Inactive hero leave: `inactive => void`
   * Active hero leave: `active => void`
+  
+  * Entrada de héroe inactivo: `void => inactive`
+  * Entrada de héroe active: `void => active`
+  * Salida de héroe inactivo: `inactive => void`
+  * Salida de héroe activo: `active => void`
 
   We now have fine-grained control over each transition:
+  
+  Ahora usted tiene un control fino sobre cada transición:
 
 figure.image-display
   img(src="/resources/images/devguide/animations/ng_animate_transitions_inactive_active_void.png" alt="This example transitions between active, inactive, and void states" width="400")
@@ -209,25 +348,45 @@ figure.image-display
 
 :marked
   ## Animatable Properties and Units
+  
+  ## Propiedades Animatable y Unidades
 
   Since Angular's animation support builds on top of Web Animations, we can animate any property
   that the browser considers *animatable*. This includes positions, sizes, transforms, colors,
   borders and many others. The W3C maintains
   [a list of animatable properties](https://www.w3.org/TR/css3-transitions/#animatable-properties).
+  
+  Ya que las animaciones de Angular soporta builds encima de las Web Animations, se puede animar cualquier propiedad
+  que el navegador considere *animatable*. Estas incluyen posiciones, tamaños, transformaciones, colores,
+  bordes y muchas otras. La W3C mantiene
+  [una lista de propiedades animatable](https://www.w3.org/TR/css3-transitions/#animatable-properties).
 
   For positional properties that have a numeric value, we can define a unit by providing
   the value as a string with the appropriate suffix:
+  
+  Para las propiedades psicionales que tienen un valor numérico, usted puede definir la unidad al proporcionar
+  el valor como un string con un sufijo apropiado:
 
   * `'50px'`
+  * `'50px'`
   * `'3em'`
+  * `'3em'`
+  * `'100%'`
   * `'100%'`
 
   For most dimensional properties we can also just define a number which is then assumed to be
   in pixels:
+  
+  Para la mayoría de las propiedades posicionales se puede también definir solamente un número el cual se asume está
+  en pixeles:
 
   * `50` is the same as saying `'50px'`
+  
+  * `50` es lo mismo que `'50px'`
 
   ## Automatic Property Calculation
+  
+  ## Cálculo Automático de Propiedad
 figure
   img(src="/resources/images/devguide/animations/animation_auto.gif" alt="Animation with automated height calculation" align="right" style="width:220px;margin-left:20px" )
 :marked
@@ -235,76 +394,141 @@ figure
   animate is not known until at runtime. For example, it is quite common for elements
   to have widths and heights that depend on their content and the screen size. These
   properties are often tricky to animate with CSS.
+  
+  Algunas veces el valor de una propiedad de estilo dimensional que quiera
+  animar no se conoce hasta el tiempo de corrida. Por ejemplo, es bastante común para elementos
+  que tengan anchuras y alturas que dependen de su contenido y del tamaño de la pantalla. Estas
+  propiedades son a menudo difícil de animar con CSS.
 
   With Angular we can use a special `*` property value in these cases. What it means
   is that the value of this property will be computed at runtime and then plugged into
   the animation.
+  
+  Con Angular, usted puede usar una propiedad especial `*` en estos casos. Lo que significa
+  que el valor de la propiedad se calculará en tiempo de corrida y luego seraá conectada a
+  la animcación.
 
   The "leave" animation in this example takes whatever height the element has before it
   leaves and animates from that height to zero:
+  
+  La animcaión "leave" en este ejemplo, toma cualquier altura que el elemento tuviera antes de
+  salir y se anima desde esa altura hasta zero:
 
 +makeExample('animations/ts/app/hero-list-auto.component.ts', 'animationdef')(format=".")
 
 :marked
   ## Animation Timing
+  
+  ## Tiempo de Animación
 
   There are three timing properties we can tune for every animated transition:
   The duration, the delay, and the easing function. They are all combined into
   a single transition *timing string*.
+  
+  Hay tres propiedades del tiempo de una animcaión que se pueden configurar para cada transición animada:
+  La duración, el retraso y la función de suavizado. Las tres son combinadas en 
+  una sola transición *timing string*.
 
   ### Duration
+  
+  ### Duración
 
   The duration controls how long the animation takes to run from start to finish.
   We can define a duration in three ways:
+  
+  La duración controla que tanto tarda en correr la animación de principio a fin.
+  Se puede definir una duración de tres maneras:
 
   * As a plain number, in milliseconds: `100`
+  * Como un número, en milisegundos: `100`
+  
   * In a string, as milliseconds: `'100ms'`
+  * Como un string, en milisegundos: `'100ms'`
+  
   * In a string, as seconds: `'0.1s'`
+  * Como un string, en segundos: `'0.1s'`
 
   ### Delay
+  
+  ## Retraso
 
   The delay controls how long to wait after an animation triggers before the
   transition actually begins. We can define one by adding it in the same string
   following the duration. It also has the same format options as the duration:
+  
+  El retraso controla cuanto tiempo se debe esperar antes de que la trinsición realmente inicie 
+  despues de que se ha disparado una animcación.
 
   * Wait for 100ms and then run for 200ms: `'0.2s 100ms'`
+  
+  * Espera durante 100ms y despues corre por 200ms: `'0.2s 100ms'`
 
   ### Easing
+  
+  ### Suavizado
 
   The [easing function](http://easings.net/) controls how the animation accelerates
   and decelerates during its runtime. For example, using an `ease-in` function means
   the animation begins relatively slowly but then picks up speed as it progresses. We
   can control the easing by adding it as a *third* value in the string after the duration
   and the delay (or as the *second* value when there is no delay):
+  
+  La [función de suavizado](http://easings.net/) controla como se acelera y se declara la animcación
+  durante el tiempo de corrida. Por ejemplo, utilizar una función `ease-in` significa
+  que la animación inicia relatíbamente lento pero despues incrementa su velocidad mientras progresa. Se
+  puede controlar el suavizado agregándola  como un *tercer* valor en el string después de la duración
+  y el retraso (o como *segundo* valor cuando no hay retraso):
 
   * Wait for 100ms and then run for 200ms, with easing: `'0.2s 100ms ease-out'`
+  * Espera por 100ms y luego corre por 200ms, con suavizado: `'0.2s 100ms ease-out'`
+  
   * Run for 200ms, with easing: `'0.2s ease-in-out'`
+  * Corre por 200ms, con suavizado: `'0.2s ease-in-out'`
 
 figure
   img(src="/resources/images/devguide/animations/animation_timings.gif" alt="Animations with specific timings" align="right" style="width:220px;margin-left:20px" )
 :marked
   ### Example
+  
+  ### Ejemplo
 
   Here are a couple of custom timings in action. Both "enter" and "leave" last for
   200 milliseconds but they have different easings. The leave begins after a
   slight delay:
 
+  Aquí hay un par de tiempos personalizados en acción. Ambos "enter" y "leave" duran
+  200 milisegundos pero tienen diferentes suavizados. La salida (leave) inicia despues de un 
+  pequeño retraso:
+
 +makeExample('animations/ts/app/hero-list-timings.component.ts', 'animationdef')(format=".")
 
 :marked
   ## Multi-Step Animations with Keyframes
+  
+  ## Animaciones Multi-Paso con Keyframes
 figure
   img(src="/resources/images/devguide/animations/animation_multistep.gif" alt="Animations with some bounce implemented with keyframes" align="right" style="width:220px;margin-left:20px" )
 :marked
   With animation *keyframes* we can go beyond a simple transition between two
   sets of styles to a more intricate animation that goes through one or more
   intermediate styles in between.
+  
+  Con *keyframes* de animación se puede ir más allá de simples transiciones entre dos
+  estados de estilo a animaciones más complejas que van a través de una o más
+  estilos intermedios. 
 
   For each keyframe, we can specify an *offset* that defines at which point
   in the animation that keyframe applies. The offset is a number between zero,
   which marks the beginning of the animation, and one, which marks the end.
+  
+  Por cada keyframe, se puede especificar un *offset* que define en que punto
+  en la animación aplica ese keyframe. El offset es un número entre zero,
+  el cual marca el inicio de la animcaioón y uno que marque el final.
 
   In this example we add some "bounce" to our enter and leave animations with
+  keyframes:
+  
+  En este ejemplo se agrega un "bounce" que tiene animaciones enter y leave con 
   keyframes:
 
 +makeExample('animations/ts/app/hero-list-multistep.component.ts', 'animationdef')(format=".")
@@ -313,6 +537,10 @@ figure
   Note that the offsets are *not* defined in terms of absolute time. They are relative
   measures from 0 to 1. The final timeline of the animation will based on the combination
   of keyframe offsets, duration, delay, and easing.
+  
+  Note que los offsets *no* están definidos en terminos de un tiempo absoluto. Son medidas
+  relativas de 0 a 1. La linea de tiempo final de la animación estaraá basada en la combinación
+  de los offsets del keyframe, duración, retraso y suavizado.
 
   Defining offsets for keyframes is optional. If we omit them, offsets with even
   spacing are automatically assigned. For example, three keyframes without predefined
@@ -320,37 +548,64 @@ figure
 
 :marked
   ## Parallel Animation Groups
+  
+  ## Grupos de Animación Paralela
 figure
   img(src="/resources/images/devguide/animations/animation_groups.gif" alt="Parallel animations with different timings, implemented with groups" align="right" style="width:220px;margin-left:20px" )
 :marked
   We've already seen how we can animate multiple style properties at the same time:
   Just put all of them into the same `style()` definition!
+  
+  Ya ha visto como puede animar múltiples propiedes de estilo al mismo tiempo:
+  ¡Solo ponga todas ellas dentro de la misma definicion `style()`! 
 
   But we may also want to configure different *timings* for animations that happen
   in parallel. For example, we may want to animate two CSS properties but use a
   different easing function for each one.
+  
+  Pero puede que tambien se quiera configurar diferentes *tiempos* para las animaciones que suceden
+  en paralelo. Por ejemplo, puede que usted quiera animar dos propiedades CSS pero con
+  suavizados diferentes para cada una.
 
   For this we can use animation *groups*. In this example we use groups both on
   enter and leave so that we can use two different timing configurations. Both
   are applied to the same element in parallel, but run independent of each other:
+  
+  Para esto puede usar *grupos* de animaciones. En este ejemplo se usan grupos, ambos para
+  entrar y salir, de manera que usted pueda utilizar diferentes configuraciones de tiempos. Las dos
+  son aplicadas al mismo elemento en paralelo, pero corren independientes entre sí.
 
 +makeExample('animations/ts/app/hero-list-groups.component.ts', 'animationdef')(format=".")
 
 :marked
   One group animates the element transform and width. The other animates the opacity.
+  
+  Un grupo anima el elemento transform y width. El otro anima opacity.
 
 :marked
   ## Animation callbacks
+  
+  ## Callbacks de Animación
 
   A callback is fired when an animation is started and also when it is done.
+  
+  Cuando una animación comienza y tambien cuando termina se dispara una función callback.
 
   In the keyframes example, we have a `trigger` called `@flyInOut`. There we can hook
   those callbacks like:
+  
+  En ele ejemplo de los keyframes, se tiene un `trigger` llamado `@flyInOut`. Ahí se pueden usar 
+  esas funciones callbacks de esta manera:
 
 +makeExample('animations/ts/app/hero-list-multistep.component.ts', 'template')(format=".")
 
 :marked
   The callbacks receive an `AnimationTransitionEvent` which contains useful properties such as `fromState`,
   `toState` and `totalTime`.
+  
+  Las funciones callback reciben un evento `AnimationTransitionEvent` el cual contiene prropiedades útiles, tales como `fromState`,
+  `toState` y `totalTime`.
 
   Those callbacks will fire whether or not an animation is picked up.
+  
+  Esas funcines callback se dispararán ya sea que la animación se ejecute o no.
