@@ -58,9 +58,9 @@
   },
 
   "glossary": {
-    "title": "Glossary",
-    "subtitle": "TypeScript",
-    "intro": "Brief definitions of the most important words in the Angular 2 vocabulary",
+    "title": "Glosario",
+    "subtitle": "TypeScript",    
+    "intro": "Breves definiciones de las palabras más importantes en el vocabulario de Angular 2",
     "reference": false
   },
 
