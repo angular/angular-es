@@ -3,36 +3,65 @@ include ../_util-fns
 :marked
   Angular applications and Angular itself depend upon features and functionality provided by a variety of third-party packages.
   These packages are maintained and installed with the Node Package Manager (<a href="https://docs.npmjs.com/" target="_blank">npm</a>).
+  
+  Las aplicaciones de Angular así como Angular mismo dependen de características y funcionalidad proporcionadas por third-party packages.
+  Estos paquetes son mantenidos e instalados con el Node Package Manager (<a href="https://docs.npmjs.com/" target="_blank">npm</a>).
 .l-sub-section
   :marked
     Node.js and npm are essential to Angular development. 
     
+    Node.js y npm son esenciales para el desarrollar aplicaciones con Angular 2.
+    
     <a href="https://docs.npmjs.com/getting-started/installing-node" target="_blank" title="Installing Node.js and updating npm">
     Get them now</a> if they're not already installed on your machine.
  
+    <a href="https://docs.npmjs.com/getting-started/installing-node" target="_blank" title="Installing Node.js and updating npm">
+    Obtengalos ahora</a> si aún no están instalados en su máquina.
+        
     **Verify that you are running node `v4.x.x` or higher and npm `3.x.x` or higher**
     by running the commands `node -v` and `npm -v` in a terminal/console window.
     Older versions produce errors.
+    
+    **Verifique que está corriendo node `v4.x.x` o mayor y npm `3.x.x` o mayor**
+    ejecutando los comandos `node -v` y `npm -v` en una ventana de terminal/consola.
+    Versiones anteriores produce errores.
 
     We recommend [nvm](https://github.com/creationix/nvm) for managing multiple versions of node and npm. You may need [nvm](https://github.com/creationix/nvm) if you already have projects running on your machine that use other versions of node and npm.
+    
+    Se recomienda utilizar [nvm](https://github.com/creationix/nvm) para administrar múltiples versiones de node y npm. Tal vez necesite [nvm](https://github.com/creationix/nvm)si ya tiene proyectos corriendo en su máquina que usan otras versiones de node y npm.
 
 :marked
   We recommend a comprehensive starter-set of packages as specified in the `dependencies` and `devDependencies`
   sections of the QuickStart
   <a href="https://docs.npmjs.com/files/package.json" target="_blank">package.json</a> file:
+  
+  Se recomienda set inicial de paquetes como se especifica en las secciones `dependencies` y `devDependencies`
+  del QuickStart
+  en el archivo <a href="https://docs.npmjs.com/files/package.json" target="_blank">package.json</a>:
 +makeJson('quickstart/ts/package.1.json',{ paths: 'dependencies, devDependencies'}, 'package.json (dependencies)')(format=".") 
 :marked
-  You can use other packages but we recommend *this particular set* to start with because (a) they  work well together and 
+  You can use other packages but we recommend *this particular set* to start with because (a) they work well together and 
   (b) they include everything you'll need to build and run the sample applications in this series.
+  
+  Usted puede usar otros paquetes pero se recomienda *este set particular* para empezar porque (a) trabajan bien juntos y
+  (b) incluyen todo lo que necesitará para construir y correr la aplicación de ejemplo en estas series.
 .l-sub-section
   :marked
     Note: A cookbook or guide page may require an additional library such as *jQuery*.
+    
+    Nota: Una página de una receta o guía podría requerir una librería adicional como *jQuery*.
 :marked
   You'll install more than you need for QuickStart. 
   No worries! 
   You only serve to the client those packages that the application actually requests.
   
+  Usted instalará más de lo que necesita para el QuickStart.
+  ¡No se preocupe!
+  Solo se servirán al cliente los paquetes que la aplicación solicite.
+  
   This page explains what each package does. You can make substitutions later to suit your tastes and experience.
+  
+  Esta página explica lo que cada paquete hace. Se pueden hacer sustituciones más adelante para satisfacer sus necesidades.
   
 .l-main-section
 :marked
@@ -40,9 +69,17 @@ include ../_util-fns
   The `package.json` includes two sets of packages, 
   [dependencies](#dependencies) and [devDependencies](#dev-dependencies).
   
+  ## *dependencies* y *devDependencies*
+  El archivo `package.json` incluye dos sets de paquetes,
+  [dependencies](#dependencies) y [devDependencies](#dev-dependencies).
+  
   The *dependencies* are essential to *running* the application. 
   The *devDependencies* are only necessary to *develop* the application. 
   You can exclude them from production installations by adding `--production` to the install command, as follows:
+  
+  Las *dependencies* son esenciales para *correr* la aplicación.
+  Las *devDependencies* son solo necesarias para el *desarrar* la aplicación.
+  Puede excluirlas de la instalación productiva agregando `--production` al comando de instalación, como se muestra a continuación:
 code-example(format="." language="bash").
   npm install my-application --production
   
@@ -52,12 +89,21 @@ a(id="dependencies")
   ## *dependencies*
   The `dependencies` section of `package.json` contains:
   
+  ## *dependencias*
+  La sección `dependencies` del archivo `package.json` contiene:
+  
   * ***Features*** - Feature packages give the application framework and utility capabilities.
   
+  * ***Features*** - Estos paquetes le proveen el application framework y la capacidad de utilerías.
+  
   * ***Polyfills*** - Polyfills plug gaps in the browser's JavaScript implementation.
+  
+  * ***Polyfills*** - Polyfills provee funcionalidad que aún no tienen algunos navegadores.
  
   * ***Other*** - Other libraries that support the application such as `bootstrap` for HTML widgets and styling.
   
+  * ***Other*** - Otras librerías que soporta la aplicación, tales como `bootstrap` para usar widgets de HTML y estilo.
+
 .l-main-section
 :marked
   ### Feature Packages
@@ -65,22 +111,42 @@ a(id="dependencies")
   ***@angular/core*** - Critical runtime parts of the framework needed by every application. 
   Includes all metadata decorators, `Component`, `Directive`,  dependency injection, and the component lifecycle hooks.
   
+  ***@angular/core*** - Partes críticas del runtime del framework necesarias para cada aplicación.
+  Incluye todos los decoradores de metadatos, `Component`, `Directive`, dependency injection y los lifecycle hooks del componente.
+  
   ***@angular/common*** - The commonly needed services, pipes, and directives provided by the Angular team.
+  
+  ***@angular/common*** - Los servicios, pipes, y directives mas comúnmente usados que provee el equipo de Angular.
   
   ***@angular/compiler*** - Angular's *Template Compiler*. 
   It understands templates and can convert them to code that makes the application run and render. 
   Typically you don’t interact with the compiler directly; rather, you use it indirectly via `platform-browser-dynamic` or the offline template compiler.
   
+  ***@angular/compiler*** - El *Template Compiler* de Angular. 
+  Entiende plantillas y puede cpnvertirlas a código que hace que la aplicación corra y se visualice.
+  Usualmente usted no interactua con el compilador directamente; más bien, lo usa indirectamente via `platform-browser-dynamic` o el compilador de plantillas offline (offline template compiler).
+  
   ***@angular/platform-browser*** - Everything DOM and browser related, especially the pieces that help render into DOM.
   This package also includes the bootstrapStatic method for bootstrapping applications for production builds that pre-compile templates offline.
+  
+  ***@angular/platform-browser*** - Todo lo relacionado con el navegador y el DOM, especialmente las piezas que ayudan a mostrar partes de la aplicación en el DOM.
+  Este paquete también incluye el metodo bootstrapStatic para hacer el bootstrapp de la aplicación para production builds con plantillas que se precompilan de manera offline.
   
   ***@angular/platform-browser-dynamic*** - Includes [Providers](https://angular.io/docs/ts/latest/api/core/index/Provider-type-alias.html) and a [bootstrap](https://angular.io/docs/ts/latest/guide/ngmodule.html#!#bootstrap) method for applications that
   compile templates on the client. Don’t use offline compilation.
   Use this package for bootstrapping during development and for bootstrapping plunker samples.
   
+  ***@angular/platform-browser-dynamic*** - Incluye [Providers](https://angular.io/docs/ts/latest/api/core/index/Provider-type-alias.html) y un método [bootstrap](https://angular.io/docs/ts/latest/guide/ngmodule.html#!#bootstrap) para aplicaciónes que
+  compilan plantillas en el cliente. No use compilación offline.
+  Use este paquete para hacer el bootstrapp durante desarrollo y para el bootstrapp de plunker samples.
+  
   ***@angular/http*** - Angular's http client.
   
+  ***@angular/http*** - Cliente http de Angular.
+  
   ***@angular/router*** - Component router.
+  
+  ***@angular/router*** - Componente de router.
   
   ***@angular/upgrade*** - Set of utilities for upgrading Angular 1 applications.
   
@@ -88,54 +154,98 @@ a(id="dependencies")
   [ES2015 module](http://www.2ality.com/2014/09/es6-modules-final.html) specification.
   Other viable choices include the well-regarded [webpack](https://webpack.github.io/).
   
+  ***[system.js](https://github.com/systemjs/systemjs)*** -  Carga módulos de manera dinámica y es compatible con la 
+  especificación [ES2015 module](http://www.2ality.com/2014/09/es6-modules-final.html).
+  Existen otras opciones viables como [webpack](https://webpack.github.io/).
+  
   Your future applications are likely to require additional packages that provide
   HTML controls, themes, data access, and various utilities.
   
+  Es probable que sus próximas aplicaciones requieren paquetes adicionales que proporcionen
+  controles HTML, temas, acceso de datos y varias utilerías.
+
 
 a(id="polyfills")
 .l-main-section
 :marked
   ### Polyfill packages
   
+  ### Paquetes pollyfill
+  
   Angular requires certain [polyfills](https://en.wikipedia.org/wiki/Polyfill) in the application environment.
   Install these polyfills using the npm packages that Angular lists in the *peerDependencies* section of its `package.json`.
   
+  Angular requiere ciertos [polyfills](https://en.wikipedia.org/wiki/Polyfill) en el ambiente de la aplicación.
+  Puede installar estos polyfills usando lo paquetes npm que Angular lista en la sección *peerDependencies* de su archivo `package.json`.
+  
   You must list these packages in the `dependencies` section of your own `package.json`.
+  
+  Debe listar estos paquetes in la sección `dependencies` de su propio archivo `package.json`.
   
 .l-sub-section
   :marked
     For background on this requirement, see [Why peerDependencies?](#why-peer-dependencies).
+    
+    Para conocer los antecedentes de este requerimiento, vea [Why peerDependencies?](#why-peer-dependencies).
 :marked
   ***core-js*** - Patches the global context (window) with essential features of ES2015 (ES6).
    You may substitute an alternative polyfill that provides the same core APIs. 
    When these APIs are implemented by the major browsers, this dependency will become unnecessary.
+   
+   ***core-js*** - Parcha el contexto global (window) con la funcionalidad esencial de ES2015 (ES6).
+   Podría sustituir un polyfill alternativo que provea las mismas core APIs. 
+   Cuando estas APIs sean implementadas por los principales navegadores, esta dependencia será innecesaria.
 
   ***reflect-metadata*** - A dependency shared between Angular and the ***TypeScript compiler***. 
   You can update a TypeScript package without upgrading Angular, 
   which is why this is a dependency of the application and not a dependency of Angular.
+  
+  ***reflect-metadata*** - Una dependencia compartida entre Angular y el ***TypeScript compiler***. 
+  Se puede actializar un paquete de TypeScript sin actualizar Angular, 
+  por lo cual esta es una dependencia de la aplicación y no una dependencia de Angular.
   
   ***rxjs*** - A polyfill for the [Observables specification](https://github.com/zenparsing/es-observable) currently before the 
   [TC39](http://www.ecma-international.org/memento/TC39.htm) committee that determines standards for the JavaScript language.
   You can pick a preferred version of *rxjs* (within a compatible version range) 
   without waiting for Angular updates.
   
+  ***rxjs*** - Un polyfill para [Observables specification](https://github.com/zenparsing/es-observable) actualmente antes del
+  comité [TC39](http://www.ecma-international.org/memento/TC39.htm) que determina los estandares del lenguaje JavaScript.
+  Usted puede escoger la versión que prefiera de *rxjs* (dentro de un rango de versiones compatibles) 
+  antes de esperar que Angular se actualice.
+  
   ***zone.js*** - A polyfill for the [Zone specification](https://gist.github.com/mhevery/63fdcdf7c65886051d55) currently before the 
   [TC39](http://www.ecma-international.org/memento/TC39.htm) committee that determines standards for the JavaScript language.
   You can pick a preferred version of *zone.js* to use (within a compatible version range) 
   without waiting for Angular updates.
+  
+  ***zone.js*** - Un polyfill para [Zone specification](https://gist.github.com/mhevery/63fdcdf7c65886051d55) actualmente, antes del 
+  comité [TC39](http://www.ecma-international.org/memento/TC39.htm) que determina los estandares del lenguaje JavaScript.
+  Usted puede escoger la versión que prefiera de *zone.js* (dentro de un rango de versiones compatibles) 
+    antes de esperar que Angular se actualice.
 
 a(id="other")
 .l-main-section
 :marked
   ### Other helper libraries
   
+  ### Otras librerías de ayuda
+  
   ***angular2-in-memory-web-api*** - An Angular-supported library that simulates a remote server's web api 
   without requiring an actual server or real http calls. 
   Good for demos, samples, and early stage development (before we even have a server).
   Read about it in the [Http Client](server-communication.html#appendix-tour-of-heroes-in-memory-server) page.
   
+  ***angular2-in-memory-web-api*** - Una librería soportada por Angular que simula una web api de servidor remoto
+  sin requerir un servidor o llamadas reales http. 
+  Sirve muy bien para demos, ejemplos y la fase inicial del desarrollo (antes de si quiera tener un servidor).
+  Puede leer acerca de esto en la página [Http Client](server-communication.html#appendix-tour-of-heroes-in-memory-server).
+  
   ***bootstrap*** - [Bootstrap](http://getbootstrap.com/) is a popular HTML and CSS framework for designing responsive web apps.
   Some of the samples improve their appearance with *bootstrap*.
+  
+  ***bootstrap*** - [Bootstrap](http://getbootstrap.com/) es un framework popular de HTML y CSS para diseñar aplicaciones web responsivas.
+  Algunos de los ejemplos mejoran su apariencia con *bootstrap*.
   
 a(id="dev-dependencies")
 .l-main-section
@@ -143,82 +253,160 @@ a(id="dev-dependencies")
   ## *devDependencies*
   The packages listed in the *devDependencies* section of the `package.json` help you develop the application.
   You don't have to deploy them with the production application although there is no harm in doing so.
+  
+  ## *devDependencies*
+  los paquetes listados en la sección *devDependencies* del archivo `package.json` lo ayudan a desarrollar la aplicación.
+  No tiene por que hacer el deploy de ellos con la aplicación productiba aunque no hay problema alguno si lo hace.
 
   ***[concurrently](https://www.npmjs.com/package/concurrently)*** - 
   A utility to run multiple *npm* commands concurrently on OS/X, Windows, and Linux operating systems.
+  
+  ***[concurrently](https://www.npmjs.com/package/concurrently)*** - 
+  Una utilería oara correr múltiples comandos *npm* en los sistemas operatibos OS/X, Windows y Linux.
   
   ***[lite-server](https://www.npmjs.com/package/lite-server)*** - 
   A light-weight, static file server, by [John Papa](http://johnpapa.net/) 
   with excellent support for Angular apps that use routing.
   
+  ***[lite-server](https://www.npmjs.com/package/lite-server)*** - 
+  Un servidor de archivos estáticos ligero, hecho por [John Papa](http://johnpapa.net/) 
+  con excelente soporte para aplicaciones de Angular que usan rutas.
+  
   ***[typescript](https://www.npmjs.com/package/typescript)*** - 
   The TypeScript language server, including the *tsc* TypeScript compiler.
   
+  ***[typescript](https://www.npmjs.com/package/typescript)*** - 
+  El servidor del lenguaje TypeScript, incluyendo el compilador TypeScript *tsc*.
+  
   ***[typings](https://www.npmjs.com/package/typings)*** - A manager for TypeScript definition files.
   Read more about it in the [TypeScript Configuration](typescript-configuration.html#typings) page.
+  
+  ***[typings](https://www.npmjs.com/package/typings)*** - Un andministrador para archivos de definición TypeScript.
+  Usted puede leer mas acerca de esto en la página [TypeScript Configuration](typescript-configuration.html#typings).
 
 .l-main-section
 a(id="why-peer-dependencies")
 :marked
   ## Why *peerDependencies*?
   
+  ## ¿Por qué *peerDependencies*?
+  
   There isn't a *peerDependencies* section in the QuickStart `package.json`. 
   But Angular has a *peerDependencies* section in 
   *its* package.json, which has important consequences for your application. 
   
+  No hay una sección *peerDependencies* en el archivo `package.json` del QuickStart.
+  Pero Angular tiene una sección *peerDependencies* en
+  *su* archivo package.json, el cual tiene importantes consecuencias para su aplicación.
+  
   It explains why you load the [polyfill](#polyfills) *dependency* packages in the QuickStart `package.json`,
   and why you'll need those packages in your own applications.
   
+  Explica por qué carga los paquetes de *dependencia* polyfill](#polyfills) en el archivo `package.json` del QuickStart
+  y por qué necesitará esos paquetes en su aplicación. 
+  
   An explanation of [peer dependencies](https://nodejs.org/en/blog/npm/peer-dependencies/) follows.
+  
+  Una explicación de las [peer dependencies](https://nodejs.org/en/blog/npm/peer-dependencies/) se explica a continuación.
   
   Packages depend on other packages. For example, your application depends on the Angular package.
   
+  Los paquetes dependen de otros paquetes. Por ejemplo, su aplicación depende del paquete Angular.
+  
   Two packages, "A" and "B", could depend on the same third package "C". 
   "A" and "B" might both list "C" among their *dependencies*.
+  
+  Dos paquetes, 'A' y 'B', pueden depender del mismo tercer paquete 'C'.
+  'A' y 'B' pdrían listar a 'C' entre sus *dependencies*.
   
   What if "A" and "B" depend on different versions of "C" ("C1" and "C2"). The npm package system supports that. 
   It installs "C1" in the `node_modules` folder for "A" and "C2" in the `node_modules` folder for "B".
   Now "A" and "B" have their own copies of "C" and they run without interferring with one another.
   
+  ¿Qué pasa si 'A' y 'B' dependen de diferentes versiones de 'C' ('C1' y 'C2')? El sistema de paquetes npm ¡soporta esto!
+  Instalaría 'C1' en el folder `node_modules` para 'A' y 'C2' en el folder `node_modules` para 'B'.
+  Ahora 'A' y 'B' tienen su propia copia de 'C' y corren sin interferir el uno con el otro. 
+  
   But there is a problem. Package "A" may require the presence of "C1" without actually calling upon it directly.
   "A" may only work if *everyone is using "C1"*. It falls down if any part of the application relies on "C2".
   
+  Pero hay un problema. El paquete "A" tal vez requiere de la presencia de "C1" sin llamarlo directamente.
+  "A" tal vez solo trabaja si *todos están usando "C1"*. Se cae si cualquier parte de la aplicación depende de "C2".
+  
   The solution is for "A" to declare that "C1" is a *peer dependency*.
   
+  La solución es que "A" declare a "C1" como una *peer dependency*.
+  
   The difference between a `dependency` and a `peerDependency` is roughly this:
+  
+  La diferencia entre una `dependency` y una `peerDependency` es más o menos así:
   
   >A **dependency** says, "I need this thing directly available to *me*."
   >
   >A **peerDependency** says, "If you want to use me, you need this thing available to *you*."
    
+  >Una **dependency** dice, "Necesito este paquete disponible directamente para *mi*".
+  >
+  >Una **peerDependency** dice, "si quiere utilizarme, necesita este paquete disponible para *usted*."
+   
   The Angular `package.json` specifies several *peer dependency* packages, 
   each pinned to a particular version of a third-party package.
+  
+  Angular especifica varios paquetes *peer dependency* en su archivo `package.json`. 
+  cada uno ligado a una versión particular de un paquete third-party.
 
   ### We must install Angular's *peerDependencies* ourselves.
+  
+  ### Debe instalar las *peerDependencies* usted mismo
   
   When *npm* installs packages listed in *your* `dependencies` section,
   it also installs the packages listed within *their* packages `dependencies` sections.
   The process is recursive.
   
+  Cuando *npm* instala paquetes listados en *su* sección `dependencies`,
+  también instala los paquetes listados entre *sus* secciones de paquetes `dependencies`.
+  El proceso es recursivo.
+  
   However, as of version 3, *npm* does *not* install packages listed in *peerDependencies* sections.
+  
+  Pero a partir de laversión 3, *npm* ya *no* instala los paquetes listados en la sección *peerDependencies*.
   
   This means that when your application installs Angular, ***npm* doesn't automatically install
   the packages listed in Angular's *peerDependencies* section**.
+  
+  Esto significa que cuando su aplicación instala Angular, ***npm* no instala automáticamente 
+  los paquetes lostados en la ** sección* peerDependencies* de Angular.
   
   Fortunately, *npm* issues a warning (a) When any *peer dependencies* are missing, or (b)
   When the application or any of its other dependencies
   installs a different version of a *peer dependency*. 
   
+  Afortunadamente, *npm* emite una advertencia (a) cuando falta cualquiera de sus *peer dependencies* o (b)
+  cuando la aplicación o cualquier de sus otras dependencies
+  instala una versión diferente de una *peer dependency*.
+  
   These warnings guard against accidental failures due to version mismatches.
   They leave you in control of package and version resolution.
   
+  Estas alertas son una defensa contra fallas accidentales debidas a conflictos de versiones.
+  Lo dejan con el control de los paquetes y la resolición de versiones.
+  
   It is your responsibility to list all *peer dependency* packages **among your own *devDependencies***.
   
+  Es su responsabilidad listar todas los paquetes *peer dependency* **entre sus propias *devDependencies***.
+
 .l-sub-section
   :marked
     #### The future of *peerDependencies*
     
+    ### El futuro de las *peerDependencies*
+    
     The Angular polyfill dependencies are hard requirements. Currently, there is no way to make them optional.
+    
+    Las dependencias polifyll son requerimientos obligatorios. Actualmente, no hay manera de hacerlos opcionales
     
     However, there is an npm feature request for "optional peerDependencies," which would allow you to model this relationship better. 
     When this feature request is implemented, Angular will switch from *peerDependencies* to *optionalPeerDependencies* for all polyfills.
+    
+    De cualquier forma, hay un feature request de npm para "peerDependencies opcionales," el cual le permitiraá modelar de una mejor manera esta relació.
+    Cuando este feature request esté implementado, Angular cambiará todos los polyfills de *peerDependencies* a *optionalPeerDependencies*.
