@@ -1,68 +1,68 @@
 {
   "index": {
     "icon": "home",
-    "title": "Angular Docs",
-    "menuTitle": "Docs Home",
-    "banner": "Welcome to <b>angular.io/dart</b>! The current Angular 2 Dart release is <b>beta.21</b>. Consult the <a href='https://github.com/dart-lang/angular2/blob/master/CHANGELOG.md' target='_blank'>Change Log</a> about recent enhancements, fixes, and breaking changes."
+    "title": "Documentación Angular",
+    "menuTitle": "Inicio de Documentación",
+    "banner": "¡Bienvenido a <b>angular.io/dart</b>! La versión actual de Angular 2 Dart es <b>beta.21</b>. Consulta el <a href='https://github.com/dart-lang/angular2/blob/master/CHANGELOG.md' target='_blank'>Change Log</a> para estar al tanto de mejoras recientes, correcciones y cambios relevantes."
   },
 
   "quickstart": {
     "icon": "query-builder",
-    "title": "5 Min Quickstart",
-    "description": "Get up and running with Angular 2"
+    "title": "Introducción rápida de 5 minutos",
+    "description": "Aprende y ejecuta Angular 2"
   },
 
   "tutorial": {
     "icon": "list",
     "title": "Tutorial",
-    "banner": "Angular 2 is currently in Release Candidate."
+    "banner": "Angular 2 está actualmente en Release Candidate."
   },
 
   "guide": {
     "icon": "list",
-    "title": "Developer Guides",
-    "banner": "Angular 2 is currently in Release Candidate."
+    "title": "Guías de desarrollador",
+    "banner": "Angular 2 está actualmente en Release Candidate."
   },
 
   "cookbook": {
     "icon": "list",
     "title": "Cookbook",
-    "banner": "How to solve common implementation challenges."
+    "banner": "Cómo resolver situaciones de implentación comunes."
   },
 
   "api/": {
     "icon": "book",
-    "title": "API Preview",
+    "title": "Vista previa de la API",
     "reference": true
   },
 
   "cheatsheet": {
     "title": "Angular Cheat Sheet",
-    "intro": "A quick guide to Angular syntax.",
+    "intro": "Una guía rápida de la sintaxis de Angular 2.",
     "reference": false
   },
 
   "glossary": {
-    "title": "Glossary",
-    "intro": "Brief definitions of the most important words in the Angular 2 vocabulary",
+    "title": "Glosario",
+    "intro": "Definiciones breves sobre los términos más importantes del vocabulario de Angular 2",
     "reference": false
   },
 
   "resources": {
     "icon": "play-circle-fill",
-    "title": "Angular Resources",
-    "banner": "Angular 2 is currently in Release Candidate.",
+    "title": "Recursos Angular",
+    "banner": "Angular 2 está actualmente en Release Candidate.",
     "resources": true
   },
 
   "help": {
     "icon": "chat",
-    "title": "Help & Support",
+    "title": "Ayuda y soporte",
     "resources": true
   },
 
   "styleguide": {
-    "title": "Docs Style Guide",
-    "intro": "Design & Layout Patterns For Documentation"
+    "title": "Guía de estilo de documentación",
+    "intro": "Patrones de diseño y disposición para la documentación"
   }
 }
