@@ -3,56 +3,104 @@ include ../_util-fns
 :marked
   # Angular Modules (NgModules) have landed in Angular RC5!
 
-  _Angular Modules_, also known as _NgModules_, are the powerful new way to organize and bootstrap your Angular application. 
+  # Módulos de Angular (NgModules) han llegado en Angular RC5!
+
+  _Angular Modules_, also known as _NgModules_, are the powerful new way to organize and bootstrap your Angular application.
+
+  _Módulos de Angular_, también conocidos como _NgModules_, son la nueva y poderosa forma de organizar e iniciar su aplicacion Angular.
 .l-sub-section
   :marked
     Read more in the ["RC5 and NgModules" announcement](https://angularjs.blogspot.com).
 
+    Lea más en ["Anuncios de RC5 y NgModules"](https://angularjs.blogspot.com).
+
     Learn the details of NgModule in the [Angular Module](../guide/ngmodule.html) chapter.
+
+    Aprenda los detalles de NgModule en el capítulo [Módulo de Angular](../guide/ngmodule.html).
 :marked
-  The new  `@NgModule` decorator gives you module-level components, directives, and pipes without 
-  the need to specify them repeatedly in every component of your application. 
-  
-  The `@NgModule` metadata give the Angular compiler the context needed so that you can use the same code 
+  The new  `@NgModule` decorator gives you module-level components, directives, and pipes without
+  the need to specify them repeatedly in every component of your application.
+
+  El nuevo decorador `@NgModule` le proporciona componentes a nivel-módulo, directives, y pipes sin
+  la necesidad de especificarlos repetidamente en cada componente de su aplicación.
+
+  The `@NgModule` metadata give the Angular compiler the context needed so that you can use the same code
   regardless of whether you are running Angular in [Ahead-of-time](../glossary.html#aot) or [Just
    in Time](../glossary.html#jit) mode.
 
+  El metadato `@NgModule` le proporciona al compilador de Angular el contexto necesario para que usted pueda usar el mismo código
+  idependientemete de si usted está ejecutando Angular en el modo [Ahead-of-time](../glossary.html#aot) o [Just
+   in Time](../glossary.html#jit).
+
   ## How do I use them?
 
-  If you were previously writing an Angular application, your app should continue to work in RC5. 
-  We’ve worked hard to ensure that applications that worked with RC4 continue to work while you migrate. 
+  ## ¿Como lo uso?
+
+  If you were previously writing an Angular application, your app should continue to work in RC5.
+  We’ve worked hard to ensure that applications that worked with RC4 continue to work while you migrate.
   For this to work, we’re doing 2 things automatically for you:
+
+  Si usted estaba escibiendo anteriormente una aplicación en Angular, su aplicación debería continuar funcionando con el RC5.
+  Hemos trabajdo duro para asegurar que las aplicaciones que funcionaban con el RC4 continúen funcionando cuando haga la migracion.
+  Para que esto funcione, estamos haciendo 2 cosas de forma automática por usted:
 
   * We create an implicit `NgModule` for you as part of the `bootstrap()` command
   * We automatically hoist your components, pipes, and directives
 
-  While your application will continue to work today, 
-  it’s important that you update your application to ensure future updates and deprecations don’t negatively affect you. 
+  * Creamos un `NgModule` implícito para usted como parte del comando `bootstrap()`
+  * Automáticamente elevamos sus componentes, pipes y directives
+
+  While your application will continue to work today,
+  it’s important that you update your application to ensure future updates and deprecations don’t negatively affect you.
   To make it easier, you can think of the process as having 5 steps.
 
+  Mientras que su aplicación continuará trabajando hoy,
+  es importante actualizar su aplicación para garantizar que las futuras actualizaciones y obsoleciencias no le afecten negativamente.
+  Para hacerlo más fácil, usted puede pensarlo como un proceso de 5 pasos.
+
   1. **Update to RC5** - Your application should continue to work without modification, but it’s important that you are running the latest version of Angular.
-  
+
   2. **Create an _NgModule_** - Create the root `NgModule` that you’ll use to bootstrap your application.
-  
+
   3. **Update your bootstrap** - Bootstrap that module instead of your root component
-  
+
   4. **Update your 3rd party libraries** - Take advantage of the latest from Forms, Material, Http, and more
-  
-  5. **Cleanup** - Clean up your code. 
+
+  5. **Cleanup** - Clean up your code.
   The deprecated classes, methods and properties will be removed from Angular very soon.
 
-  Prefer to look at code and diffs? 
+  1. **Actualizar a RC5** - Su aplicación debe seguir funcionando sin modificaciones, pero es importante que esté ejecutando la última versión de Angular.
+
+  2. **Cree un _NgModule_** - Cree un `NgModule` principal que usted va a usar para inicializar su aplicación.
+
+  3. **Actualice su inicializador** - Inicialice ese módulo en vez de inicializar su componente principal.
+
+  4. **Actualice sus librerias de 3ros** - Tome ventaja de los últimos Forms, Material, Http, y más
+
+  5. **Limpieza** - Limpie su código.
+  Las clases, métodos y propiedades obsoletas serán eleminadas de Angular muy pronto.
+
+  Prefer to look at code and diffs?
   Check out the upgrade in [one commit](https://github.com/StephenFluin/ngmodule-migration/commit/9f9c6ae099346e491fc31d77bf65ed440e1f164c).
 
+  ¿Prefiere mirar el código y sus diferencias?
+  Dele un vistazo a la actualización en [un commit] (https://github.com/StephenFluin/ngmodule-migration/commit/9f9c6ae099346e491fc31d77bf65ed440e1f164c).
+
   ## 1. Update to RC5
-  If you use npm, you should be able to either update your `package.json` file and run `npm install`. 
+  If you use npm, you should be able to either update your `package.json` file and run `npm install`.
   Or alternatively you can run the following command:
+
+  ## 1. Actualice a RC5
+  Si usted usa npm, debe ser capaz de actualizar su archivo `package.json` y ejecutar `npm install`.
+  O de forma alternativa usted puede ejecutar el siguiente comando:
 
 code-example(format='.' language='bash').
   npm install @angular/{core,common,compiler,platform-browser,platform-browser-dynamic} --save
 
 :marked
   Update your optional libraries
+
+  Actualice sus librerías opcionales
 
 code-example(format='.' language='bash').
   npm install @angular/router
@@ -62,12 +110,17 @@ code-example(format='.' language='bash').
 :marked
   Update the Angular CLI if you're using that tool
 
+  Actualice Angular CLI si usted está usando esa herramienta
+
 code-example(format='.'  language='bash').
   npm install angular-cli @angular/tsc-wrapped --save-dev
 
 :marked
   ## 2. Create an _NgModule_
   Create a new file called app.module.ts. Populate it with your root component as follows:
+
+  ## 2. Cree un _NgModule_
+  Cree un nuevo archivo llamado app.module.ts. Rellene con su componente principal de la siguiente manera:
 
 code-example(format='.' language='javascript').
   import { NgModule }       from '@angular/core';
@@ -85,6 +138,9 @@ code-example(format='.' language='javascript').
   ## 3. Update your bootstrap
   Update your `main.ts` file to bootstrap using the "Just-in-time" (JiT) compiler.
 
+  ## 3. Actualice su inicializador
+  Actualice su archivo `main.ts` para que inicialice usando el compilador "Just-in-Time (JiT)."
+
 code-example(format='.' language='javascript').
   import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
   import { AppModule }              from './app/app.module';
@@ -93,35 +149,52 @@ code-example(format='.' language='javascript').
 
 :marked
   ## 4. Import library modules in your _NgModule_
-  Remove the Angular and 3rd party library providers from your `AppComponent` providers 
+  Remove the Angular and 3rd party library providers from your `AppComponent` providers
   and switch to `NgModule` imports as seen in this example.
+
+  ## 4. Importe las librerias de módulos en su _NgModule_
+  Elimine la libría de Angular y de 3ros de su `AppComponents`
+  y cambie a `NgModule` imports como en este ejemplo:
 
 code-example(format='.' language='javascript').
   imports: [
-      BrowserModule, 
+      BrowserModule,
       // Router
-      RouterModule.forRoot(config), 
+      RouterModule.forRoot(config),
       // Forms
-      FormsModule, 
+      FormsModule,
       // Material Design
-      MdSlideToggleModule, 
-      MdButtonModule, 
-      MdToolbarModule, 
-      MdCardModule, 
+      MdSlideToggleModule,
+      MdButtonModule,
+      MdToolbarModule,
+      MdCardModule,
       MdInputModule,
   ],
 
 :marked
   ## 5. Cleanup
-  For RC5, you can leave your components, directives and pipes 
+  For RC5, you can leave your components, directives and pipes
   in the `directives` and `pipes` properties of your `@Component` metadata.
   In fact, we automatically hoist (add) them to the NgModule to which they belong.
 
+  ## 5. Limpieza
+  Para el RC5, puede dejar sus componentes, directives y pipes
+  en las propiedades de `directives` y `pipes` de los metadatos de su `@Component`.
+  De hecho, automáticamente las elevamos (adicionamos) al NgModule donde pertenecen.
+
+
 .alert.is-important
   :marked
-    This option is temporary for backward compatibility. 
+    This option is temporary for backward compatibility.
     It will be removed in the final release of Angular 2.0.
 
-    Get ahead of the game and start moving your component `directives` and `pipes` 
+    Esta opción es temporal para la compatibilidad con versiones anteriores.
+    Será eleminada en el la versión final de Angular 2.0.
+
+    Get ahead of the game and start moving your component `directives` and `pipes`
     into module `declarations` as soon as possible.
     We intend to delete _all_ deprecated class, methods, and properties in the next RC.
+
+    Adelántese al juego y comience a mover sus componentes `directives` y `pipes`
+    al módulo `declarations` tan pronto como sea posible.
+    Tenemos la intención de eleminar _todas_ las clases, métodos y propiedades obsoletas en el próximo CR.
