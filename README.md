@@ -12,7 +12,7 @@ Angular 2, Angular 1, Angular Material y AngularFire.
 Por favor crea **issues en Guithub _sólo_ referentes a la Guía del Desarrollador, a las Recetas y/o de ejemplos de código** en el
 repositorio [Angular.io](https://github.com/angular/angular.io/issues) de github.
 
-**Problemas con la API de Angular, correcciones del cheatsheet, peticiones de funcionalidad, informes de defectos, y preguntas técnicas** referentes a Angular en si,
+**Problemas con la API de Angular, correcciones del cheatsheet, peticiones de funcionalidad, informes de defectos, y preguntas técnicas** referentes a Angular en sí,
 pertenecen al repositorio de [**código fuente de angular**](https://github.com/angular/angular/issues) de github.
 No podemos manejar esos tipos de temas aquí y le pedimos que vuelva a publicarlos en el repositorio de angular.
 
